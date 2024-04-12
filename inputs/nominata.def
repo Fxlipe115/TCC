@@ -18,7 +18,7 @@
 \providecommand{\nominataPRCAname}{Vice-Reitora}
 
 % PROPG
-\providecommand{\nominataPRAPG}{Prof.~Celso Giannetti Loureiro Chaves}
+\providecommand{\nominataPRAPG}{Prof.~J{\'u}lio Otávio Jardim Barcellos}
 \providecommand{\nominataPRAPGname}{Pr{\'o}-Reitor de P{\'o}s-Gradua{\c{c}}{\~a}o}
 
 % Instituto de Informática
@@ -26,16 +26,16 @@
 \providecommand{\nominataDirname}{Diretora do Instituto de Inform{\'a}tica}
 
 % PPGC
-\providecommand{\nominataCoordPPGC}{Prof\textsuperscript{a}.~Luciana Salete Buriol}
-\providecommand{\nominataCoordnamePPGC}{Coordenadora do PPGC}
+\providecommand{\nominataCoordPPGC}{Prof.~Alberto Egon Schaeffer Filho}
+\providecommand{\nominataCoordnamePPGC}{Coordenador do PPGC}
 
 % PGMicro
-\providecommand{\nominataCoordPGMICRO}{Prof.~Tiago Roberto Balen}
+\providecommand{\nominataCoordPGMICRO}{Prof.~Cl{\'a}udio Radtke}
 \providecommand{\nominataCoordnamePGMICRO}{Coordenador do PGMICRO}
 
 % Biblioteca
-\providecommand{\nominataBibchefe}{Beatriz Regina Bastos Haro}
-\providecommand{\nominataBibchefename}{Bibliotec{\'a}ria-chefe do Instituto de Inform{\'a}tica}
+\providecommand{\nominataBibchefe}{Alexsander Borges Ribeiro}
+\providecommand{\nominataBibchefename}{Bibliotec{\'a}rio-chefe do Instituto de Inform{\'a}tica}
 
 % INA (Informática Aplicada)
 \providecommand{\nominataChefeINA}{Prof.~Renata Galante}
@@ -50,7 +50,7 @@
 \providecommand{\nominataPRAGname}{Pr{\'o}-Reitora de Gradua{\c{c}}{\~a}o}
 
 %CIC
-\providecommand{\nominataCoordCIC}{Prof.~Rodrigo Machado}
+\providecommand{\nominataCoordCIC}{Prof.~Marcelo Walter}
 \providecommand{\nominataCoordCICname}{Coordenador do Curso de Ci{\^e}ncia de Computa{\c{c}}{\~a}o}
 
 %ECP
