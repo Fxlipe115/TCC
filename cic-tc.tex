@@ -10,6 +10,23 @@
 
 \usepackage{lipsum}
 
+\newcommand\new[1]{{\color{red}{\fbox{#1}}}}
+
+\usepackage{tcolorbox}
+
+\newcommand{\newRevisor}[3]{
+  \expandafter\newcommand\csname #1\endcsname[1]{
+    \begin{tcolorbox}[colback=#2]
+      \textcolor{#3}{\bfseries #1: ##1}
+    \end{tcolorbox}
+  }
+}
+
+\newRevisor{Graeff}{blue}{black}
+\newRevisor{Nobre}{orange}{black}
+\newRevisor{ToDo}{red}{black}
+
+
 \title{
     Securing Distributed Data with Cryptographic Algorithms: A Case Study on 
     IPFS
@@ -53,16 +70,8 @@
 \begin{flushright}
     \mbox{}\vfill
     \begin{tabular}{p{0.55\linewidth} p{0.45\linewidth}}
-        In loving memory of Professor Raul Fernando Weber, a remarkable educator
-        and influential figure in the field of computer security. His passion
-        for teaching and dedication to his students left an indelible mark on
-        all who had the privilege to learn from him. As I embark on my
-        undergraduate thesis in computer security, I humbly dedicate this work
-        to the memory of a great professor and a charismatic person who inspired
-        generations of students, including myself. His guidance and enthusiasm
-        ignited my love for this area, and I am forever grateful for the
-        knowledge and inspiration he shared. His legacy lives on in the pursuit
-        of knowledge and excellence. Rest in peace, Professor Weber.\\
+        In loving memory of Professor Raul Fernando Weber, a remarkable educator and influential figure in the field of computer security. His passion for teaching and dedication to his students left an indelible mark on all who had the privilege to learn from him. As I embark on my undergraduate thesis in computer security, I humbly dedicate this work to the memory of a great professor and a charismatic person who inspired generations of students, including myself. His guidance and
+        ignited my love for this area, and I am forever grateful for the knowledge and inspiration he shared. His legacy lives on in the pursuit of knowledge and excellence. Rest in peace, Professor Weber.\\
     \end{tabular}
 \end{flushright}
 
@@ -131,10 +140,9 @@
 \chapter{Introduction}
 
 \section{Motivation}
-Sausage filler: Introduce the context of Laura's paper. \cite{laura2023} and it's use of InterPlanetary File System (IPFS) \cite{benet2013ipfs}
-
-\section{Scope and Methodology}
-
+    \ToDo{Introduce the context of Laura's paper. \cite{laura2023} and it's use of InterPlanetary File System (IPFS) \cite{benet2013ipfs}}
+    
+    \Nobre{comentario do orientador}
 
 \section{Organization of the Thesis}
 This thesis is organized as follows...
@@ -144,45 +152,45 @@ This thesis is organized as follows...
 
 This chapter explores integrating blockchain technology and cryptographic methods in healthcare data management, emphasizing their impact on enhancing data security and privacy.
 
-\section{Blockchain Technology in Healthcare Data Management}
-Blockchain technology significantly enhances healthcare systems' data integrity, privacy, and access control. Esposito et al. \cite{Esposito2018} critically examine blockchain as a solution for healthcare data security within cloud environments, suggesting its pivotal role in overcoming current challenges. Furthermore, Dwivedi et al. \cite{Dwivedi2019} explore blockchain's effectiveness in managing data securely and transparently in the healthcare Internet of Things (IoT) ecosystem.
+% \section{Blockchain Technology in Healthcare Data Management}
+% Blockchain technology significantly enhances healthcare systems' data integrity, privacy, and access control. Esposito et al. \cite{Esposito2018} critically examine blockchain as a solution for healthcare data security within cloud environments, suggesting its pivotal role in overcoming current challenges. Furthermore, Dwivedi et al. \cite{Dwivedi2019} explore blockchain's effectiveness in managing data securely and transparently in the healthcare Internet of Things (IoT) ecosystem.
 
-\section{Cryptographic Techniques for Healthcare Data Security}
-The application of advanced cryptographic techniques is crucial for protecting patient information. Memos et al. \cite{Memos2021} propose a layered cloud architecture with advanced encryption techniques for e-health data transmission, highlighting the role of cryptography in safeguarding sensitive health information. Sri Vigna Hema and Kesavan \cite{sri2019} focus on using Elliptic Curve Cryptography (ECC) in cloud environments, underscoring its efficiency and security benefits.
+% \section{Cryptographic Techniques for Healthcare Data Security}
+% The application of advanced cryptographic techniques is crucial for protecting patient information. Memos et al. \cite{Memos2021} propose a layered cloud architecture with advanced encryption techniques for e-health data transmission, highlighting the role of cryptography in safeguarding sensitive health information. Sri Vigna Hema and Kesavan \cite{sri2019} focus on using Elliptic Curve Cryptography (ECC) in cloud environments, underscoring its efficiency and security benefits.
 
-\section{Enhancing Privacy and Security in IoT-based Healthcare Systems}
-Securing IoT-generated data in healthcare poses significant challenges. Xu et al. \cite{XuChang2019} introduce a novel searchable encryption scheme to facilitate secure and efficient data access, addressing the need for balancing data utility with privacy concerns in cloud-assisted healthcare systems. Additionally, the study by Karaca et al. \cite{Karaca2019} on mobile cloud computing for stroke healthcare indirectly underscores the importance of secure data management practices in mobile healthcare solutions.
+% \section{Enhancing Privacy and Security in IoT-based Healthcare Systems}
+% Securing IoT-generated data in healthcare poses significant challenges. Xu et al. \cite{XuChang2019} introduce a novel searchable encryption scheme to facilitate secure and efficient data access, addressing the need for balancing data utility with privacy concerns in cloud-assisted healthcare systems. Additionally, the study by Karaca et al. \cite{Karaca2019} on mobile cloud computing for stroke healthcare indirectly underscores the importance of secure data management practices in mobile healthcare solutions.
 
-\section{Gaps Identified in Existing Research}
-Despite the considerable advancements, research still needs empirical evidence on scalability, performance, and user acceptance in diverse healthcare environments. Saeed et al. \cite{Saeed2022} provide a systematic review of blockchain applications in healthcare, setting a foundation for understanding its potential and limitations.
+% \section{Gaps Identified in Existing Research}
+% Despite the considerable advancements, research still needs empirical evidence on scalability, performance, and user acceptance in diverse healthcare environments. Saeed et al. \cite{Saeed2022} provide a systematic review of blockchain applications in healthcare, setting a foundation for understanding its potential and limitations.
 
-\section{Informing Future Research}
-The reviewed literature underscores blockchain and cryptography's critical roles in tackling healthcare data management challenges. This section lays the groundwork for this dissertation's focus on developing a scalable, user-centric framework leveraging these technologies to enhance privacy and security in healthcare systems.
+% \section{Informing Future Research}
+% The reviewed literature underscores blockchain and cryptography's critical roles in tackling healthcare data management challenges. This section lays the groundwork for this dissertation's focus on developing a scalable, user-centric framework leveraging these technologies to enhance privacy and security in healthcare systems.
 
-\section{Blockchain Technology in Healthcare Data Management}
-Blockchain's role extends to ensuring data integrity and enabling efficient healthcare services. Esposito et al. \cite{Esposito2018} and Saeed et al. \cite{Saeed2022} discuss blockchain's potential as a solution for healthcare data security and privacy. Additionally, Rahman et al. \cite{Rahman2020} emphasize blockchain's capability for secure and accountable cross-border data sharing, which is crucial for global health data management.
+% \section{Blockchain Technology in Healthcare Data Management}
+% Blockchain's role extends to ensuring data integrity and enabling efficient healthcare services. Esposito et al. \cite{Esposito2018} and Saeed et al. \cite{Saeed2022} discuss blockchain's potential as a solution for healthcare data security and privacy. Additionally, Rahman et al. \cite{Rahman2020} emphasize blockchain's capability for secure and accountable cross-border data sharing, which is crucial for global health data management.
 
-\section{Cryptographic Techniques for Healthcare Data Security}
-Cryptographic advancements, including ECC and attribute-based encryption, play a vital role. Sri Vigna Hema and Kesavan \cite{sri2019} demonstrate ECC's security benefits in cloud environments, while Xu et al. \cite{XuJie2019} and Zala et al. \cite{Zala2024} explore attribute-based encryption's potential for privacy protection in e-health.
+% \section{Cryptographic Techniques for Healthcare Data Security}
+% Cryptographic advancements, including ECC and attribute-based encryption, play a vital role. Sri Vigna Hema and Kesavan \cite{sri2019} demonstrate ECC's security benefits in cloud environments, while Xu et al. \cite{XuJie2019} and Zala et al. \cite{Zala2024} explore attribute-based encryption's potential for privacy protection in e-health.
 
-\section{Enhancing Privacy and Security in IoT-based Healthcare Systems}
-IoT-based systems require robust security solutions. Dwivedi et al. \cite{Dwivedi2019} illustrate blockchain's effectiveness in securing IoT-generated data. Eghmazi et al. \cite{Eghmazi2024} further this discussion by integrating blockchain with Hyperledger Fabric to enhance data integrity and privacy in IoT systems.
+% \section{Enhancing Privacy and Security in IoT-based Healthcare Systems}
+% IoT-based systems require robust security solutions. Dwivedi et al. \cite{Dwivedi2019} illustrate blockchain's effectiveness in securing IoT-generated data. Eghmazi et al. \cite{Eghmazi2024} further this discussion by integrating blockchain with Hyperledger Fabric to enhance data integrity and privacy in IoT systems.
 
-\section{Challenges and Future Directions}
-Liu et al. \cite{Liu2024} and Shen et al. \cite{Shen2019} address scalability and efficiency in electronic medical record (EMR) sharing, emphasizing the need for innovative solutions like proxy re-encryption and P2P networks. Bhansali et al. \cite{Bhansali2022} and Li et al. \cite{Li2024} contribute to the dialogue on federated learning and zero-knowledge proofs for regulated data trading, highlighting 
+% \section{Challenges and Future Directions}
+% Liu et al. \cite{Liu2024} and Shen et al. \cite{Shen2019} address scalability and efficiency in electronic medical record (EMR) sharing, emphasizing the need for innovative solutions like proxy re-encryption and P2P networks. Bhansali et al. \cite{Bhansali2022} and Li et al. \cite{Li2024} contribute to the dialogue on federated learning and zero-knowledge proofs for regulated data trading, highlighting 
 
 \section{Highly Relevant for Core Research Focus}
 
     Blockchain: A Panacea for Healthcare Cloud-Based Data Security and Privacy? \cite{Esposito2018}: Central to understanding blockchain's potential in healthcare data security and privacy within cloud environments.
     A Decentralized Privacy-Preserving Healthcare Blockchain for IoT \cite{Dwivedi2019}: Illustrates blockchain's application in securing IoT-generated healthcare data, addressing privacy and security directly.
     Healthchain: A Blockchain-Based Privacy Preserving Scheme for Large-Scale Health Data \cite{XuJie2019}: Proposes a blockchain-based solution for privacy-preserving healthcare data management, highly relevant for its focus on scalability and privacy.
-    A Secure and Efficient Electronic Medical Record Data Sharing Scheme Based on Blockchain and Proxy Re-encryption \cite{Liu2024}: Discusses EMR sharing using blockchain and cryptographic methods, aligning closely with your dissertation’s objectives.
+    A Secure and Efficient Electronic Medical Record Data Sharing Scheme Based on Blockchain and Proxy Re-encryption \cite{Liu2024}: Discusses EMR sharing using blockchain and cryptographic methods, aligning closely with your dissertation's objectives.
     Blockchain-based End-to-End Privacy-Preserving Scheme for IoT-based Healthcare Systems \cite{maryam2024}: Presents a comprehensive scheme for privacy preservation in IoT-based healthcare, offering direct applicability to enhancing data security.
 
 \section{Moderately Relevant for Methodological Insights and Technological Innovations}
 
     Achieving Searchable and Privacy-Preserving Data Sharing for Cloud-Assisted E-Healthcare System \cite{XuChang2019}; ECC Based Secure Sharing of Healthcare Data in the Health Cloud Environment \cite{sri2019}: Offer insights into cryptographic techniques for secure data sharing, relevant for discussing data privacy mechanisms.
-    Designing an Attribute-Based Encryption Scheme with an Enhanced Anonymity Model for Privacy Protection in E-Health \cite{Zala2024}; MedChain: Efficient Healthcare Data Sharing via Blockchain \cite{Shen2019}: Highlight cryptographic solutions and blockchain’s utility in efficient data sharing, providing context for encryption and blockchain's role in healthcare.
+    Designing an Attribute-Based Encryption Scheme with an Enhanced Anonymity Model for Privacy Protection in E-Health \cite{Zala2024}; MedChain: Efficient Healthcare Data Sharing via Blockchain \cite{Shen2019}: Highlight cryptographic solutions and blockchain's utility in efficient data sharing, providing context for encryption and blockchain's role in healthcare.
     Cloud-Based Secure Data Storage and Access Control for Internet of Medical Things Using Federated Learning \cite{Bhansali2022}; Enhancing IoT Data Security: Using the Blockchain to Boost Data Integrity and Privacy \cite{Eghmazi2024}: Explore blockchain's integration with IoT and federated learning for data security, relevant for discussions on securing IoT-based healthcare data.
 
 \section{Relevant for Contextual Understanding and Supporting Information}
@@ -207,7 +215,7 @@ Liu et al. \cite{Liu2024} and Shen et al. \cite{Shen2019} address scalability an
 \chapter{Security Evaluation}
 
 
-\chapter{Discussion and Analysis}
+\chapter{Discussion}
 
 
 \chapter{Future Work}
