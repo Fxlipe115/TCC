@@ -22,7 +22,7 @@
   }
 }
 
-\newRevisor{Graeff}{blue}{black}
+\newRevisor{Graeff}{Cyan}{black}
 \newRevisor{Nobre}{orange}{black}
 \newRevisor{ToDo}{red}{black}
 
@@ -115,18 +115,23 @@
     \lipsum[1]
 \end{translatedabstract}
 
-\listoffigures
+% \listoffigures
 
-\listoftables
+% \listoftables
 
-\begin{listofabbrv}{ABC} % longest abbreviation
+\begin{listofabbrv}{ABCD} % longest abbreviation
     \item[ABC] Advanced Blockchain Cryptography
+    \item[AES] Advanced Encryption Standard
     \item[DLP] Discrete Logarithm Problem
     \item[ECC] Elliptic Curve Cryptography
     \item[EHR] Electronic Health Record
     \item[EMR] Electronic Medical Record
+    \item[IoMT] Internet of Medical Things
+    \item[IPFS] InterPlanetary File System 
     \item[PoS] Proof of Stake
     \item[PoW] Proof of Work
+    \item[RSA] Rivest-Shamir-Adleman4
+    \item[SIFF] Secure Identity Federation Framework
 \end{listofabbrv}
 
 % idem para a lista de símbolos
@@ -142,66 +147,43 @@
 \section{Motivation}
     \ToDo{Introduce the context of Laura's paper. \cite{laura2023} and it's use of InterPlanetary File System (IPFS) \cite{benet2013ipfs}}
     
-    \Nobre{comentario do orientador}
+    \Nobre{comentário do orientador}
 
 \section{Organization of the Thesis}
 This thesis is organized as follows...
 
 
 \chapter{Literature Review}
+    This section delves into the application of blockchain technology in healthcare, exploring its impact on data security, privacy enhancement, operational efficiency, and additional technological perspectives. Each study discussed is highlighted for its contributions and relevance to advancing blockchain in healthcare.
+    
+    \Graeff{É necessário colocar o significado de AES e RSA por extenso aqui, visto que são siglas de conhecimento comum na área?}
 
-This chapter explores integrating blockchain technology and cryptographic methods in healthcare data management, emphasizing their impact on enhancing data security and privacy.
+    \textbf{Data Security:} \citet{Memos2021} propose a layered cloud architecture incorporating AES and RSA encryption to enhance the security of e-health data transmission. \citet{Tian2019} use Secure Identity Federation Framework (SIFF) and Hyperledger Fabric to ensure medical data's integrity, availability, and privacy. \citet{Liu2024} develop a blockchain-based Electronic Medical Record (EMR) sharing scheme with IPFS for secure storage and proxy re-encryption for access control. Additionally, \citet{Esposito2018} investigate the use of blockchain to enhance data security in cloud-based healthcare systems, addressing vulnerabilities inherent in traditional security models.
+    
+    \textbf{Privacy Enhancement:} \citet{Dwivedi2019} propose a blockchain framework for IoT devices in healthcare that minimizes computational demands while enhancing privacy. \citet{Esfahani2024} introduce a comprehensive privacy scheme using zero-knowledge proofs and ring signatures for IoT-based systems. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that improves anonymity. \citet{Li2024} create a regulated medical data trading scheme that ensures privacy and compliance using blockchain and zero-knowledge proofs.
+    
+    \textbf{Operational Efficiency:} \citet{Vazirani2019} review the effectiveness of blockchain in managing healthcare records, noting improvements in interoperability. \citet{Shen2019} introduce MedChain, a framework that efficiently manages and shares healthcare data. \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in the IoMT. Furthermore, \citet{XuJie2019} develop 'Healthchain,' a scalable blockchain-based framework for privacy-preserving health data management.
+    
+    \textbf{Cross-Border Data Sharing and Scalability:} \citet{Rahman2020} describe a blockchain-based platform for secure cross-border data sharing, enhancing trust and security. \citet{Saeed2022} examine blockchain's transformative potential in healthcare, particularly its impact on managing, distributing, and processing medical records.
+    
+    \textbf{Additional Technological Perspectives:} \citet{Hema2019} assess ECC-based encryption mechanisms for securing healthcare data in cloud environments. \citet{Naz2024} explore defences against quantum computing threats in blockchain through exotic signatures. \citet{Eghmazi2024} focus on securing IoT data using Hyperledger Fabric for scalable solutions. \citet{XuChang2019} discuss secure data sharing in cloud-assisted healthcare systems using cryptographic techniques. Lastly, \citet{Karaca2019} explores mobile cloud computing applications in stroke care, indirectly underscoring the need for integrating secure and efficient technology solutions in healthcare.
+    
+    This comprehensive review underscores blockchain technology's varied applications and significant potential in enhancing healthcare systems. While the studies discussed provide a robust foundation for advancing blockchain applications in healthcare, they also highlight several research gaps that require further investigation.
 
-% \section{Blockchain Technology in Healthcare Data Management}
-% Blockchain technology significantly enhances healthcare systems' data integrity, privacy, and access control. Esposito et al. \cite{Esposito2018} critically examine blockchain as a solution for healthcare data security within cloud environments, suggesting its pivotal role in overcoming current challenges. Furthermore, Dwivedi et al. \cite{Dwivedi2019} explore blockchain's effectiveness in managing data securely and transparently in the healthcare Internet of Things (IoT) ecosystem.
+    \section{Research Opportunities and Preliminary Goals}
+        \Graeff{Não tenho certeza se é melhor colocar essa discussão dos gaps da literatura aqui como sessão1. Aceito sugestões.}
 
-% \section{Cryptographic Techniques for Healthcare Data Security}
-% The application of advanced cryptographic techniques is crucial for protecting patient information. Memos et al. \cite{Memos2021} propose a layered cloud architecture with advanced encryption techniques for e-health data transmission, highlighting the role of cryptography in safeguarding sensitive health information. Sri Vigna Hema and Kesavan \cite{sri2019} focus on using Elliptic Curve Cryptography (ECC) in cloud environments, underscoring its efficiency and security benefits.
+        This section outlines vital research areas in blockchain technology for healthcare that require further exploration. These areas, identified based on the limitations and gaps in current literature, present significant opportunities to advance the field. This thesis aims to address these opportunities through targeted research objectives.
 
-% \section{Enhancing Privacy and Security in IoT-based Healthcare Systems}
-% Securing IoT-generated data in healthcare poses significant challenges. Xu et al. \cite{XuChang2019} introduce a novel searchable encryption scheme to facilitate secure and efficient data access, addressing the need for balancing data utility with privacy concerns in cloud-assisted healthcare systems. Additionally, the study by Karaca et al. \cite{Karaca2019} on mobile cloud computing for stroke healthcare indirectly underscores the importance of secure data management practices in mobile healthcare solutions.
+        \subsection{Scalability and Real-World Applicability} 
+            A critical gap in current research on blockchain in healthcare is the need for substantial empirical evidence regarding proposed frameworks' scalability and real-world applicability. There is an urgent need to conduct large-scale pilot studies and real-world implementations to substantiate the theoretical advantages of blockchain in this sector. Such research is vital to validate the benefits and to pinpoint potential challenges in diverse healthcare settings. Addressing these gaps is essential for generating concrete data and insights that can guide the scalable deployment of blockchain technologies in practical environments.
 
-% \section{Gaps Identified in Existing Research}
-% Despite the considerable advancements, research still needs empirical evidence on scalability, performance, and user acceptance in diverse healthcare environments. Saeed et al. \cite{Saeed2022} provide a systematic review of blockchain applications in healthcare, setting a foundation for understanding its potential and limitations.
+        \subsection{Regulatory and Ethical Considerations} 
+            As blockchain technology becomes more integrated into healthcare systems, understanding its regulatory and ethical implications is crucial. There is a pressing need to investigate how to design blockchain solutions to comply with healthcare regulations and ethical standards. This exploration should focus on critical areas such as patient privacy, data security, and consent management, encompassing theoretical and practical applications. Ensuring blockchain solutions are legally compliant and ethically sound while maintaining operational flexibility and scalability is fundamental to successful integration into healthcare systems. Addressing these considerations is vital for building trust and accepting blockchain technology in healthcare.
 
-% \section{Informing Future Research}
-% The reviewed literature underscores blockchain and cryptography's critical roles in tackling healthcare data management challenges. This section lays the groundwork for this dissertation's focus on developing a scalable, user-centric framework leveraging these technologies to enhance privacy and security in healthcare systems.
+        \subsection{Cybersecurity Challenges} 
+            The advancement of blockchain technology in healthcare must continuously adapt to the evolving landscape of cybersecurity threats. Significant opportunities exist to develop sophisticated defence mechanisms specifically designed to address the unique security challenges of blockchain's decentralized nature. Critical areas for further exploration include advancing cryptographic techniques, enhancing consensus algorithms, and implementing robust access control frameworks. These elements protect sensitive health data against unauthorized access and cyber-attacks. Addressing these critical vulnerabilities is imperative to ensuring the security and privacy of healthcare information managed via blockchain. By fortifying these areas, we can significantly enhance the trustworthiness and reliability of blockchain applications in healthcare settings.
 
-% \section{Blockchain Technology in Healthcare Data Management}
-% Blockchain's role extends to ensuring data integrity and enabling efficient healthcare services. Esposito et al. \cite{Esposito2018} and Saeed et al. \cite{Saeed2022} discuss blockchain's potential as a solution for healthcare data security and privacy. Additionally, Rahman et al. \cite{Rahman2020} emphasize blockchain's capability for secure and accountable cross-border data sharing, which is crucial for global health data management.
-
-% \section{Cryptographic Techniques for Healthcare Data Security}
-% Cryptographic advancements, including ECC and attribute-based encryption, play a vital role. Sri Vigna Hema and Kesavan \cite{sri2019} demonstrate ECC's security benefits in cloud environments, while Xu et al. \cite{XuJie2019} and Zala et al. \cite{Zala2024} explore attribute-based encryption's potential for privacy protection in e-health.
-
-% \section{Enhancing Privacy and Security in IoT-based Healthcare Systems}
-% IoT-based systems require robust security solutions. Dwivedi et al. \cite{Dwivedi2019} illustrate blockchain's effectiveness in securing IoT-generated data. Eghmazi et al. \cite{Eghmazi2024} further this discussion by integrating blockchain with Hyperledger Fabric to enhance data integrity and privacy in IoT systems.
-
-% \section{Challenges and Future Directions}
-% Liu et al. \cite{Liu2024} and Shen et al. \cite{Shen2019} address scalability and efficiency in electronic medical record (EMR) sharing, emphasizing the need for innovative solutions like proxy re-encryption and P2P networks. Bhansali et al. \cite{Bhansali2022} and Li et al. \cite{Li2024} contribute to the dialogue on federated learning and zero-knowledge proofs for regulated data trading, highlighting 
-
-\section{Highly Relevant for Core Research Focus}
-
-    Blockchain: A Panacea for Healthcare Cloud-Based Data Security and Privacy? \cite{Esposito2018}: Central to understanding blockchain's potential in healthcare data security and privacy within cloud environments.
-    A Decentralized Privacy-Preserving Healthcare Blockchain for IoT \cite{Dwivedi2019}: Illustrates blockchain's application in securing IoT-generated healthcare data, addressing privacy and security directly.
-    Healthchain: A Blockchain-Based Privacy Preserving Scheme for Large-Scale Health Data \cite{XuJie2019}: Proposes a blockchain-based solution for privacy-preserving healthcare data management, highly relevant for its focus on scalability and privacy.
-    A Secure and Efficient Electronic Medical Record Data Sharing Scheme Based on Blockchain and Proxy Re-encryption \cite{Liu2024}: Discusses EMR sharing using blockchain and cryptographic methods, aligning closely with your dissertation's objectives.
-    Blockchain-based End-to-End Privacy-Preserving Scheme for IoT-based Healthcare Systems \cite{maryam2024}: Presents a comprehensive scheme for privacy preservation in IoT-based healthcare, offering direct applicability to enhancing data security.
-
-\section{Moderately Relevant for Methodological Insights and Technological Innovations}
-
-    Achieving Searchable and Privacy-Preserving Data Sharing for Cloud-Assisted E-Healthcare System \cite{XuChang2019}; ECC Based Secure Sharing of Healthcare Data in the Health Cloud Environment \cite{sri2019}: Offer insights into cryptographic techniques for secure data sharing, relevant for discussing data privacy mechanisms.
-    Designing an Attribute-Based Encryption Scheme with an Enhanced Anonymity Model for Privacy Protection in E-Health \cite{Zala2024}; MedChain: Efficient Healthcare Data Sharing via Blockchain \cite{Shen2019}: Highlight cryptographic solutions and blockchain's utility in efficient data sharing, providing context for encryption and blockchain's role in healthcare.
-    Cloud-Based Secure Data Storage and Access Control for Internet of Medical Things Using Federated Learning \cite{Bhansali2022}; Enhancing IoT Data Security: Using the Blockchain to Boost Data Integrity and Privacy \cite{Eghmazi2024}: Explore blockchain's integration with IoT and federated learning for data security, relevant for discussions on securing IoT-based healthcare data.
-
-\section{Relevant for Contextual Understanding and Supporting Information}
-
-    Blockchain Technology in Healthcare: A Systematic Review \cite{Saeed2022}; Implementing Blockchains for Efficient Health Care: Systematic Review \cite{Vazirani2019}: Provide a broad overview of blockchain in healthcare, helping to justify research needs and contextualize your study within the current landscape.
-    An Enhanced and Secure Cloud Infrastructure for e-Health Data Transmission \cite{Memos2021}; Accountable Cross-Border Data Sharing Using Blockchain Under Relaxed Trust Assumption \cite{Rahman2020}: Offer perspectives on blockchain for secure data transmission and cross-border sharing, underscoring blockchain's versatility in healthcare data management.
-    Surveying Quantum-Proof Blockchain Security: The Era of Exotic Signatures \cite{Naz2024}; A Trusted and Regulated Data Trading Scheme Based on Blockchain and Zero-Knowledge Proof \cite{Li2024}: Address future-proofing blockchain against quantum threats and regulated data trading, providing insights into advanced blockchain applications and security considerations.
-
-\section{Indirectly Relevant for Additional Technological Perspectives}
-
-    Mobile Cloud Computing Based Stroke Healthcare System \cite{Karaca2019}: While focused on cloud computing for stroke care, it indirectly highlights the importance of integrating secure and efficient technology solutions in healthcare.
 
 \chapter{Methodology}
 
