@@ -80,11 +80,11 @@
     shaped this work but have profoundly influenced my development in the field.
 
     I am immensely thankful to Laura, whose foundational research was 
-    instrumental for this thesis. Her dedication and innovative approach have 
+    instrumental in this thesis. Her dedication and innovative approach have 
     significantly contributed to the success of this project.
 
     My appreciation also extends to the faculty and staff at the Informatics 
-    Department. The education and support system provided by the professors have
+    Department. The education and support provided by the professors have
     been fundamental to my academic and professional growth. Their dedication to
     creating a nurturing and challenging academic environment has been critical 
     to my development.
@@ -142,37 +142,57 @@
 
 \chapter{Introduction}
 
-\section{Motivation}
-    \ToDo{Introduce the context of Laura's paper. \cite{laura2023} and its use of InterPlanetary File System (IPFS) \cite{benet2013ipfs}}
-    
-    \ToDo{Fundamentação teórica para explicar o IPFS}
+% contextualização 2
+%\ToDo{Introduce the context of Laura's paper. \cite{laura2023} and its use of InterPlanetary File System (IPFS) \cite{benet2013ipfs}}
+% \ToDo{Fundamentação teórica para explicar o IPFS}
 
-\section{Organization of the Thesis}
+% contextualização 2 - mais especificacao
+
+
+% trabalhos relacionacios
+
+No entanto, nenhum trabalhos ...
+
+% proposta
+
+O presente trabalho...
+
+% (opcional) avaliação (implementação, experimentos, resultados)
+
+% \section{Organization of the Thesis}
 This thesis is organized as follows...
 
+In Section \ref{related_works},...
 
-\chapter{Related works}
+
+
+\chapter{Background}
+
+\section{Related works}
+\label{related_works}
     This section delves into the application of blockchain technology in healthcare, exploring its impact on data security, privacy enhancement, operational efficiency, and additional technological perspectives. Each study discussed is highlighted for its contributions and relevance to advancing blockchain in healthcare.
 
     \ToDo{Explicar o método utilizado par chegar nos artigos}
 
     \ToDo{This chapter is divided as follows...}
 
+    
     \ToDo{Descrever cada item antes de descrever os trabalhos}
-    \textbf{Data Security:} \citet{Memos2021} propose a layered cloud architecture incorporating Advanced Encryption Standard (AES) and Rivest-Shamir-Adleman (RSA) encryption to enhance the security of e-health data transmission. \citet{Tian2019} use Secure Identity Federation Framework (SIFF) and Hyperledger Fabric to ensure medical data's integrity, availability, and privacy. \citet{Liu2024} develop a blockchain-based Electronic Medical Record (EMR) sharing scheme with IPFS for secure storage and proxy re-encryption for access control. Additionally, \citet{Esposito2018} investigate the use of blockchain to enhance data security in cloud-based healthcare systems, addressing vulnerabilities inherent in traditional security models.
+    \subsection{Data Security} \citet{Memos2021} propose a layered cloud architecture incorporating Advanced Encryption Standard (AES) and Rivest-Shamir-Adleman (RSA) encryption to enhance the security of e-health data transmission. \citet{Tian2019} use Secure Identity Federation Framework (SIFF) and Hyperledger Fabric to ensure medical data's integrity, availability, and privacy. \citet{Liu2024} develop a blockchain-based Electronic Medical Record (EMR) sharing scheme with IPFS for secure storage and proxy re-encryption for access control. Additionally, \citet{Esposito2018} investigate the use of blockchain to enhance data security in cloud-based healthcare systems, addressing vulnerabilities inherent in traditional security models.
     
-    \textbf{Privacy Enhancement:} \citet{Dwivedi2019} propose a blockchain framework for IoT devices in healthcare that minimizes computational demands while enhancing privacy. \citet{Esfahani2024} introduce a comprehensive privacy scheme using zero-knowledge proofs and ring signatures for IoT-based systems. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that improves anonymity. \citet{Li2024} create a regulated medical data trading scheme that ensures privacy and compliance using blockchain and zero-knowledge proofs.
+    \subsection{Privacy Enhancement} \citet{Dwivedi2019} propose a blockchain framework for IoT devices in healthcare that minimizes computational demands while enhancing privacy. \citet{Esfahani2024} introduce a comprehensive privacy scheme using zero-knowledge proofs and ring signatures for IoT-based systems. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that improves anonymity. \citet{Li2024} create a regulated medical data trading scheme that ensures privacy and compliance using blockchain and zero-knowledge proofs.
     
-    \textbf{Operational Efficiency:} \citet{Vazirani2019} review the effectiveness of blockchain in managing healthcare records, noting improvements in interoperability. \citet{Shen2019} introduce MedChain, a framework that efficiently manages and shares healthcare data. \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in the IoMT. Furthermore, \citet{XuJie2019} develop 'Healthchain,' a scalable blockchain-based framework for privacy-preserving health data management.
+    \subsection{Operational Efficiency} \citet{Vazirani2019} review the effectiveness of blockchain in managing healthcare records, noting improvements in interoperability. \citet{Shen2019} introduce MedChain, a framework that efficiently manages and shares healthcare data. \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in the IoMT. Furthermore, \citet{XuJie2019} develop 'Healthchain,' a scalable blockchain-based framework for privacy-preserving health data management.
     
-    \textbf{Cross-Border Data Sharing and Scalability:} \citet{Rahman2020} describe a blockchain-based platform for secure cross-border data sharing, enhancing trust and security. \citet{Saeed2022} examine the potential of blockchain in healthcare, particularly its impact on managing, distributing, and processing medical records.
+    \subsection{Cross-Border Data Sharing and Scalability} \citet{Rahman2020} describe a blockchain-based platform for secure cross-border data sharing, enhancing trust and security. \citet{Saeed2022} examine the potential of blockchain in healthcare, particularly its impact on managing, distributing, and processing medical records.
     
-    \textbf{Additional Technological Perspectives:} \citet{Hema2019} assess ECC-based encryption mechanisms for securing healthcare data in cloud environments. \citet{Naz2024} explore defences against quantum computing threats in blockchain through exotic signatures. \citet{Eghmazi2024} focus on securing IoT data using Hyperledger Fabric for scalable solutions. \citet{XuChang2019} discuss secure data sharing in cloud-assisted healthcare systems using cryptographic techniques. Lastly, \citet{Karaca2019} explores mobile cloud computing applications in stroke care, indirectly underscoring the need for integrating secure and efficient technology solutions in healthcare.
+    \subsection{Additional Technological Perspectives} \citet{Hema2019} assess ECC-based encryption mechanisms for securing healthcare data in cloud environments. \citet{Naz2024} explore defences against quantum computing threats in blockchain through exotic signatures. \citet{Eghmazi2024} focus on securing IoT data using Hyperledger Fabric for scalable solutions. \citet{XuChang2019} discuss secure data sharing in cloud-assisted healthcare systems using cryptographic techniques. Lastly, \citet{Karaca2019} explores mobile cloud computing applications in stroke care, indirectly underscoring the need for integrating secure and efficient technology solutions in healthcare.
 
     \ToDo{Passar parágrafo abaixo para próxima sessão?}
     This comprehensive review highlights the varied applications of blockchain technology and the significant potential in enhancing healthcare systems. Although the studies discussed provide a solid foundation for advancing blockchain applications in healthcare, they also highlight several research gaps that require further investigation.
 
-    \section{Research Opportunities and Preliminary Goals}
+\section{Problem Statement}
+%    \section{Research Opportunities and Preliminary Goals}
         \Graeff{Não tenho certeza se é melhor colocar essa discussão dos gaps da literatura aqui como sessão. Aceito sugestões.}
 
         This section outlines research areas in blockchain technology for healthcare that require further exploration. These areas, identified based on the limitations and gaps in current literature, present significant opportunities to advance the field. This thesis aims to address these opportunities through targeted research objectives.
@@ -181,31 +201,26 @@ This thesis is organized as follows...
             A critical gap in current research on blockchain in healthcare is the need for substantial empirical evidence regarding the scalability of the proposed frameworks and real-world applicability. There is an urgent need to conduct large-scale pilot studies and real-world implementations to substantiate the theoretical advantages of blockchain in this sector. Such research is vital to validate the benefits and to pinpoint potential challenges in diverse healthcare settings. Addressing these gaps is essential for generating concrete data and insights that can guide the scalable deployment of blockchain technologies in practical environments.
 
         \subsection{Regulatory and Ethical Considerations} 
-            As blockchain technology becomes more integrated into healthcare systems, understanding its regulatory and ethical implications is crucial. There is a pressing need to investigate how to design blockchain solutions to comply with healthcare regulations and ethical standards. This exploration should focus on critical areas such as patient privacy, data security, and consent management, encompassing theoretical and practical applications. Ensuring blockchain solutions are legally compliant and ethically sound while maintaining operational flexibility and scalability is fundamental to successful integration into healthcare systems. Addressing these considerations is vital for building trust and accepting blockchain technology in healthcare.
+            Understanding its regulatory and ethical implications is crucial as blockchain technology becomes more integrated into healthcare systems. There is a pressing need to investigate how to design blockchain solutions to comply with healthcare regulations and ethical standards. This exploration should focus on critical areas such as patient privacy, data security, and consent management, encompassing theoretical and practical applications. Ensuring blockchain solutions are legally compliant and ethically sound while maintaining operational flexibility and scalability is fundamental to successful integration into healthcare systems. Addressing these considerations is vital for building trust and accepting blockchain technology in healthcare.
 
         \subsection{Cybersecurity Challenges} 
             The advancement of blockchain technology in healthcare must continuously adapt to the evolving landscape of cybersecurity threats. Significant opportunities exist to develop sophisticated defence mechanisms specifically designed to address the unique security challenges of blockchain's decentralized nature. Critical areas for further exploration include advancing cryptographic techniques, enhancing consensus algorithms, and implementing robust access control frameworks. These elements protect sensitive health data against unauthorized access and cyber-attacks. Addressing these critical vulnerabilities is imperative to ensuring the security and privacy of healthcare information managed via blockchain. By fortifying these areas, we can significantly enhance the trustworthiness and reliability of blockchain applications in healthcare settings.
 
+\chapter{Proposed Solution}
 
-\chapter{Methodology}
+\section{Cryptographic Algorithms Selection}
 
+\chapter{Evaluation}
 
-\chapter{Cryptographic Algorithms Selection}
+\section{Implementation}
 
+\section{Environmental Settings}
 
-\chapter{Performance Analysis Results}
-
-
-\chapter{Security Evaluation}
-
-
-\chapter{Discussion}
-
-
-\chapter{Future Work}
-
+\section{Results/Discussion}
 
 \chapter{Conclusion}
+
+\section{Future Work}
 
 
 % \section{Figuras e tabelas}
