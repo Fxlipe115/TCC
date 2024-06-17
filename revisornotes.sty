@@ -1,0 +1,17 @@
+\ProvidesPackage{revisornotes}
+
+\newcommand\new[1]{{\color{red}{\fbox{#1}}}}
+
+\usepackage{tcolorbox}
+
+\newcommand{\newRevisor}[3]{
+  \expandafter\newcommand\csname #1\endcsname[1]{
+    \begin{tcolorbox}[title=#1, colframe=#2, coltitle=#3]
+      ##1
+    \end{tcolorbox}
+  }
+}
+
+\newRevisor{Graeff}{Cyan}{black}
+\newRevisor{Nobre}{orange}{black}
+\newRevisor{ToDo}{red}{black}

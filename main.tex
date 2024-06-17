@@ -10,21 +10,9 @@
 
 \usepackage{lipsum}
 
-\newcommand\new[1]{{\color{red}{\fbox{#1}}}}
+\usepackage{revisornotes}
 
-\usepackage{tcolorbox}
-
-\newcommand{\newRevisor}[3]{
-  \expandafter\newcommand\csname #1\endcsname[1]{
-    \begin{tcolorbox}[colback=#2]
-      \textcolor{#3}{\bfseries #1: ##1}
-    \end{tcolorbox}
-  }
-}
-
-\newRevisor{Graeff}{Cyan}{black}
-\newRevisor{Nobre}{orange}{black}
-\newRevisor{ToDo}{red}{black}
+\usepackage{draftenvironment}
 
 \title{
     Securing Distributed Data with Cryptographic Algorithms: A Case Study on 
@@ -65,163 +53,46 @@
 \maketitle
 
 % dedicatory
-\clearpage
-\begin{flushright}
-    \mbox{}\vfill
-    \begin{tabular}{p{0.55\linewidth} p{0.45\linewidth}}
-        In loving memory of Professor Raul Fernando Weber, a remarkable educator and influential figure in the field of computer security. His passion for teaching and dedication to his students left an indelible mark on all who had the privilege to learn from him. As I embark on my undergraduate thesis in computer security, I humbly dedicate this work to the memory of a great professor and a charismatic person who inspired generations of students, including myself. His guidance and enthusiasm ignited my love for this area, and I am forever grateful for the knowledge and inspiration he shared. His legacy lives on in the pursuit of knowledge and excellence. Rest in peace, Professor Weber.\\
-    \end{tabular}
-\end{flushright}
+\input{dedicatory.tex}
 
 \chapter*{Acknowledgements}
-    I would like to express my deepest gratitude to my advisor, Professor 
-    Jéferson Campos Nobre, for his invaluable guidance and expertise throughout 
-    my research journey. His patience and profound knowledge have not only 
-    shaped this work but have profoundly influenced my development in the field.
-
-    I am immensely thankful to Laura, whose foundational research was 
-    instrumental in this thesis. Her dedication and innovative approach have 
-    significantly contributed to the success of this project.
-
-    My appreciation also extends to the faculty and staff at the Informatics 
-    Department. The education and support provided by the professors have
-    been fundamental to my academic and professional growth. Their dedication to
-    creating a nurturing and challenging academic environment has been critical 
-    to my development.
-
-    Special thanks go to Valéria, my best friend, for her constant support and 
-    love. Her encouragement has been a pillar of strength in difficult times, 
-    reminding me of the value of perseverance.
-
-    I am grateful to all my friends for their continued encouragement and belief
-    in my abilities. Their support and the occasional much-needed distractions 
-    have helped me maintain my focus and passion for my research.
-
-    Finally, I would like to thank Marina and Pedro, my psychologist and 
-    psychiatrist. Their professional support has been crucial in managing the 
-    stress of my academic commitments, significantly contributing to my 
-    well-being and success.
-
-    This thesis reflects the collective support and encouragement of everyone 
-    mentioned, and I am deeply thankful to each of you.
+    \input{chapters/acknowledgements.tex}
 
 \begin{abstract}
-    \lipsum[1]
+    \input{chapters/abstract.tex}
 \end{abstract}
 
 \begin{translatedabstract}
-    \lipsum[1]
+    \input{chapters/translatedabstract.tex}
 \end{translatedabstract}
 
 % \listoffigures
 
 % \listoftables
 
-\begin{listofabbrv}{ABCD} % longest abbreviation
-    \item[ABC] Advanced Blockchain Cryptography
-    \item[AES] Advanced Encryption Standard
-    \item[DLP] Discrete Logarithm Problem
-    \item[ECC] Elliptic Curve Cryptography
-    \item[EHR] Electronic Health Record
-    \item[EMR] Electronic Medical Record
-    \item[IoMT] Internet of Medical Things
-    \item[IPFS] InterPlanetary File System 
-    \item[PoS] Proof of Stake
-    \item[PoW] Proof of Work
-    \item[RSA] Rivest-Shamir-Adleman4
-    \item[SIFF] Secure Identity Federation Framework
-\end{listofabbrv}
+\input{chapters/listofabbreviations.tex}
 
-% idem para a lista de símbolos
-% \begin{listofsymbols}{$\alpha\beta\pi\omega$}
-%     \item[$\sum{\frac{a}{b}}$] Somatório do produtório
-%     \item[$\alpha\beta\pi\omega$] Fator de inconstância do resultado
-% \end{listofsymbols}
+% \input{chapters/listofsymbols.tex}
 
 \tableofcontents
 
 \chapter{Introduction}
-
-% contextualização 2
-%\ToDo{Introduce the context of Laura's paper. \cite{laura2023} and its use of InterPlanetary File System (IPFS) \cite{benet2013ipfs}}
-% \ToDo{Fundamentação teórica para explicar o IPFS}
-
-% contextualização 2 - mais especificacao
-
-
-% trabalhos relacionacios
-
-No entanto, nenhum trabalhos ...
-
-% proposta
-
-O presente trabalho...
-
-% (opcional) avaliação (implementação, experimentos, resultados)
-
-% \section{Organization of the Thesis}
-This thesis is organized as follows...
-
-In Section \ref{related_works},...
-
-
+    \input{chapters/introduction.tex}
 
 \chapter{Background}
-
-\section{Related works}
-\label{related_works}
-    This section delves into the application of blockchain technology in healthcare, exploring its impact on data security, privacy enhancement, operational efficiency, and additional technological perspectives. Each study discussed is highlighted for its contributions and relevance to advancing blockchain in healthcare.
-
-    \ToDo{Explicar o método utilizado par chegar nos artigos}
-
-    \ToDo{This chapter is divided as follows...}
-
-    
-    \ToDo{Descrever cada item antes de descrever os trabalhos}
-    \subsection{Data Security} \citet{Memos2021} propose a layered cloud architecture incorporating Advanced Encryption Standard (AES) and Rivest-Shamir-Adleman (RSA) encryption to enhance the security of e-health data transmission. \citet{Tian2019} use Secure Identity Federation Framework (SIFF) and Hyperledger Fabric to ensure medical data's integrity, availability, and privacy. \citet{Liu2024} develop a blockchain-based Electronic Medical Record (EMR) sharing scheme with IPFS for secure storage and proxy re-encryption for access control. Additionally, \citet{Esposito2018} investigate the use of blockchain to enhance data security in cloud-based healthcare systems, addressing vulnerabilities inherent in traditional security models.
-    
-    \subsection{Privacy Enhancement} \citet{Dwivedi2019} propose a blockchain framework for IoT devices in healthcare that minimizes computational demands while enhancing privacy. \citet{Esfahani2024} introduce a comprehensive privacy scheme using zero-knowledge proofs and ring signatures for IoT-based systems. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that improves anonymity. \citet{Li2024} create a regulated medical data trading scheme that ensures privacy and compliance using blockchain and zero-knowledge proofs.
-    
-    \subsection{Operational Efficiency} \citet{Vazirani2019} review the effectiveness of blockchain in managing healthcare records, noting improvements in interoperability. \citet{Shen2019} introduce MedChain, a framework that efficiently manages and shares healthcare data. \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in the IoMT. Furthermore, \citet{XuJie2019} develop 'Healthchain,' a scalable blockchain-based framework for privacy-preserving health data management.
-    
-    \subsection{Cross-Border Data Sharing and Scalability} \citet{Rahman2020} describe a blockchain-based platform for secure cross-border data sharing, enhancing trust and security. \citet{Saeed2022} examine the potential of blockchain in healthcare, particularly its impact on managing, distributing, and processing medical records.
-    
-    \subsection{Additional Technological Perspectives} \citet{Hema2019} assess ECC-based encryption mechanisms for securing healthcare data in cloud environments. \citet{Naz2024} explore defences against quantum computing threats in blockchain through exotic signatures. \citet{Eghmazi2024} focus on securing IoT data using Hyperledger Fabric for scalable solutions. \citet{XuChang2019} discuss secure data sharing in cloud-assisted healthcare systems using cryptographic techniques. Lastly, \citet{Karaca2019} explores mobile cloud computing applications in stroke care, indirectly underscoring the need for integrating secure and efficient technology solutions in healthcare.
-
-    \ToDo{Passar parágrafo abaixo para próxima sessão?}
-    This comprehensive review highlights the varied applications of blockchain technology and the significant potential in enhancing healthcare systems. Although the studies discussed provide a solid foundation for advancing blockchain applications in healthcare, they also highlight several research gaps that require further investigation.
-
-\section{Problem Statement}
-%    \section{Research Opportunities and Preliminary Goals}
-        \Graeff{Não tenho certeza se é melhor colocar essa discussão dos gaps da literatura aqui como sessão. Aceito sugestões.}
-
-        This section outlines research areas in blockchain technology for healthcare that require further exploration. These areas, identified based on the limitations and gaps in current literature, present significant opportunities to advance the field. This thesis aims to address these opportunities through targeted research objectives.
-
-        \subsection{Scalability and Real-World Applicability} 
-            A critical gap in current research on blockchain in healthcare is the need for substantial empirical evidence regarding the scalability of the proposed frameworks and real-world applicability. There is an urgent need to conduct large-scale pilot studies and real-world implementations to substantiate the theoretical advantages of blockchain in this sector. Such research is vital to validate the benefits and to pinpoint potential challenges in diverse healthcare settings. Addressing these gaps is essential for generating concrete data and insights that can guide the scalable deployment of blockchain technologies in practical environments.
-
-        \subsection{Regulatory and Ethical Considerations} 
-            Understanding its regulatory and ethical implications is crucial as blockchain technology becomes more integrated into healthcare systems. There is a pressing need to investigate how to design blockchain solutions to comply with healthcare regulations and ethical standards. This exploration should focus on critical areas such as patient privacy, data security, and consent management, encompassing theoretical and practical applications. Ensuring blockchain solutions are legally compliant and ethically sound while maintaining operational flexibility and scalability is fundamental to successful integration into healthcare systems. Addressing these considerations is vital for building trust and accepting blockchain technology in healthcare.
-
-        \subsection{Cybersecurity Challenges} 
-            The advancement of blockchain technology in healthcare must continuously adapt to the evolving landscape of cybersecurity threats. Significant opportunities exist to develop sophisticated defence mechanisms specifically designed to address the unique security challenges of blockchain's decentralized nature. Critical areas for further exploration include advancing cryptographic techniques, enhancing consensus algorithms, and implementing robust access control frameworks. These elements protect sensitive health data against unauthorized access and cyber-attacks. Addressing these critical vulnerabilities is imperative to ensuring the security and privacy of healthcare information managed via blockchain. By fortifying these areas, we can significantly enhance the trustworthiness and reliability of blockchain applications in healthcare settings.
+    \label{background}
+    \input{chapters/background.tex}
 
 \chapter{Proposed Solution}
-
-\section{Cryptographic Algorithms Selection}
+    \label{proposedsolution}
+    \input{chapters/proposedsolution.tex}
 
 \chapter{Evaluation}
-
-\section{Implementation}
-
-\section{Environmental Settings}
-
-\section{Results/Discussion}
+    \label{evaluation}
+    \input{chapters/evaluation.tex}
 
 \chapter{Conclusion}
-
-\section{Future Work}
-
+    \input{chapters/conclusion.tex}
 
 % \section{Figuras e tabelas}
 
