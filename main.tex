@@ -14,6 +14,10 @@
 
 \usepackage{draftenvironment}
 
+\usepackage{ragged2e}
+
+\usepackage{listings}
+
 \title{
     Securing Distributed Data with Cryptographic Algorithms: A Case Study on 
     IPFS
@@ -58,6 +62,8 @@
 \chapter*{Acknowledgements}
     \input{chapters/acknowledgements.tex}
 
+\input{epigraph.tex}
+
 \begin{abstract}
     \input{chapters/abstract.tex}
 \end{abstract}
@@ -82,14 +88,50 @@
 \chapter{Background}
     \label{background}
     \input{chapters/background.tex}
+    % coisas de criptografia!!!
+    % curvas elipticas etc
+    
+
+\chapter{Related Works}
+    \section{Contexto Geral}
+    \section{Contexto Específico}
 
 \chapter{Proposed Solution}
     \label{proposedsolution}
     \input{chapters/proposedsolution.tex}
+    \section{Resumo do Trabalho da Laura aqui}
+    \section{Modificações que o Grefo fez em cima}
+
+\chapter{Experimental Setup}
+% coisas técnicas de implementação etc
+% biblotecas que vc usou etc
+% código etc
+
+https://github.com/JHUISI/charm
+scheme abenc_maabe_rw15
+
+The experiments were conducted on a workstation with the following specifications:
+
+\begin{itemize}
+    \item \textbf{Operating System:} Linux Mint 22 (x86\_64)
+    \item \textbf{Host:} HP ZBook Firefly 14 inch G10 A Mobile Workstation PC SBKPF
+    \item \textbf{Kernel:} 6.8.0-49-generic
+    \item \textbf{Processor:} AMD Ryzen 5 PRO 7640HS with Radeon 760M Graphics (12 cores) @ 5.015GHz
+    \item \textbf{Memory:} 12,599 MiB used out of 15,260 MiB total
+\end{itemize}
+
+\begin{lstlisting}
+    G1 = hash(nonce) \label{dsahfjsaghdfiu}
+    G2 = random
+    Gt = ê(G1, G2)
+\end{lstlisting}
 
 \chapter{Evaluation}
     \label{evaluation}
     \input{chapters/evaluation.tex}
+% teste de performance
+% tempo de execução (mpv)
+
 
 \chapter{Conclusion}
     \input{chapters/conclusion.tex}
