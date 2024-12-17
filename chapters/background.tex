@@ -44,3 +44,33 @@
 
     \subsection{Cybersecurity Challenges} 
         The advancement of blockchain technology in healthcare must continuously adapt to the evolving landscape of cybersecurity threats. Significant opportunities exist to develop sophisticated defence mechanisms specifically designed to address the unique security challenges of blockchain's decentralized nature. Critical areas for further exploration include advancing cryptographic techniques, enhancing consensus algorithms, and implementing robust access control frameworks. These elements protect sensitive health data against unauthorized access and cyber-attacks. Addressing these critical vulnerabilities is imperative to ensuring the security and privacy of healthcare information managed via blockchain. By fortifying these areas, we can significantly enhance the trustworthiness and reliability of blockchain applications in healthcare settings.
+
+\section{Elliptic Curve and Pairing-Based Cryptography}
+
+The key creation process in our system leverages elliptic curve cryptography (ECC) and pairing-based cryptography. These cryptographic techniques provide a high level of security and efficiency, making them suitable for attribute-based encryption.
+
+\subsection{Elliptic Curve Cryptography}
+
+Elliptic curve cryptography is based on the algebraic structure of elliptic curves over finite fields. An elliptic curve is defined by an equation of the form:
+
+\begin{equation}
+y^2 = x^3 + ax + b
+\end{equation}
+
+where \(a\) and \(b\) are constants that define the specific curve. The points on the elliptic curve, along with a special point at infinity, form an additive group.
+
+\subsection{Pairing-Based Cryptography}
+
+Pairing-based cryptography involves a bilinear map, known as a pairing, that takes two elements from two different groups and maps them to a third group. The pairing operation is denoted as:
+
+\begin{equation}
+e: G_1 \times G_2 \rightarrow G_T
+\end{equation}
+
+where \(G_1\) and \(G_2\) are additive groups of points on elliptic curves, and \(G_T\) is a multiplicative group. The pairing operation has the following properties:
+
+\begin{itemize}
+    \item \textbf{Bilinearity}: \(e(aP, bQ) = e(P, Q)^{ab}\) for all \(P \in G_1\), \(Q \in G_2\), and integers \(a, b\).
+    \item \textbf{Non-degeneracy}: There exist points \(P \in G_1\) and \(Q \in G_2\) such that \(e(P, Q) \neq 1\).
+    \item \textbf{Computability}: The pairing \(e(P, Q)\) can be efficiently computed.
+\end{itemize}        
