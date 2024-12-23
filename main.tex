@@ -18,13 +18,18 @@
 
 \usepackage{listings}
 
-\usepackage{amsmath}
+\usepackage{amsmath}      % For math symbols
+\usepackage[boxed]{algorithm}    % For the algorithm environment
+\usepackage{algpseudocode} % For pseudocode formatting
+\usepackage{xcolor}       % Optional for colored comments
+
+\usetikzlibrary{calc}
 
 \title{
-    A Multi-Authority Attribute-Based Encryption scheme implementation for securing hIoT data
+    A Hybrid Multi-Authority Attribute-Based Encryption scheme implementation for securing hIoT data
 }
 \translatedtitle{
-    Implementação de um esquema de criptografia baseada em atributos de múltiplas autoridades para segurança de dados de hIoT
+    Esquema Híbrido de Criptografia Baseada em Atributos de Múltiplas Autoridades para Transmissão Segura de Dados hIoT
 }
 
 \author{Graeff}{Felipe de Almeida}
@@ -72,13 +77,15 @@
     \input{chapters/translatedabstract.tex}
 \end{translatedabstract}
 
-% \listoffigures
+\listoffigures
 
-% \listoftables
+\listoftables
+
+\listofalgorithms
 
 \input{chapters/listofabbreviations.tex}
 
-% \input{chapters/listofsymbols.tex}
+\input{chapters/listofsymbols.tex}
 
 \tableofcontents
 
