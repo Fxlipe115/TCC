@@ -65,16 +65,28 @@
 \input{dedicatory.tex}
 
 \chapter*{Acknowledgements}
-    \input{chapters/acknowledgements.tex}
+    I would like to express my gratitude to my advisor, Professor Jéferson Campos Nobre, for his guidance and expertise throughout my research journey. His patience and profound knowledge have incentivised me to pursue this area of research.
+
+    I am immensely thankful to Laura, whose foundational research laid the groundwork for this thesis. Her dedication and help have significantly contributed to the success of this project.
+
+    My appreciation also extends to the faculty and staff at the Informatics Department. The education and support provided by the professors have been fundamental to my academic and professional growth. Their dedication to creating a nurturing and challenging academic environment has been critical to my development.
+
+    Special thanks go to Valéria, my best friend, for her constant support and love. Her encouragement has been a pillar of strength in difficult times, reminding me of the value of perseverance.
+
+    I am grateful to all my friends for their continued encouragement and belief in my abilities. Their support and the occasional much-needed distractions have helped me maintain my focus and passion for my research.
+
+    Finally, I would like to thank Marina and Pedro, my psychologist and psychiatrist. Their professional support has been crucial in managing the stress of my academic commitments, significantly contributing to my well-being and success.
+
+    This thesis reflects the collective support and encouragement of all those mentioned and many others, to whom I am deeply thankful.
 
 \input{epigraph.tex}
 
 \begin{abstract}
-    \input{chapters/abstract.tex}
+    \lipsum[1]
 \end{abstract}
 
 \begin{translatedabstract}
-    \input{chapters/translatedabstract.tex}
+    \lipsum[1]
 \end{translatedabstract}
 
 \listoffigures
@@ -83,20 +95,143 @@
 
 \listofalgorithms
 
-\input{chapters/listofabbreviations.tex}
+\begin{listofabbrv}{MA-ABE} % longest abbreviation
+    \item[AES] Advanced Encryption Standard
+    \item[DLP] Discrete Logarithm Problem
+    \item[ECC] Elliptic Curve Cryptography
+    \item[EHR] Electronic Health Record
+    \item[EMR] Electronic Medical Record
+    \item[HIoT] Health Internet of Things
+    \item[IoMT] Internet of Medical Things
+    \item[IPFS] InterPlanetary File System
+    \item[MA-ABE] Multi-Authority Attribute-Based Encryption
+    \item[PoS] Proof of Stake
+    \item[PoW] Proof of Work
+    \item[RSA] Rivest-Shamir-Adleman
+    \item[SHA] Secure Hash Algorithm
+    \item[SIFF] Secure Identity Federation Framework
+\end{listofabbrv}
 
-\input{chapters/listofsymbols.tex}
+\begin{listofsymbols}{$\alpha\beta\pi\omega$}
+    \item[$E_{K_{G_T}}$] Encrypted element $K_{G_T}$
+    \item[$E_{\text{payload}}$] Encrypted payload data
+    \item[$K_A$] Authorities' public keys
+    \item[$K_{G_T}$] Element in the pairing group $G_T$
+    \item[$K_{\text{SHA}}$] Hashed symmetric key
+    \item[$K_{\text{user}}$] User attribute keys
+\end{listofsymbols}
 
 \tableofcontents
 
 \chapter{Introduction}
-    \input{chapters/introduction.tex}
+        % contextualização 1
+    \begin{draft}{Talk about lauras paper}
+        Laura's paper ...
+        \ToDo{Perguntar pra Laura em que camada do framework dela entra a criptografia}    
+    \end{draft}
+
+
+    % contextualização 2 - mais especificacao
+    \begin{draft}{Talk specifities about the technologies used in the framework and why security is relevant and not adressed by IPFS and Hyperledger}
+        IPFS \cite{benet2013ipfs} is a peer-to-peer (P2P) decentralized storage system based on a content-addressable block storage model.
+    \end{draft}
+
+
+    % trabalhos relacionacios
+    \begin{draft}{Talk about related works}
+        
+    \end{draft}
+
+    \begin{draft}{Gap}
+        No entanto, nenhum dos trabalhos ...
+    \end{draft}
+
+    % proposta
+
+    In the present thesis we aim to propose a cryptography framework that best fits the solution introduced by \citet{laura2023}.
+
+    % (opcional) avaliação (implementação, experimentos, resultados)
+
+    \begin{draft}{Quick introduction of each chapter}
+        In Section \ref{relatedworks},...
+
+    \end{draft}
+
 
 \chapter{Background}
     \label{background}
-    \input{chapters/background.tex}
-    % coisas de criptografia!!!
-    % curvas elipticas etc
+    \citet{laura2023} proposed a new framework for securing Health Internet of Things (HIoT) data storage using Hyperledger and InterPlanetary File System (IPFS) \cite{benet2013ipfs}.
+
+    \section{Related works}
+    \label{relatedworks}
+
+    \Laura{pela quantidade de texto acho que ficaria melhor fazer um capítulo de background primeiro com a parte de ECC, ABE etc e alguma coisa de blockchain, e aí colocar o reated depois em um capítulo separado}
+    \Laura{o problem statement daí pode vir no final do capítulo de related}
+
+        This section delves into the application of blockchain technology in healthcare, exploring its impact on data security, privacy enhancement, operational efficiency, and additional technological perspectives. Each study discussed is highlighted for its contributions and relevance to advancing blockchain in healthcare.
+
+        \ToDo{Explicar o método utilizado par chegar nos artigos}
+
+        \ToDo{This chapter is divided as follows...}
+
+        
+        \ToDo{Descrever cada item antes de descrever os trabalhos}
+        \subsection{Data Security} \citet{Memos2021} propose a layered cloud architecture incorporating Advanced Encryption Standard (AES) and Rivest-Shamir-Adleman (RSA) encryption to enhance the security of e-health data transmission. \citet{Tian2019} use Secure Identity Federation Framework (SIFF) and Hyperledger Fabric to ensure medical data's integrity, availability, and privacy. \citet{Liu2024} develop a blockchain-based Electronic Medical Record (EMR) sharing scheme with IPFS for secure storage and proxy re-encryption for access control. Additionally, \citet{Esposito2018} investigate the use of blockchain to enhance data security in cloud-based healthcare systems, addressing vulnerabilities inherent in traditional security models.
+        
+        \subsection{Privacy Enhancement} \citet{Dwivedi2019} propose a blockchain framework for IoT devices in healthcare that minimizes computational demands while enhancing privacy. \citet{Esfahani2024} introduce a comprehensive privacy scheme using zero-knowledge proofs and ring signatures for IoT-based systems. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that improves anonymity. \citet{Li2024} create a regulated medical data trading scheme that ensures privacy and compliance using blockchain and zero-knowledge proofs.
+        
+        \subsection{Operational Efficiency} \citet{Vazirani2019} review the effectiveness of blockchain in managing healthcare records, noting improvements in interoperability. \citet{Shen2019} introduce MedChain, a framework that efficiently manages and shares healthcare data. \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in the IoMT. Furthermore, \citet{XuJie2019} develop 'Healthchain,' a scalable blockchain-based framework for privacy-preserving health data management.
+        
+        \subsection{Cross-Border Data Sharing and Scalability} \citet{Rahman2020} describe a blockchain-based platform for secure cross-border data sharing, enhancing trust and security. \citet{Saeed2022} examine the potential of blockchain in healthcare, particularly its impact on managing, distributing, and processing medical records.
+        
+        \subsection{Additional Technological Perspectives} \citet{Hema2019} assess ECC-based encryption mechanisms for securing healthcare data in cloud environments. \citet{Naz2024} explore defences against quantum computing threats in blockchain through exotic signatures. \citet{Eghmazi2024} focus on securing IoT data using Hyperledger Fabric for scalable solutions. \citet{XuChang2019} discuss secure data sharing in cloud-assisted healthcare systems using cryptographic techniques. Lastly, \citet{Karaca2019} explores mobile cloud computing applications in stroke care, indirectly underscoring the need for integrating secure and efficient technology solutions in healthcare.
+
+        \ToDo{Passar parágrafo abaixo para próxima sessão?}
+        This comprehensive review highlights the varied applications of blockchain technology and the significant potential in enhancing healthcare systems. Although the studies discussed provide a solid foundation for advancing blockchain applications in healthcare, they also highlight several research gaps that require further investigation.
+
+    \section{Problem Statement}
+        \Graeff{Não tenho certeza se é melhor colocar essa discussão dos gaps da literatura aqui como sessão. Aceito sugestões.}
+
+        This section outlines research areas in blockchain technology for healthcare that require further exploration. These areas, identified based on the limitations and gaps in current literature, present significant opportunities to advance the field. This thesis aims to address these opportunities through targeted research objectives.
+
+        \subsection{Scalability and Real-World Applicability} 
+            A critical gap in current research on blockchain in healthcare is the need for substantial empirical evidence regarding the scalability of the proposed frameworks and real-world applicability. There is an urgent need to conduct large-scale pilot studies and real-world implementations to substantiate the theoretical advantages of blockchain in this sector. Such research is vital to validate the benefits and to pinpoint potential challenges in diverse healthcare settings. Addressing these gaps is essential for generating concrete data and insights that can guide the scalable deployment of blockchain technologies in practical environments.
+
+        \subsection{Regulatory and Ethical Considerations} 
+            Understanding its regulatory and ethical implications is crucial as blockchain technology becomes more integrated into healthcare systems. There is a pressing need to investigate how to design blockchain solutions to comply with healthcare regulations and ethical standards. This exploration should focus on critical areas such as patient privacy, data security, and consent management, encompassing theoretical and practical applications. Ensuring blockchain solutions are legally compliant and ethically sound while maintaining operational flexibility and scalability is fundamental to successful integration into healthcare systems. Addressing these considerations is vital for building trust and accepting blockchain technology in healthcare.
+
+        \subsection{Cybersecurity Challenges} 
+            The advancement of blockchain technology in healthcare must continuously adapt to the evolving landscape of cybersecurity threats. Significant opportunities exist to develop sophisticated defence mechanisms specifically designed to address the unique security challenges of blockchain's decentralized nature. Critical areas for further exploration include advancing cryptographic techniques, enhancing consensus algorithms, and implementing robust access control frameworks. These elements protect sensitive health data against unauthorized access and cyber-attacks. Addressing these critical vulnerabilities is imperative to ensuring the security and privacy of healthcare information managed via blockchain. By fortifying these areas, we can significantly enhance the trustworthiness and reliability of blockchain applications in healthcare settings.
+
+    \section{Elliptic Curve and Pairing-Based Cryptography}
+
+    The key creation process in our system leverages elliptic curve cryptography (ECC) and pairing-based cryptography. These cryptographic techniques provide a high level of security and efficiency, making them suitable for attribute-based encryption.
+
+    \subsection{Elliptic Curve Cryptography}
+
+    Elliptic curve cryptography is based on the algebraic structure of elliptic curves over finite fields. An elliptic curve is defined by an equation of the form:
+
+    \begin{equation}
+    y^2 = x^3 + ax + b
+    \end{equation}
+
+    where \(a\) and \(b\) are constants that define the specific curve. The points on the elliptic curve, along with a special point at infinity, form an additive group.
+
+    \subsection{Pairing-Based Cryptography}
+
+    Pairing-based cryptography involves a bilinear map, known as a pairing, that takes two elements from two different groups and maps them to a third group. The pairing operation is denoted as:
+
+    \begin{equation}
+    e: G_1 \times G_2 \rightarrow G_T
+    \end{equation}
+
+    where \(G_1\) and \(G_2\) are additive groups of points on elliptic curves, and \(G_T\) is a multiplicative group. The pairing operation has the following properties:
+
+    \begin{itemize}
+        \item \textbf{Bilinearity}: \(e(aP, bQ) = e(P, Q)^{ab}\) for all \(P \in G_1\), \(Q \in G_2\), and integers \(a, b\).
+        \item \textbf{Non-degeneracy}: There exist points \(P \in G_1\) and \(Q \in G_2\) such that \(e(P, Q) \neq 1\).
+        \item \textbf{Computability}: The pairing \(e(P, Q)\) can be efficiently computed.
+    \end{itemize}        
     
 
 \chapter{Related Works}
@@ -105,7 +240,165 @@
 
 \chapter{Proposed Solution}
     \label{proposedsolution}
-    \input{chapters/proposedsolution.tex}
+    We developed a REST API that provides encryption and decryption services using attribute-based encryption. The API allows clients to encrypt data with an access policy and decrypt the data if they satisfy the policy. The API is implemented using Flask, a lightweight web framework for Python, and uses the Charm-Crypto library for pairing-based cryptography. The API endpoints are secured using HashiCorp Vault to manage cryptographic keys securely.
+
+    \section{Libraries and Tools Used}
+
+    The following libraries and tools were used in the implementation:
+
+    \begin{itemize}
+        \item \textbf{Charm-Crypto}: A Python library for pairing-based cryptography, used to implement the attribute-based encryption scheme.
+        \item \textbf{Flask}: A lightweight web framework for building the API endpoints for encryption and decryption.
+        \item \textbf{Flask-RESTX}: An extension for Flask that adds support for creating REST APIs.
+        \item \textbf{PyCryptodome}: A self-contained Python package of low-level cryptographic primitives, used for AES encryption and decryption.
+        \item \textbf{HashiCorp Vault}: A tool for securely storing and accessing secrets, used to manage cryptographic keys.
+    \end{itemize}
+
+
+    \section{Setup authority}
+    This method is used to set up an authority in the system. The authority is identified by a unique uppercase alphanumeric string. The authority's public and private keys are generated by Charm-Crypto MaabeRW15\cite{rouselakis2015efficient} scheme and stored in HashiCorp Vault. The authority private key is used for key generation for each attribute. The public key is used for encryption by the clients.
+
+    For simplicity in developing and testing, the authority's private key is stored in HashiCorp Vault. In a production scenario the private key should be stored securely by the authority and provided to the system only when needed.
+
+    \begin{algorithm}
+        \caption{Setup Authority}
+        \label{alg:setup_authority}
+        \begin{algorithmic}[1]
+        \Procedure{SetupAuthority}{authority}
+            \State $pk, sk \gets \textsc{generateAuthorityKeys}()$
+            \State $\textsc{storeAuthorityKeys}(authority, pk, sk)$
+        \EndProcedure
+        \end{algorithmic}
+    \end{algorithm}
+
+    \section{Keygen}
+    This method is used to generate a key for an attribute and associate it with an user. The key is generated using the authority's private key and the attribute name. The key is stored in HashiCorp Vault and can be used for decryption.
+
+    \begin{algorithm}
+        \caption{Keygen}
+        \label{alg:keygen}
+        \begin{algorithmic}[1]
+        \Procedure{Keygen}{authority, attribute, user}
+            \State $sk \gets \textsc{retrieveAuthorityPrivateKey}(authority)$
+            \State $K \gets \textsc{generateKey}(sk, attribute)$
+            \State $\textsc{storeKey}(user, K)$
+        \EndProcedure
+        \end{algorithmic}
+    \end{algorithm}
+
+
+    \section{Encrypt}
+    This method is used to encrypt a payload with an access policy. The access policy is specified as a string containing a boolen expression of attributes and logical operators which should be sattisfied to decrypt the payload. The method retrieves the public keys of the authorities associated with the attributes in the policy and generates a symmetric key as a random member of $G_T$. This element is then used to generate an AES symmetric key to encrypt the payload. The original $G_T$ element is then encrypted by MaabeRW15 scheme using the public keys of the authorities and the access policy. The encrypted element and the AES encrypted payload are returned to the client. This guarantees that the symmetric key used to encrypt the payload is only accessible to users with the required attributes.
+
+    \begin{figure}
+    \label{fig:encrypt_process}
+    \centering
+    \begin{tikzpicture}[node distance=7em]
+        \usetikzlibrary{positioning, fit}
+
+        % Define styles
+        \tikzset{
+            startstop/.style = {rectangle, rounded corners, minimum width=10em, minimum height=3em, text centered, draw=black, fill=gray!30},
+            process/.style = {rectangle, minimum width=10em, minimum height=3em, text centered, draw=black, fill=white!30},
+            decision/.style = {diamond, minimum width=10em, minimum height=3em, text centered, draw=black, fill=green!30},
+            arrow/.style = {thick,->,>=stealth}
+        }
+        
+        % Nodes
+        \node (start) [startstop] {Start};
+        \node (gt) [process, below of=start, node distance=6em] {Generate element of $G_T$};
+        \node (sha) [process, below right of=gt, xshift=10em, yshift=-2em] {Generate SHA256 Key};
+        \node (aes) [process, below of=sha, node distance=6em] {AES.encrypt(payload)};
+        \node (maabe) [process, below left of=gt, xshift=-10em, yshift=-5em] {MaabeRW15.encrypt($G_T$)};
+        \node (return) [process, below of=gt, node distance=14em] {Return Encrypted Payload and $G_T$};
+        \node (stop) [startstop, below of=return, node distance=6em] {End};
+        
+        % Arrows
+        \draw [arrow] (start) -- (gt);
+        \draw [arrow] (gt) -- (sha);
+        \draw [arrow] (gt) -- (maabe);
+        \draw [arrow] (sha) -- (aes);
+        \draw [arrow] (maabe) -- (return);
+        \draw [arrow] (aes) -- (return);
+        \draw [arrow] (return) -- (stop);
+    \end{tikzpicture}
+    \caption{Encrypt Process}
+    \end{figure}
+
+    \subsection{Process of Creating the AES Key}
+
+    The process of creating the AES key involves the generation of a symmetric key using the attribute-based encryption scheme and hashing the key to the appropriate length for AES encryption.
+
+    \begin{enumerate}
+        \item \textbf{Generate Symmetric Key}: A symmetric key is generated using the attribute-based encryption scheme. This key is derived based on the specified access policy and the public keys of the authorities.
+        \item \textbf{Serialize Symmetric Key}: The symmetric key is serialized to a hexadecimal string for further processing.
+        \item \textbf{Hash Symmetric Key}: The serialized symmetric key is hashed using the SHA-256 hash function to produce a 256-bit key suitable for AES encryption.
+    \end{enumerate}
+
+    Mathematically, the process can be described as follows:
+
+    \begin{equation}
+    \text{hashed\_key} = \text{SHA-256}(\text{serialized\_symmetric\_key})
+    \end{equation}
+    \subsection{AES Encryption and Decryption}
+
+    The AES encryption and decryption process involves using the hashed symmetric key to encrypt and decrypt the payload data. The steps are as follows:
+
+    \subsubsection{Encryption}
+
+    \begin{enumerate}
+        \item \textbf{Initialize Pairing Group}: Initialize the pairing group \(G_T\).
+        \item \textbf{Generate Random Element}: Generate a random element \(gt\) in \(G_T\).
+        \item \textbf{Retrieve Public Keys}: Retrieve the public keys from the key manager for the specified authorities.
+        \item \textbf{Encrypt with MA-ABE}: Use the MA-ABE scheme to encrypt the random element \(gt\) with the public keys and access policy.
+        \item \textbf{Serialize Symmetric Key}: Serialize the symmetric key to a hexadecimal string.
+        \item \textbf{Hash Symmetric Key}: Hash the serialized symmetric key using SHA-256 to produce a 256-bit key.
+        \item \textbf{Initialize AES Cipher}: Initialize an AES cipher object in CBC mode using the hashed symmetric key.
+        \item \textbf{Pad Payload}: Pad the payload data to ensure it is a multiple of the AES block size.
+        \item \textbf{Encrypt Payload}: Encrypt the padded payload using the AES cipher.
+    \end{enumerate}
+
+    \begin{algorithm}
+        \caption{Encryption Process}
+        \label{alg:encryption_process}
+        \scriptsize
+        \begin{algorithmic}[1]
+        \Procedure{Encrypt}{payload, policy}
+            \State $K_{G_T} \gets \textsc{Random}(G_T)$
+            \State $A \gets \textsc{getAuthorities}(\text{policy})$
+            \Comment{Attributes in the policy are defined as "<attribute>@<authority>"}
+            \State $K_{\textsc{A}} \gets \textsc{retrievePublicKeys}(\text{authorities})$
+            \State $K_{\textsc{SHA}} \gets \textsc{SHA256}(K_{G_T})$
+            \State $E_{K_{G_T}} \gets \textsc{maabe.Encrypt}(\text{publicKeys}, K_{G_T}, \text{policy})$
+            \State $E_{\text{payload}} \gets \textsc{AES.encrypt}(\text{payload}, K_{G_T})$
+            \State \Return $E_{K_{G_T}}, E_{\text{payload}}$
+        \EndProcedure
+        \end{algorithmic}
+    \end{algorithm}
+
+
+    \subsubsection{Decryption}
+
+    \begin{enumerate}
+        \item \textbf{Initialize AES Cipher}: An AES cipher object is initialized in CBC mode using the hashed symmetric key.
+        \item \textbf{Decrypt Ciphertext}: The ciphertext is decrypted using the AES cipher.
+        \item \textbf{Unpad Decrypted Data}: The decrypted data is unpadded to retrieve the original payload.
+    \end{enumerate}
+
+    \begin{algorithm}
+        \caption{Decryption Process}
+        \label{alg:decryption_process}
+        \scriptsize
+        \begin{algorithmic}[1]
+        \Procedure{Decrypt}{$E_{K_{G_T}}$, $E_{\text{payload}}$, $K_{\text{user}}$}
+            \State $K_{G_T} \gets \textsc{maabe.Decrypt}(E_{K_{G_T}}, K_{\text{user}})$
+            \State $K_{\textsc{SHA}} \gets \textsc{SHA256}(K_{G_T})$
+            \State $payload \gets \textsc{AES.decrypt}(E_{\text{payload}}, K_{G_T})$
+            \State \Return $payload$
+        \EndProcedure
+        \end{algorithmic}
+    \end{algorithm}
+
     \section{Resumo do Trabalho da Laura aqui}
     \section{Modificações que o Grefo fez em cima}
 
@@ -118,28 +411,32 @@
 % https://github.com/JHUISI/charm
 % scheme abenc_maabe_rw15
 
-\section{Machine Specifications}
-The experiments were conducted on a workstation with the following specifications:
+    \section{Machine Specifications}
+    The experiments were conducted on a workstation with the following specifications:
 
-\begin{itemize}
-    \item \textbf{Operating System:} Linux Mint 22 (x86\_64)
-    \item \textbf{Host:} HP ZBook Firefly 14 inch G10 A Mobile Workstation PC SBKPF
-    \item \textbf{Kernel:} 6.8.0-49-generic
-    \item \textbf{Processor:} AMD Ryzen 5 PRO 7640HS with Radeon 760M Graphics (12 cores) @ 5.015GHz
-    \item \textbf{Memory:} 12,599 MiB used out of 15,260 MiB total
-\end{itemize}
+    \begin{itemize}
+        \item \textbf{Operating System:} Linux Mint 22 (x86\_64)
+        \item \textbf{Host:} HP ZBook Firefly 14 inch G10 A Mobile Workstation PC SBKPF
+        \item \textbf{Kernel:} 6.8.0-49-generic
+        \item \textbf{Processor:} AMD Ryzen 5 PRO 7640HS with Radeon 760M Graphics (12 cores) @ 5.015GHz
+        \item \textbf{Memory:} 12,599 MiB used out of 15,260 MiB total
+    \end{itemize}
 
 
 
 \chapter{Evaluation}
     \label{evaluation}
-    \input{chapters/evaluation.tex}
+    \section{Implementation}
+
+    \section{Environmental Settings}
+
+    \section{Results/Discussion}
 % teste de performance
 % tempo de execução (mpv)
 
 
 \chapter{Conclusion}
-    \input{chapters/conclusion.tex}
+    \section{Future Work}
 
 % \section{Figuras e tabelas}
 
