@@ -12,25 +12,29 @@
 %
 
 % Reitoria
-\providecommand{\nominataReit}{Prof.~Carlos Andr{\'e} Bulh{\~o}es}
-\providecommand{\nominataReitname}{Reitor}
-\providecommand{\nominataPRCA}{Prof\textsuperscript{a}.~Patricia Pranke}
-\providecommand{\nominataPRCAname}{Vice-Reitora}
+\providecommand{\nominataReit}{Prof\textsuperscript{a}.~Marcia Barbosa}
+\providecommand{\nominataReitname}{Reitora}
+\providecommand{\nominataPRCA}{Prof.~Pedro Costa}
+\providecommand{\nominataPRCAname}{Vice-Reitor}
 
 % PROPG
-\providecommand{\nominataPRAPG}{Prof.~J{\'u}lio Otávio Jardim Barcellos}
-\providecommand{\nominataPRAPGname}{Pr{\'o}-Reitor de P{\'o}s-Gradua{\c{c}}{\~a}o}
+\providecommand{\nominataPRAPG}{Prof\textsuperscript{a}.~Claudia Wasserman}
+\providecommand{\nominataPRAPGname}{Pr{\'o}-Reitora de P{\'o}s-Gradua{\c{c}}{\~a}o}
+
+% Graduação
+\providecommand{\nominataPRAG}{Prof\textsuperscript{a}.~N{\'a}dya Pesce da Silveira}
+\providecommand{\nominataPRAGname}{Pr{\'o}-Reitora de Gradua{\c{c}}{\~a}o}
 
 % Instituto de Informática
-\providecommand{\nominataDir}{Prof\textsuperscript{a}.~Carla Maria Dal Sasso Freitas}
-\providecommand{\nominataDirname}{Diretora do Instituto de Inform{\'a}tica}
+\providecommand{\nominataDir}{Prof.~Luciano Paschoal Gaspary}
+\providecommand{\nominataDirname}{Diretor do Instituto de Inform{\'a}tica}
 
 % PPGC
-\providecommand{\nominataCoordPPGC}{Prof.~Alberto Egon Schaeffer Filho}
+\providecommand{\nominataCoordPPGC}{Prof.~Gabriel Luca Nazar}
 \providecommand{\nominataCoordnamePPGC}{Coordenador do PPGC}
 
 % PGMicro
-\providecommand{\nominataCoordPGMICRO}{Prof.~Cl{\'a}udio Radtke}
+\providecommand{\nominataCoordPGMICRO}{Prof.~Jos{\'e} Rodrigo Furlanetto de Azambuja}
 \providecommand{\nominataCoordnamePGMICRO}{Coordenador do PGMICRO}
 
 % Biblioteca
@@ -38,21 +42,17 @@
 \providecommand{\nominataBibchefename}{Bibliotec{\'a}rio-chefe do Instituto de Inform{\'a}tica}
 
 % INA (Informática Aplicada)
-\providecommand{\nominataChefeINA}{Prof.~Renata Galante}
+\providecommand{\nominataChefeINA}{Prof.~Leandro Wives}
 \providecommand{\nominataChefeINAname}{Chefe do \deptINA}
 
 % INT (Informática Teórica)
-\providecommand{\nominataChefeINT}{Prof.~{\'A}lvaro Freitas Moreira}
+\providecommand{\nominataChefeINT}{Prof\textsuperscript{a}.~Mariana Luderitz Kolberg Fernandes}
 \providecommand{\nominataChefeINTname}{Chefe do \deptINT}
 
-% Graduação
-\providecommand{\nominataPRAG}{Prof\textsuperscript{a}.~C{\'i}ntia In{\^e}s Boll}
-\providecommand{\nominataPRAGname}{Pr{\'o}-Reitora de Gradua{\c{c}}{\~a}o}
-
 %CIC
-\providecommand{\nominataCoordCIC}{Prof.~Marcelo Walter}
+\providecommand{\nominataCoordCIC}{Prof.~{\'A}lvaro Freitas Moreira}
 \providecommand{\nominataCoordCICname}{Coordenador do Curso de Ci{\^e}ncia de Computa{\c{c}}{\~a}o}
 
 %ECP
-\providecommand{\nominataCoordECP}{Prof.~Andr{\'e} In{\'a}cio Reis}
+\providecommand{\nominataCoordECP}{Prof.~Cl{\'a}udio Machado Diniz}
 \providecommand{\nominataCoordECPname}{Coordenador do Curso de Engenharia de Computa{\c{c}}{\~a}o}
