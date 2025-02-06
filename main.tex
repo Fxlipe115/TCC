@@ -203,29 +203,28 @@
 
     \ToDo{This chapter is divided as follows...}
 
-    
-    \ToDo{Descrever cada item antes de descrever os trabalhos}
-    \section{Data Security} 
-        \citet{Memos2021} propose a layered cloud architecture incorporating Advanced Encryption Standard (AES) and Rivest-Shamir-Adleman (RSA) encryption to enhance the security of e-health data transmission. \citet{Tian2019} use Secure Identity Federation Framework (SIFF) and Hyperledger Fabric to ensure medical data's integrity, availability, and privacy. \citet{Liu2024} develop a blockchain-based Electronic Medical Record (EMR) sharing scheme with IPFS for secure storage and proxy re-encryption for access control. Additionally, \citet{Esposito2018} investigate the use of blockchain to enhance data security in cloud-based healthcare systems, addressing vulnerabilities inherent in traditional security models.
-    
-    \section{Privacy Enhancement} 
-        \citet{Dwivedi2019} propose a blockchain framework for IoT devices in healthcare that minimizes computational demands while enhancing privacy. \citet{Esfahani2024} introduce a comprehensive privacy scheme using zero-knowledge proofs and ring signatures for IoT-based systems. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that improves anonymity. \citet{Li2024} create a regulated medical data trading scheme that ensures privacy and compliance using blockchain and zero-knowledge proofs.
-    
-    \section{Operational Efficiency} 
-        \citet{Vazirani2019} review the effectiveness of blockchain in managing healthcare records, noting improvements in interoperability. \citet{Shen2019} introduce MedChain, a framework that efficiently manages and shares healthcare data. \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in the IoMT. Furthermore, \citet{XuJie2019} develop 'Healthchain,' a scalable blockchain-based framework for privacy-preserving health data management.
-    
-    \section{Cross-Border Data Sharing and Scalability} 
-        \citet{Rahman2020} describe a blockchain-based platform for secure cross-border data sharing, enhancing trust and security. \citet{Saeed2022} examine the potential of blockchain in healthcare, particularly its impact on managing, distributing, and processing medical records.
-    
-    \section{Additional Technological Perspectives} 
-        \citet{Hema2019} assess ECC-based encryption mechanisms for securing healthcare data in cloud environments. \citet{Naz2024} explore defences against quantum computing threats in blockchain through exotic signatures. \citet{Eghmazi2024} focus on securing IoT data using Hyperledger Fabric for scalable solutions. \citet{XuChang2019} discuss secure data sharing in cloud-assisted healthcare systems using cryptographic techniques. Lastly, \citet{Karaca2019} explores mobile cloud computing applications in stroke care, indirectly underscoring the need for integrating secure and efficient technology solutions in healthcare.
-
-    \ToDo{Passar parágrafo abaixo para próxima sessão?}
-    This comprehensive review highlights the varied applications of blockchain technology and the significant potential in enhancing healthcare systems. Although the studies discussed provide a solid foundation for advancing blockchain applications in healthcare, they also highlight several research gaps that require further investigation.
 
     \section{Overall Context}
         \label{sec:overallcontext}
         \Laura{Esse aqui seria o 3.1, com um textinho introdutório sobre o contexto geral da minha dissertaçao, e aí data security, privacy enhancement, operational efficiency etc estariam dentro dessa seção - 3.1.1, 3.1.2 etc}
+            
+        \ToDo{Descrever cada item antes de descrever os trabalhos}
+        \subsection{Data Security} 
+            \citet{Memos2021} propose a layered cloud architecture incorporating Advanced Encryption Standard (AES) and Rivest-Shamir-Adleman (RSA) encryption to enhance the security of e-health data transmission. \citet{Tian2019} use Secure Identity Federation Framework (SIFF) and Hyperledger Fabric to ensure medical data's integrity, availability, and privacy. \citet{Liu2024} develop a blockchain-based Electronic Medical Record (EMR) sharing scheme with IPFS for secure storage and proxy re-encryption for access control. Additionally, \citet{Esposito2018} investigate the use of blockchain to enhance data security in cloud-based healthcare systems, addressing vulnerabilities inherent in traditional security models.
+        
+        \subsection{Privacy Enhancement} 
+            \citet{Dwivedi2019} propose a blockchain framework for IoT devices in healthcare that minimizes computational demands while enhancing privacy. \citet{Esfahani2024} introduce a comprehensive privacy scheme using zero-knowledge proofs and ring signatures for IoT-based systems. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that improves anonymity. \citet{Li2024} create a regulated medical data trading scheme that ensures privacy and compliance using blockchain and zero-knowledge proofs.
+        
+        \subsection{Operational Efficiency} 
+            \citet{Vazirani2019} review the effectiveness of blockchain in managing healthcare records, noting improvements in interoperability. \citet{Shen2019} introduce MedChain, a framework that efficiently manages and shares healthcare data. \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in the IoMT. Furthermore, \citet{XuJie2019} develop 'Healthchain,' a scalable blockchain-based framework for privacy-preserving health data management.
+        
+        \subsection{Cross-Border Data Sharing and Scalability} 
+            \citet{Rahman2020} describe a blockchain-based platform for secure cross-border data sharing, enhancing trust and security. \citet{Saeed2022} examine the potential of blockchain in healthcare, particularly its impact on managing, distributing, and processing medical records.
+        
+        \subsection{Additional Technological Perspectives} 
+            \citet{Hema2019} assess ECC-based encryption mechanisms for securing healthcare data in cloud environments. \citet{Naz2024} explore defences against quantum computing threats in blockchain through exotic signatures. \citet{Eghmazi2024} focus on securing IoT data using Hyperledger Fabric for scalable solutions. \citet{XuChang2019} discuss secure data sharing in cloud-assisted healthcare systems using cryptographic techniques. Lastly, \citet{Karaca2019} explores mobile cloud computing applications in stroke care, indirectly underscoring the need for integrating secure and efficient technology solutions in healthcare.
+
+    
 
     \section{Secure Data Sharing and Storing in hIoT}
         \label{sec:securedata}\
@@ -248,6 +247,7 @@
 
 \chapter{Proposed Solution}
     \label{chap:proposedsolution}
+    Explicação alto nível do meu sistema
 
     \section{Blockchain-Based Secure Storage Architecture for hIoT}
         \label{sec:architecture}
@@ -260,7 +260,7 @@
 
     \section{Implementation}
         \label{sec:implementation}
-        We developed a REST API that provides encryption and decryption services using attribute-based encryption. The API allows clients to encrypt data with an access policy and decrypt the data if they satisfy the policy. The API is implemented using Flask, a lightweight web framework for Python, and uses the Charm-Crypto library for pairing-based cryptography. The API endpoints are secured using HashiCorp Vault to manage cryptographic keys securely.
+        We developed a REST API that provides encryption and decryption services using attribute-based encryption. The API allows clients to encrypt data with an access policy and decrypt the data if they satisfy the policy. The API is implemented using Flask, a lightweight web framework for Python, and uses the Charm-Crypto library for pairing-based cryptography. The API endpoints are secured using Redis to manage cryptographic keys securely.
 
         \subsection{Libraries and Tools Used}
             \label{sec:libraries}
@@ -272,14 +272,14 @@
                 \item \textbf{Flask}: A lightweight web framework for building the API endpoints for encryption and decryption.
                 \item \textbf{Flask-RESTX}: An extension for Flask that adds support for creating REST APIs.
                 \item \textbf{PyCryptodome}: A self-contained Python package of low-level cryptographic primitives, used for AES encryption and decryption.
-                \item \textbf{HashiCorp Vault}: A tool for securely storing and accessing secrets, used to manage cryptographic keys.
+                \item \textbf{Redis}: An in-memory key-value data storage system, used to manage cryptographic keys in our system.
             \end{itemize}
 
 
         \subsection{Setup authority}
-            This method is used to set up an authority in the system. The authority is identified by a unique uppercase alphanumeric string. The authority's public and private keys are generated by Charm-Crypto MaabeRW15\cite{rouselakis2015efficient} scheme and stored in HashiCorp Vault. The authority private key is used for key generation for each attribute. The public key is used for encryption by the clients.
+            This method is used to set up an authority in the system. The authority is identified by a unique uppercase alphanumeric string. The authority's public and private keys are generated by Charm-Crypto MaabeRW15\cite{rouselakis2015efficient} scheme and stored in Redis. The authority private key is used for key generation for each attribute. The public key is used for encryption by the clients.
 
-            For simplicity in developing and testing, the authority's private key is stored in HashiCorp Vault. In a production scenario the private key should be stored securely by the authority and provided to the system only when needed.
+            For simplicity in developing and testing, the authority's private key is stored in Redis. In a production scenario the private key should be stored securely by the authority and provided to the system only when needed.
 
             \begin{algorithm}
                 \caption{Setup Authority}
@@ -293,7 +293,7 @@
             \end{algorithm}
 
         \subsection{Keygen}
-            This method is used to generate a key for an attribute and associate it with an user. The key is generated using the authority's private key and the attribute name. The key is stored in HashiCorp Vault and can be used for decryption.
+            This method is used to generate a key for an attribute and associate it with an user. The key is generated using the authority's private key and the attribute name. The key is stored in Redis and can be used for decryption.
 
             \begin{algorithm}
                 \caption{Keygen}
@@ -437,8 +437,13 @@
         \subsection{Time to Encrypt/Decrypt}
             \label{sec:timeencryptdecrypt}
 
-        \subsection{Time to Fetch Keys with Many Users}
+        \subsection{Time to Fetch Keys}
             \label{sec:timefetchkeys}
+
+        \subsection{User key size}
+            \label{sec:keysize}
+
+        
 
         \subsection{Security Test}
             \label{sec:securitytest}
@@ -449,6 +454,7 @@
     \section{Discussion}
         \label{sec:discussion}
 
+\Laura{olhar related works seção 3.3}
 
 \chapter{Conclusion}
     \label{chap:conclusion}
