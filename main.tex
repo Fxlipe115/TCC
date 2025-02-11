@@ -426,16 +426,41 @@
         \subsection{Machine Specifications}
             The experiments were conducted on a workstation with the following specifications:
 
-            \begin{itemize}
-                \item \textbf{Operating System:} Linux Mint 22 (x86\_64)
-                \item \textbf{Host:} HP ZBook Firefly 14 inch G10 A Mobile Workstation PC SBKPF
-                \item \textbf{Kernel:} 6.8.0-49-generic
-                \item \textbf{Processor:} AMD Ryzen 5 PRO 7640HS with Radeon 760M Graphics (12 cores) @ 5.015GHz
-                \item \textbf{Memory:} 12,599 MiB used out of 15,260 MiB total
-            \end{itemize}
+            \begin{table}[h]
+                \centering
+                \begin{tabular}{|l|l|}
+                \hline
+                \textbf{Component} & \textbf{Details} \\ \hline
+                OS & Linux Mint 22 (x86\_64) \\ \hline
+                Host & HP ZBook Firefly 14" G10 A \\ \hline
+                Kernel & 6.8.0-49-generic \\ \hline
+                Processor & AMD Ryzen 5 PRO 7640HS (12 cores) @ 5.015GHz \\ \hline
+                Memory & 16 GiB \\ \hline
+                \end{tabular}
+                \caption{Machine Specifications}
+                \label{tab:machine_specs}
+            \end{table}
 
-        \subsection{Time to Encrypt/Decrypt}
+        \subsection{Performance analysis}
             \label{sec:timeencryptdecrypt}
+
+            \begin{figure}[h]
+                \centering
+                \caption{Response time for each endpoint}
+                \label{fig:response_time}
+            \end{figure}
+
+            \begin{figure}[h]
+                \centering
+                \caption{Comparison of encryption time for different payload sizes}
+                \label{fig:encrypt_payload_size}
+            \end{figure}
+
+            \begin{figure}[h]
+                \centering
+                \caption{Comparison of decryption time for different payload sizes}
+                \label{fig:decrypt_payload_size}
+            \end{figure}
 
         \subsection{Time to Fetch Keys}
             \label{sec:timefetchkeys}
