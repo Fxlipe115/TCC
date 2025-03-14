@@ -309,7 +309,7 @@
 
 
         \subsection{Encrypt}
-            This method is used to encrypt a payload with an access policy. The access policy is specified as a string containing a boolen expression of attributes and logical operators which should be sattisfied to decrypt the payload. The method retrieves the public keys of the authorities associated with the attributes in the policy and generates a symmetric key as a random member of $G_T$. This element is then used to generate an AES symmetric key to encrypt the payload. The original $G_T$ element is then encrypted by MaabeRW15 scheme using the public keys of the authorities and the access policy. The encrypted element and the AES encrypted payload are returned to the client. This guarantees that the symmetric key used to encrypt the payload is only accessible to users with the required attributes.
+            This method is used to encrypt a payload with an access policy. The access policy is specified as a string containing a boolean expression of attributes and logical operators which should be satisfied to decrypt the payload. The method retrieves the public keys of the authorities associated with the attributes in the policy and generates a symmetric key as a random member of $G_T$. This element is then used to generate an AES symmetric key to encrypt the payload. The original $G_T$ element is then encrypted by MaabeRW15 scheme using the public keys of the authorities and the access policy. The encrypted element and the AES encrypted payload are returned to the client. This guarantees that the symmetric key used to encrypt the payload is only accessible to users with the required attributes.
 
             \begin{figure}
             \label{fig:encrypt_process}
@@ -419,27 +419,44 @@
 
 \chapter{Evaluation}
     \label{chap:evaluation}
+    The performance evaluation was done with Locust\footnote{http://locust.io}...
+
+    The code is available at Github\citet{maabeflask}
     
+    Key analisys with redis\footnote{redis}...
+
     \section{Tests}
         \label{sec:tests}
 
-        \subsection{Machine Specifications}
-            The experiments were conducted on a workstation with the following specifications:
+        The experiments were conducted on a workstation with the following specifications:
 
-            \begin{table}[h]
-                \centering
-                \begin{tabular}{|l|l|}
-                \hline
-                \textbf{Component} & \textbf{Details} \\ \hline
-                OS & Linux Mint 22 (x86\_64) \\ \hline
-                Host & HP ZBook Firefly 14" G10 A \\ \hline
-                Kernel & 6.8.0-49-generic \\ \hline
-                Processor & AMD Ryzen 5 PRO 7640HS (12 cores) @ 5.015GHz \\ \hline
-                Memory & 16 GiB \\ \hline
-                \end{tabular}
-                \caption{Machine Specifications}
-                \label{tab:machine_specs}
-            \end{table}
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{|l|l|}
+            \hline
+            \textbf{Component} & \textbf{Details} \\ \hline
+            OS & Linux Mint 22 (x86\_64) \\ \hline
+            Host & HP ZBook Firefly 14" G10 A \\ \hline
+            Kernel & 6.8.0-49-generic \\ \hline
+            Processor & AMD Ryzen 5 PRO 7640HS (12 cores) @ 5.015GHz \\ \hline
+            Memory & 16 GiB \\ \hline
+            \end{tabular}
+            \caption{Machine Specifications}
+            \label{tab:machine_specs}
+        \end{table}
+
+        Locust is a framework...
+        
+        workers vs threads etc
+
+        According to locust documentation the optimal number of workers and threads is defined by the formula \ref{formula}. Given the specifications of table \ref{tab:machine_specs} the number of workers used in the tests is ...
+
+        \begin{equation}
+            \label{formula}
+            formula
+        \end{equation}
+        
+        User vs authority proportion
 
         \subsection{Performance analysis}
             \label{sec:timeencryptdecrypt}
@@ -449,6 +466,7 @@
                 \caption{Response time for each endpoint}
                 \label{fig:response_time}
             \end{figure}
+
 
             \begin{figure}[h]
                 \centering
@@ -464,9 +482,11 @@
 
         \subsection{Time to Fetch Keys}
             \label{sec:timefetchkeys}
+            Analysis results from redis
 
         \subsection{User key size}
             \label{sec:keysize}
+            The user key size depends on the number of attributes ...
 
         
 
@@ -478,6 +498,11 @@
 
     \section{Discussion}
         \label{sec:discussion}
+        Ficou tudo uma bosta e não deu certo pq...
+
+        Falar sobre o multi-thread e pq não funcionou. (evitar sincericídio)
+
+        Charm crypto compila a parte de matematica da curva e faz load em um .so. Talvez isso seja a causa das falhas com multiplas threads
 
 \Laura{olhar related works seção 3.3}
 
