@@ -24,6 +24,8 @@
 
 \usepackage{tikz}
 
+\usepackage[bottom]{footmisc}
+
 \title{
     A Hybrid Multi-Authority Attribute-Based Encryption scheme implementation for securing hIoT data
 }
@@ -109,6 +111,7 @@
     \item[RSA] Rivest-Shamir-Adleman
     \item[SHA] Secure Hash Algorithm
     \item[SIFF] Secure Identity Federation Framework
+    \item[WSGI] Web Server Gateway Interface
 \end{listofabbrv}
 
 \begin{listofsymbols}{$\alpha\beta\pi\omega$}
@@ -419,7 +422,7 @@
 
 \chapter{Evaluation}
     \label{chap:evaluation}
-    The performance evaluation was done with Locust\footnote{http://locust.io}...
+    The performance evaluation was done with Locust\footnote{\url{http://locust.io}}...
 
     The code is available at Github\citet{maabeflask}
     
@@ -445,40 +448,168 @@
             \label{tab:machine_specs}
         \end{table}
 
-        Locust is a framework...
+        Locust is an API load testing tool that allows users to define test scenarios using Python code. The tool simulates user behavior and generates load on the system to evaluate its performance under different conditions. The tests were conducted with varying numbers of users and spawn rates to determine the system's performance and scalability.
         
-        workers vs threads etc
+        Gunicorn is a Web Server Gateway Interface(WSGI) server for Python that provides a scalable and efficient way to serve web applications. The server can run with multiple workers and threads to handle multiple requests concurrently. The tests were conducted with varying numbers of threads and workers to determine the optimal configuration for the system.
 
-        According to locust documentation the optimal number of workers and threads is defined by the formula \ref{formula}. Given the specifications of table \ref{tab:machine_specs} the number of workers used in the tests is ...
-
-        \begin{equation}
-            \label{formula}
-            formula
-        \end{equation}
+        \begin{table}
+            \centering
+            \begin{tabular}{|c|c|}
+                \hline
+                \textbf{Threads} & \textbf{Workers} \\ \hline
+                1 & 1 \\ \hline
+                8 & 5 \\ \hline
+                12 & 10 \\ \hline
+                16 & 15 \\ \hline
+                24 & 20 \\ \hline    
+                32 & 25 \\ \hline
+            \end{tabular}
+            \caption{Number of threads and workers used in the tests}
+            \label{tab:threads_workers}
+        \end{table}
         
         User vs authority proportion
+
+        \subsection{Failure Rate}
+            \label{sec:failurerate}
+            This test was done with the Locust framework to determine the failure rate of the system. The test was conducted with a payload size of 1KB and 1000 users. The failure rate was calculated by the number of failed requests divided by the total number of requests.
+
+            The locustfile used for the test defines 80\% of the users as clients and 20\% as authorities. Each authority instance calls the endpoint \emph{/api/setup\_authority} once upon instantiation, and subsequently calls \emph{/api/keygen} for a user following a Round-Robin strategy. The client instances call the \emph{/api/encrypt} endpoint with a random payload and access policy and then call the \emph{/api/decrypt} endpoint with the encrypted payload and the user's key with a 50\% probability of calling each endpoint.
+            
+            The test was run for 15 minutes with a spawn rate of 100 user per second. The failure rate was calculated as the number of failed requests divided by the total number of requests.
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.8\textwidth]{images/phase1/failure_rate__api_encrypt.png}
+                \caption{Failure rate for /api/encrypt for different configurations of threads and workers}
+                \label{fig:failurerateencrypt}
+            \end{figure}
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.8\textwidth]{images/phase1/failure_rate__api_decrypt.png}
+                \caption{Failure rate for /api/decrypt for different configurations of threads and workers}
+                \label{fig:failureratedecrypt}
+            \end{figure}
 
         \subsection{Performance analysis}
             \label{sec:timeencryptdecrypt}
 
-            \begin{figure}[h]
+            We evaluated the performance of the encryption and decryption processes using the REST API. The tests were conducted with varying numbers of threads and workers to determine the optimal configuration for the system. The response time for encryption and decryption was measured for different payload sizes to assess the system's scalability and efficiency.
+
+            
+
+            Figure~\ref{fig:response_time_threads} shows the response time for encryption by fixing the number of workers and varying the numbers of threads. The median response time is not affected in a considerable way by the number of threads, indicating that the system is not CPU-bound. In contrast, Figure~\ref{fig:response_time_workers} presents the response time for encryption by fixing the number of threads and varying the numbers of workers. The response time decreases exponentially as the number of workers increases, indicating that the system is I/O-bound.
+
+            Due to the system's I/O-bound nature and the results seem in Section~\ref{sec:failurerate} indicating some race conditions with multiple threads, we decided to use a single thread and multiple workers for the subsequent tests.
+
+            \begin{figure}
                 \centering
-                \caption{Response time for each endpoint}
-                \label{fig:response_time}
+                \includegraphics[width=0.8\textwidth]{images/phase1/api_encrypt/response_time_workers_summary.png}
+                \caption{Response time for encryption varying the number of threads}
+                \label{fig:encrypt_response_time_workers}
+            \end{figure}
+
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.8\textwidth]{images/phase1/api_decrypt/response_time_workers_summary.png}
+                \caption{Response time for decryption varying the number of threads}
+                \label{fig:decrypt_response_time_workers}
+            \end{figure}
+
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.8\textwidth]{images/phase1/api_decrypt/response_time_threads_summary.png}
+                \caption{Response time for encryption varying the number of workers}
+                \label{fig:encrypt_response_time_threads}
+            \end{figure}
+
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.8\textwidth]{images/phase1/api_decrypt/response_time_threads_summary.png}
+                \caption{Response time for decryption varying the number of workers}
+                \label{fig:decrypt_response_time_threads}
             \end{figure}
 
 
-            \begin{figure}[h]
-                \centering
-                \caption{Comparison of encryption time for different payload sizes}
-                \label{fig:encrypt_payload_size}
-            \end{figure}
+            Gunicorn's documentation\footnote{\url{https://docs.gunicorn.org/en/latest/design.html}} states that the optimal number of workers is defined by the formula~\ref{form:numberworkers}. Given the specifications of Table~\ref{tab:machine_specs}, the number of workers used in the subsequent tests is 25.
 
-            \begin{figure}[h]
-                \centering
-                \caption{Comparison of decryption time for different payload sizes}
-                \label{fig:decrypt_payload_size}
-            \end{figure}
+            \begin{equation}
+                \label{form:numberworkers}
+                \text{workers} = (2 \times \text{cores}) + 1
+            \end{equation}
+
+
+        \subsection{Scalability}
+            \label{sec:encryptiontime}
+            Scalability tests were divided into three phases. The first phase evaluated the system's performance under different payload sizes. The second phase assessed the system's scalability under different user loads. The third phase analyzed the system's performance with varying encryption policy sizes.
+
+            \subsubsection{Payload Size}
+                The results are presented in Figure~\ref{fig:encrypt_payload_size} and in Figure~\ref{fig:decrypt_payload_size}.
+
+                Detailed results are presented in Table~\ref{tab:response_times}.
+
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{images/phase2/response_time_api_encrypt.png}
+                    \caption{Comparison of encryption time for different payload sizes}
+                    \label{fig:encrypt_payload_size}
+                \end{figure}
+
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{images/phase2/response_time_api_decrypt.png}
+                    \caption{Comparison of decryption time for different payload sizes}
+                    \label{fig:decrypt_payload_size}
+                \end{figure}
+
+                \begin{table}[!ht]
+                    \centering
+                    \begin{tabular}{|l|l|l|l|l|}
+                    \hline
+                        Name & Mean Response Time &  Std Dev & Total Requests & RPS \\ \hline
+                        /api/decrypt & 273.514862 & 71.377752 & 7423 & 12.445094 \\ \hline
+                        /api/encrypt & 57.374965 & 52.18.612973 & 7539 & 12.590557 \\ \hline
+                    \end{tabular}
+                    \caption{Summary of response times for different endpoints}
+                    \label{tab:response_times}
+                \end{table}
+
+            \subsubsection{User load}
+                The results are presented in Figure~\ref{fig:encrypt_user_load} and in Figure~\ref{fig:decrypt_user_load}.
+
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{images/phase3/response_time_api_encrypt_64KB.png}
+                    \caption{Comparison of encryption time for different user loads}
+                    \label{fig:encrypt_user_load}
+                \end{figure}
+
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{images/phase3/response_time_api_decrypt_64KB.png}
+                    \caption{Comparison of decryption time for different user loads}
+                    \label{fig:decrypt_user_load}
+                \end{figure}
+
+            \subsubsection{Size of encription policy}
+                The results are presented in Figure~\ref{fig:encrypt_policy_size} and in Figure~\ref{fig:decrypt_policy_size}.
+
+                \ToDo{Explicar em algum lugar como funcionam a policies}
+
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{images/phase4/response_time_api_encrypt.png}
+                    \caption{Comparison of encryption time for different policy sizes}
+                    \label{fig:encrypt_policy_size}
+                \end{figure}
+
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{images/phase4/response_time_api_decrypt.png}
+                    \caption{Comparison of decryption time for different policy sizes}
+                    \label{fig:decrypt_policy_size}
+                \end{figure}
 
         \subsection{Time to Fetch Keys}
             \label{sec:timefetchkeys}
@@ -487,6 +618,8 @@
         \subsection{User key size}
             \label{sec:keysize}
             The user key size depends on the number of attributes ...
+
+            \ToDo{Fazer paralelo com trabalho da Laura e mostrar impacto da criptografia no armazenamento do payload nos blocos do IPFS}
 
         
 

@@ -1,0 +1,5 @@
+Name,	Workers,	Threads,	Min_Response_Time,	Max_Response_Time,	Mean_Response_Time,	Median_Response_Time,	Std_Dev_Response_Time,	Total_Requests,	Requests_per_Second
+/api/decrypt,	25,	1,	41.953000,	698.071000,	273.514862,	269.621000,	71.377752,	7423,	12.445094,
+/api/encrypt,	25,	1,	29.974000,	191.958000,	57.374965,	52.953000,	18.612973,	7539,	12.590557
+/api/keygen,	25,	1,	32.880122,	827.678378,	233.351698,	222.399083,	109.352253,	589,	4.464743
+/api/setup_authority,	25,	1,	50.004323,	259.481778,	130.746531,	119.971259,	55.953248,	20,	76.010413
