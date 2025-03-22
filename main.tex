@@ -100,16 +100,22 @@
 
 \begin{listofabbrv}{MA-ABE} % longest abbreviation
     \item[AES] Advanced Encryption Standard
+    \item[API] Application Programming Interface
     \item[DLP] Discrete Logarithm Problem
-    \item[ECC] Elliptic Curve Cryptography
+    \item[CBC] Cipher Block Chaining
+    \item[ECC] Elliptic Curve cryptography
+    \item[ECDLP] Elliptic Curve Discrete Logarithm Problem
     \item[EHR] Electronic Health Record
     \item[EMR] Electronic Medical Record
     \item[HIoT] Health Internet of Things
     \item[IoMT] Internet of Medical Things
     \item[IPFS] InterPlanetary File System
+    \item[JSON] JavaScript Object Notation
     \item[MA-ABE] Multi-Authority Attribute-Based Encryption
+    \item[NIST] National Institute of Standards and Technology
     \item[PoS] Proof of Stake
     \item[PoW] Proof of Work
+    \item[REST] Representational State Transfer
     \item[RSA] Rivest-Shamir-Adleman
     \item[SHA] Secure Hash Algorithm
     \item[SIFF] Secure Identity Federation Framework
@@ -214,7 +220,7 @@
         
     \section{Symmetric Encryption with AES}
         \label{sec:symmetric}
-        The Advanced Encryption Standard (AES) is a symmetric block cipher standardized by NIST~\citep{daemen1999aes}. It operates on fixed-size blocks of data (typically 128 bits) and supports key sizes of 128, 192, or 256 bits. AES is widely used for data confidentiality due to its efficiency and strong security guarantees.
+        The Advanced Encryption Standard (AES) is a symmetric block cipher standardized by the National Institute of Standards and Technology (NIST)~\citep{daemen1999aes}. It operates on fixed-size blocks of data (typically 128 bits) and supports key sizes of 128, 192, or 256 bits. AES is widely used for data confidentiality due to its efficiency and strong security guarantees.
         
         In this system, AES is used to encrypt large datasets stored off-chain, while the encryption keys are protected using the MA-ABE scheme. This hybrid design ensures both performance and access control granularity.
         
