@@ -24,6 +24,8 @@
 
 \usepackage{tikz}
 
+\usepackage{amsfonts}
+
 \usepackage[bottom]{footmisc}
 
 \title{
@@ -155,44 +157,70 @@
     % (opcional) avaliação (implementação, experimentos, resultados)
 
     \begin{draft}{Quick introduction of each chapter}
-        In Section \ref{relatedworks},...
+        In Section \ref{chap:relatedworks},...
 
     \end{draft}
 
 \chapter{Background}
     \label{chap:background}
-    \citet{laura2023} proposed a new framework for securing Health Internet of Things (HIoT) data storage using Hyperledger and InterPlanetary File System (IPFS) \cite{benet2013ipfs}.
 
-    The key creation process in our system leverages elliptic curve cryptography (ECC) and pairing-based cryptography. These cryptographic techniques provide a high level of security and efficiency, making them suitable for attribute-based encryption.
+    \citet{laura2023} proposed a new framework for securing Health Internet of Things (HIoT) data. The framework aims to provide a secure and decentralized storage solution for HIoT data using InterPlanetary File System (IPFS) \cite{benet2013ipfs} for decentralized storage and Hyperledger Fabric \cite{fabric} for access control and data management. However, the framework lacks a robust cryptographic solution to ensure data confidentiality and privacy. In this work, we propose a hybrid cryptographic approach to enhance the security of the system and enable fine-grained access control based on user attributes.
 
-    \section{Elliptic Curve and Pairing-Based Cryptography}
+    In this work, the key generation and encryption processes adopt a hybrid cryptographic approach that combines elliptic curve cryptography (ECC), pairing-based cryptography (PBC), and symmetric encryption using the Advanced Encryption Standard (AES). The system implements a Multi-Authority Attribute-Based Encryption (MA-ABE) scheme, enabling fine-grained and flexible access control based on user attributes distributed across multiple independent authorities. ECC and PBC provide the foundation for secure key establishment and attribute-based policies, while AES ensures efficient encryption of large data volumes. This combination leverages the strengths of each technique to achieve both performance and robust access control.
+
+
+
+    Section~\ref{sec:ecc} provides an overview of elliptic curve cryptography, including the definition of elliptic curves and their use in cryptographic systems. Section~\ref{sec:pairing} introduces pairing-based cryptography and its applications in advanced cryptographic constructions. Section~\ref{sec:maabe} describes Multi-Authority Attribute-Based Encryption (MA-ABE) and its benefits for secure data sharing in decentralized systems. Section~\ref{sec:symmetric} presents the Advanced Encryption Standard (AES) and its role in symmetric encryption. Section~\ref{sec:blockchain} discusses the application of blockchain technology in healthcare and its potential to enhance data security and privacy. Further details on how these cryptographic techniques are integrated into the proposed framework are provided in Chapter~\ref{chap:proposedsolution}.
+    
+
+    \section{Elliptic Curve Cryptography}
         \label{sec:ecc}
-        Elliptic curve cryptography is based on the algebraic structure of elliptic curves over finite fields. An elliptic curve is defined by an equation of the form:
+
+        \citet{hankerson2004guide} define Elliptic Curve Cryptography (ECC) as a public-key cryptosystem based on the algebraic structure of elliptic curves over finite fields. Its security relies on the difficulty of the Elliptic Curve Discrete Logarithm Problem (ECDLP), which is believed to be computationally infeasible to solve in general-purpose cases~\citep{hankerson2004guide, koblitz1987elliptic}.
+
+        Let $p$ be a prime number, and let $\mathbb{F}_p$ denote the finite field of integers modulo $p$. An elliptic curve $E$ over $\mathbb{F}_p$ is defined by the Weierstrass equation:
 
         \begin{equation}
+        \label{eq:elliptic_curve}
         y^2 = x^3 + ax + b
         \end{equation}
 
-        where \(a\) and \(b\) are constants that define the specific curve. The points on the elliptic curve, along with a special point at infinity, form an additive group.
+        where $a, b \in \mathbb{F}_p$ are curve parameters chosen such that the curve is non-singular, i.e., $4a^3 + 27b^2 \neq 0$. The set of points $(x, y) \in \mathbb{F}_p^2$ satisfying this equation, together with a special point at infinity, form an abelian group under a well-defined addition operation~\citep{hankerson2004guide}.
 
-        \subsection{Pairing-Based Cryptography}
+    \section{Pairing-Based Cryptography}
+        \label{sec:pairing}
 
-        Pairing-based cryptography involves a bilinear map, known as a pairing, that takes two elements from two different groups and maps them to a third group. The pairing operation is denoted as:
+        Pairing-based cryptography extends the use of elliptic curves by employing bilinear pairings, which are maps of the form:
 
         \begin{equation}
         e: G_1 \times G_2 \rightarrow G_T
         \end{equation}
 
-        where \(G_1\) and \(G_2\) are additive groups of points on elliptic curves, and \(G_T\) is a multiplicative group. The pairing operation has the following properties:
+        where $G_1$ and $G_2$ are additive cyclic groups of points on elliptic curves, and $G_T$ is a multiplicative cyclic group of a finite field~\citep{boneh2001identity}. The pairing $e$ satisfies the following properties:
 
         \begin{itemize}
-            \item \textbf{Bilinearity}: \(e(aP, bQ) = e(P, Q)^{ab}\) for all \(P \in G_1\), \(Q \in G_2\), and integers \(a, b\).
-            \item \textbf{Non-degeneracy}: There exist points \(P \in G_1\) and \(Q \in G_2\) such that \(e(P, Q) \neq 1\).
-            \item \textbf{Computability}: The pairing \(e(P, Q)\) can be efficiently computed.
-        \end{itemize}        
+            \item \textbf{Bilinearity}: $e(aP, bQ) = e(P, Q)^{ab}$ for all $P \in G_1$, $Q \in G_2$, and integers $a, b$.
+            \item \textbf{Non-degeneracy}: There exist points $P \in G_1$ and $Q \in G_2$ such that $e(P, Q) \neq 1$.
+            \item \textbf{Computability}: The pairing $e(P, Q)$ can be efficiently computed using algorithms such as Miller's algorithm~\citep{miller1986use}.
+        \end{itemize}
 
+        Pairings enable advanced cryptographic constructions, including identity-based encryption (IBE), attribute-based encryption (ABE) and short signatures~\citep{boneh2001identity}.
+
+    \section{Multi-Authority Attribute-Based Encryption (MA-ABE)}
+        \label{sec:maabe}
+        Attribute-Based Encryption (ABE) is a cryptographic scheme that allows encryption and decryption operations based on user attributes rather than individual identities~\citep{goyal2006attribute}. In a Multi-Authority ABE (MA-ABE) model, multiple independent authorities manage disjoint sets of attributes, improving decentralization and resistance to single points of failure~\citep{chase2007multi}. Each authority issues keys corresponding to the attributes it controls, enabling fine-grained access policies defined over attributes from multiple domains.
+        
+        MA-ABE is particularly suitable for systems where sensitive data access must be controlled by multiple stakeholders, as is the case in healthcare scenarios. The combination with pairing-based cryptography enables efficient implementation of complex access policies.
+        
+    \section{Symmetric Encryption with AES}
+        \label{sec:symmetric}
+        The Advanced Encryption Standard (AES) is a symmetric block cipher standardized by NIST~\citep{daemen1999aes}. It operates on fixed-size blocks of data (typically 128 bits) and supports key sizes of 128, 192, or 256 bits. AES is widely used for data confidentiality due to its efficiency and strong security guarantees.
+        
+        In this system, AES is used to encrypt large datasets stored off-chain, while the encryption keys are protected using the MA-ABE scheme. This hybrid design ensures both performance and access control granularity.
+        
     \section{Blockchain Technology in Healthcare}
         \label{sec:blockchain}
+        \Graeff{Laura consegue me ajudar nessa seção?}
 
 
 \chapter{Related Works}
