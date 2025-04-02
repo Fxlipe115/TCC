@@ -32,12 +32,13 @@
     A Hybrid Multi-Authority Attribute-Based Encryption scheme implementation for securing hIoT data
 }
 \translatedtitle{
-    Esquema Híbrido de Criptografia Baseada em Atributos de Múltiplas Autoridades para Transmissão Segura de Dados hIoT
+    Um Esquema Híbrido de Criptografia Baseada em Atributos de Múltiplas Autoridades para Transmissão Segura de Dados hIoT
 }
 
 \author{Graeff}{Felipe de Almeida}
 
 \advisor[Prof.~Dr.]{Nobre}{Jéferson Campos}
+\coadvisor[M.Sc]{Soares}{Laura Rodrigues}
 
 % \date{maio}{2001}
 % \location{Itaquaquecetuba}{SP}
@@ -158,7 +159,7 @@
 
     % proposta
 
-    In the present thesis we aim to propose a cryptography framework that best fits the solution introduced by \citet{laura2023}.
+    In the present thesis, we aim to propose a cryptography framework that best fits the solution introduced by \citet{laura2023}.
 
     % (opcional) avaliação (implementação, experimentos, resultados)
 
@@ -170,7 +171,7 @@
 \chapter{Background}
     \label{chap:background}
 
-    \citet{laura2023} proposed a new framework for securing Health Internet of Things (HIoT) data. The framework aims to provide a secure and decentralized storage solution for HIoT data using InterPlanetary File System (IPFS) \cite{benet2013ipfs} for decentralized storage and Hyperledger Fabric \cite{fabric} for access control and data management. However, the framework lacks a robust cryptographic solution to ensure data confidentiality and privacy. In this work, we propose a hybrid cryptographic approach to enhance the security of the system and enable fine-grained access control based on user attributes.
+    \citet{laura2023} proposed a new framework for securing Health Internet of Things (HIoT) data. The framework aims to provide a secure and decentralized storage solution for HIoT data using InterPlanetary File System (IPFS) \cite{benet2013ipfs} for decentralized storage and Hyperledger Fabric \cite{fabric} for access control and data management. However, the framework lacks a robust cryptographic solution to ensure data confidentiality, data ownership, access control, and privacy. We extend their framework by proposing a hybrid cryptographic approach to enhance the security of the system and enable fine-grained access control based on user attributes.
 
     In this work, the key generation and encryption processes adopt a hybrid cryptographic approach that combines elliptic curve cryptography (ECC), pairing-based cryptography (PBC), and symmetric encryption using the Advanced Encryption Standard (AES). The system implements a Multi-Authority Attribute-Based Encryption (MA-ABE) scheme, enabling fine-grained and flexible access control based on user attributes distributed across multiple independent authorities. ECC and PBC provide the foundation for secure key establishment and attribute-based policies, while AES ensures efficient encryption of large data volumes. This combination leverages the strengths of each technique to achieve both performance and robust access control.
 
@@ -217,6 +218,7 @@
         Attribute-Based Encryption (ABE) is a cryptographic scheme that allows encryption and decryption operations based on user attributes rather than individual identities~\citep{goyal2006attribute}. In a Multi-Authority ABE (MA-ABE) model, multiple independent authorities manage disjoint sets of attributes, improving decentralization and resistance to single points of failure~\citep{chase2007multi}. Each authority issues keys corresponding to the attributes it controls, enabling fine-grained access policies defined over attributes from multiple domains.
         
         MA-ABE is particularly suitable for systems where sensitive data access must be controlled by multiple stakeholders, as is the case in healthcare scenarios. The combination with pairing-based cryptography enables efficient implementation of complex access policies.
+
         
     \section{Symmetric Encryption with AES}
         \label{sec:symmetric}
@@ -234,7 +236,7 @@
     %\Laura{pela quantidade de texto acho que ficaria melhor fazer um capítulo de background primeiro com a parte de ECC, ABE etc e alguma coisa de blockchain, e aí colocar o reated depois em um capítulo separado} feito
     %\Laura{o problem statement daí pode vir no final do capítulo de related} feito
 
-    This section delves into the application of blockchain technology in healthcare, exploring its impact on data security, privacy enhancement, operational efficiency, and additional technological perspectives. Each study discussed is highlighted for its contributions and relevance to advancing blockchain in healthcare.
+    This chapter delves into the application of blockchain technology in healthcare, exploring its impact on data security, privacy enhancement, operational efficiency, and additional technological perspectives. Each study discussed is highlighted for its contributions and relevance to advancing blockchain in healthcare.
 
     \ToDo{Explicar o método utilizado par chegar nos artigos}
 
@@ -294,6 +296,10 @@
 
 \chapter{Experimental Setup}
     \label{chap:experimentalsetup}
+
+\begin{draft}{Laura esteve aqui}
+    In this chapter we describe the arrangement of frameworks, libraries, and supporting software used in the proof-of-concept implementation. We also present the algorithm we used for each step of the scheme proposed in \ref{}, with particular detail for the process of encryption and decryption of payloads using  MA-ABE cryptography.
+\end{draft}
 
     \section{Implementation}
         \label{sec:implementation}
@@ -465,7 +471,10 @@
     \section{Tests}
         \label{sec:tests}
 
-        The experiments were conducted on a workstation with the following specifications:
+        \begin{draft}
+            {Laura esteve aqui}
+            This section presents the experiments we used to evaluate the proposed secure data sharing scheme based on MA-ABE. We first tested the failure rate to ensure the encrypt and decrypt methods were working as expected. Then, we evaluated the system performance in means of response time with varying parameters. [completar com o resto dos testes.] Table \ref{tab:machine_specs} details the machine specifications in which the experiments were conducted.
+        \end{draft}
 
         \begin{table}[h]
             \centering
