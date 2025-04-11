@@ -28,6 +28,8 @@
 
 \usepackage[bottom]{footmisc}
 
+\usepackage{amssymb}
+
 \title{
     A Hybrid Multi-Authority Attribute-Based Encryption scheme implementation for securing hIoT data
 }
@@ -133,6 +135,15 @@
 \end{listofsymbols}
 
 \tableofcontents
+
+\clearpage
+\ToDo{
+    \begin{itemize}
+        \item[$\boxtimes$] Terminar testes de tamanho de chave e tamanho de payload criptografado
+        \item[$\square$] Colocar todas as abreviações na lista de abreviações
+        \item[$\square$] Colocar abreviações por extenso somente na primeira ocorrência
+    \end{itemize}
+}
 
 \chapter{Introduction}
     \label{chap:introduction}
@@ -523,14 +534,14 @@
 
             \begin{figure}[h]
                 \centering
-                \includegraphics[width=0.8\textwidth]{images/phase1/failure_rate__api_encrypt.png}
+                \includegraphics[width=\textwidth]{images/phase1/failure_rate__api_encrypt.png}
                 \caption{Failure rate for /api/encrypt for different configurations of threads and workers}
                 \label{fig:failurerateencrypt}
             \end{figure}
 
             \begin{figure}[h]
                 \centering
-                \includegraphics[width=0.8\textwidth]{images/phase1/failure_rate__api_decrypt.png}
+                \includegraphics[width=\textwidth]{images/phase1/failure_rate__api_decrypt.png}
                 \caption{Failure rate for /api/decrypt for different configurations of threads and workers}
                 \label{fig:failureratedecrypt}
             \end{figure}
@@ -548,28 +559,28 @@
 
             \begin{figure}
                 \centering
-                \includegraphics[width=0.8\textwidth]{images/phase1/api_encrypt/response_time_workers_summary.png}
+                \includegraphics[width=\textwidth]{images/phase1/api_encrypt/response_time_workers_summary.png}
                 \caption{Response time for encryption varying the number of threads}
                 \label{fig:encrypt_response_time_workers}
             \end{figure}
 
             \begin{figure}
                 \centering
-                \includegraphics[width=0.8\textwidth]{images/phase1/api_decrypt/response_time_workers_summary.png}
+                \includegraphics[width=\textwidth]{images/phase1/api_decrypt/response_time_workers_summary.png}
                 \caption{Response time for decryption varying the number of threads}
                 \label{fig:decrypt_response_time_workers}
             \end{figure}
 
             \begin{figure}
                 \centering
-                \includegraphics[width=0.8\textwidth]{images/phase1/api_decrypt/response_time_threads_summary.png}
+                \includegraphics[width=\textwidth]{images/phase1/api_decrypt/response_time_threads_summary.png}
                 \caption{Response time for encryption varying the number of workers}
                 \label{fig:encrypt_response_time_threads}
             \end{figure}
 
             \begin{figure}
                 \centering
-                \includegraphics[width=0.8\textwidth]{images/phase1/api_decrypt/response_time_threads_summary.png}
+                \includegraphics[width=\textwidth]{images/phase1/api_decrypt/response_time_threads_summary.png}
                 \caption{Response time for decryption varying the number of workers}
                 \label{fig:decrypt_response_time_threads}
             \end{figure}
@@ -594,14 +605,14 @@
 
                 \begin{figure}
                     \centering
-                    \includegraphics[width=0.8\textwidth]{images/phase2/response_time_api_encrypt.png}
+                    \includegraphics[width=\textwidth]{images/phase2/response_time_api_encrypt.png}
                     \caption{Comparison of encryption time for different payload sizes}
                     \label{fig:encrypt_payload_size}
                 \end{figure}
 
                 \begin{figure}
                     \centering
-                    \includegraphics[width=0.8\textwidth]{images/phase2/response_time_api_decrypt.png}
+                    \includegraphics[width=\textwidth]{images/phase2/response_time_api_decrypt.png}
                     \caption{Comparison of decryption time for different payload sizes}
                     \label{fig:decrypt_payload_size}
                 \end{figure}
@@ -623,14 +634,14 @@
 
                 \begin{figure}
                     \centering
-                    \includegraphics[width=0.8\textwidth]{images/phase3/response_time_api_encrypt_64KB.png}
+                    \includegraphics[width=\textwidth]{images/phase3/response_time_api_encrypt_64KB.png}
                     \caption{Comparison of encryption time for different user loads}
                     \label{fig:encrypt_user_load}
                 \end{figure}
 
                 \begin{figure}
                     \centering
-                    \includegraphics[width=0.8\textwidth]{images/phase3/response_time_api_decrypt_64KB.png}
+                    \includegraphics[width=\textwidth]{images/phase3/response_time_api_decrypt_64KB.png}
                     \caption{Comparison of decryption time for different user loads}
                     \label{fig:decrypt_user_load}
                 \end{figure}
@@ -642,27 +653,30 @@
 
                 \begin{figure}
                     \centering
-                    \includegraphics[width=0.8\textwidth]{images/phase4/response_time_api_encrypt.png}
+                    \includegraphics[width=\textwidth]{images/phase4/response_time_api_encrypt.png}
                     \caption{Comparison of encryption time for different policy sizes}
                     \label{fig:encrypt_policy_size}
                 \end{figure}
 
                 \begin{figure}
                     \centering
-                    \includegraphics[width=0.8\textwidth]{images/phase4/response_time_api_decrypt.png}
+                    \includegraphics[width=\textwidth]{images/phase4/response_time_api_decrypt.png}
                     \caption{Comparison of decryption time for different policy sizes}
                     \label{fig:decrypt_policy_size}
                 \end{figure}
 
-        \subsection{Time to Fetch Keys}
-            \label{sec:timefetchkeys}
-            Analysis results from redis
-
         \subsection{User key size}
             \label{sec:keysize}
-            The user key size depends on the number of attributes ...
+            Figure~\ref{fig:user_key_size} shows the size of the user key for different number of attributes. The user key size increases linearly, reaching 25KB for 100 attributes.
 
             \ToDo{Fazer paralelo com trabalho da Laura e mostrar impacto da criptografia no armazenamento do payload nos blocos do IPFS}
+
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth]{images/key_size_analysis/user_key_size_analysis.png}
+                \caption{Comparison of user key size for different number of attributes}
+                \label{fig:user_key_size}
+            \end{figure}
 
         
 
@@ -687,6 +701,11 @@
 
     \section{Future Work}
         \label{sec:futurework}
+        Latencia com a criptografia integrada ao framework da laura
+
+        Tempo pra buscar chaves
+
+        Alternativas para armazenamento das chaves
 
 
 
