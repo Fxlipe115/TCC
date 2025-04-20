@@ -477,34 +477,61 @@
 
     The code is available at Github\citet{maabeflask}
     
-    Key analisys with redis\footnote{redis}...
 
-    \section{Tests}
-        \label{sec:tests}
+    \section{Evaluation Strategy and Testbed}
+        \label{sec:evaluation-setup}
+        This section outlines the evaluation methodology and presents the test environment used to assess the performance of the implemented system. We begin by defining the evaluation objectives, then describe the hardware and software used. Finally, we introduce the tools and configurations employed during the experiments.
 
-        \begin{draft}
-            {Laura esteve aqui}
-            This section presents the experiments we used to evaluate the proposed secure data sharing scheme based on MA-ABE. We first tested the failure rate to ensure the encrypt and decrypt methods were working as expected. Then, we evaluated the system performance in means of response time with varying parameters. [completar com o resto dos testes.] Table \ref{tab:machine_specs} details the machine specifications in which the experiments were conducted.
-        \end{draft}
+        \subsection{Evaluation Objectives}
+        \label{subsec:evaluation-objectives}
+            The main objectives of the evaluation are to measure the system's performance in terms of response time, determine its scalability under increasing workloads, and assess the cryptographic overhead introduced by the MA-ABE scheme. In addition, we aim to understand how the number of user attributes affects key size and to verify the security functionality of the implementation.
 
-        \begin{table}[h]
-            \centering
-            \begin{tabular}{|l|l|}
-            \hline
-            \textbf{Component} & \textbf{Details} \\ \hline
-            OS & Linux Mint 22 (x86\_64) \\ \hline
-            Host & HP ZBook Firefly 14" G10 A \\ \hline
-            Kernel & 6.8.0-49-generic \\ \hline
-            Processor & AMD Ryzen 5 PRO 7640HS (12 cores) @ 5.015GHz \\ \hline
-            Memory & 16 GiB \\ \hline
-            \end{tabular}
-            \caption{Machine Specifications}
-            \label{tab:machine_specs}
-        \end{table}
+        \subsection{Hardware and Software Environment}
+        \label{subsec:hardware-software}
+            The experiments were conducted on a single machine whose specifications are listed in Table~\ref{tab:machine_specs}. This section describes the hardware and operating system used, providing context for interpreting the performance results presented later in this chapter.
 
-        Locust is an API load testing tool that allows users to define test scenarios using Python code. The tool simulates user behavior and generates load on the system to evaluate its performance under different conditions. The tests were conducted with varying numbers of users and spawn rates to determine the system's performance and scalability.
+
+            \begin{table}[h]
+                \centering
+                \begin{tabular}{|l|l|}
+                \hline
+                \textbf{Component} & \textbf{Details} \\ \hline
+                OS & Linux Mint 22 (x86\_64) \\ \hline
+                Host & HP ZBook Firefly 14" G10 A \\ \hline
+                Kernel & 6.8.0-49-generic \\ \hline
+                Processor & AMD Ryzen 5 PRO 7640HS (12 cores) @ 5.015GHz \\ \hline
+                Memory & 16 GiB \\ \hline
+                \end{tabular}
+                \caption{Machine Specifications}
+                \label{tab:machine_specs}
+            \end{table}
+
+            
+            \subsection{Implementation Tools}
+            \label{subsec:tools}
+            
+            To evaluate the implementation of the proposed scheme, we used three main tools: Locust for load testing, Gunicorn for deploying the backend, and Charm-Crypto for implementing cryptographic operations.
+            
+            \textbf{Locust} is a Python-based API load testing tool that allows the definition of user behavior scenarios to simulate concurrent usage. It generates load on the system to evaluate responsiveness and performance under various conditions. We configured it with varying numbers of users and spawn rates to assess scalability.
+            
+            \textbf{Gunicorn} is a Web Server Gateway Interface (WSGI) server for Python applications. It enables concurrent request handling through configurable worker processes and threads. We varied the number of threads and workers to test different concurrency configurations and identify an optimal setup.
+            
+            \textbf{Charm-Crypto} is a Python library for pairing-based cryptography that offers high-level abstractions for implementing complex cryptographic protocols. It supports a variety of schemes, including Multi-Authority Attribute-Based Encryption (MA-ABE). In our implementation, we used the \emph{MaabeRW15} scheme proposed by Rouselakis and Waters~\citep{rouselakis2015efficient}, which provides efficient support for multi-authority setups. Charm-Crypto handled all cryptographic operations in our system.
+            
+            
+
+    % \section{Tests}
+    %     \label{sec:tests}
+
+    %     \begin{draft}
+    %         {Laura esteve aqui}
+    %         This section presents the experiments we used to evaluate the proposed secure data sharing scheme based on MA-ABE. We first tested the failure rate to ensure the encrypt and decrypt methods were working as expected. Then, we evaluated the system performance in means of response time with varying parameters. [completar com o resto dos testes.] Table \ref{tab:machine_specs} details the machine specifications in which the experiments were conducted.
+    %     \end{draft}
+
+    %     This section presents the experiments we used to evaluate the proposed secure data sharing scheme based on MA-ABE. We first evaluated the system performance in terms of response time by varying the number of threads and workers. Then we tested the response time by varying the payload size, number of concurrent users, and size of the encryption policy. Finally, we evaluated the user key size as a consequence of the number of attributes of the user. The tests were conducted on a machine with the specifications shown in Table~\ref{tab:machine_specs}.
+
+
         
-        Gunicorn is a Web Server Gateway Interface(WSGI) server for Python that provides a scalable and efficient way to serve web applications. The server can run with multiple workers and threads to handle multiple requests concurrently. The tests were conducted with varying numbers of threads and workers to determine the optimal configuration for the system.
 
         \begin{table}
             \centering
@@ -524,38 +551,38 @@
         
         User vs authority proportion
 
-        \subsection{Failure Rate}
-            \label{sec:failurerate}
-            This test was done with the Locust framework to determine the failure rate of the system. The test was conducted with a payload size of 1KB and 1000 users. The failure rate was calculated by the number of failed requests divided by the total number of requests.
+        % \subsection{Failure Rate}
+        %     \label{sec:failurerate}
+        %     This test was done with the Locust framework to determine the failure rate of the system. The test was conducted with a payload size of 1KB and 1000 users. The failure rate was calculated by the number of failed requests divided by the total number of requests.
 
-            The locustfile used for the test defines 80\% of the users as clients and 20\% as authorities. Each authority instance calls the endpoint \emph{/api/setup\_authority} once upon instantiation, and subsequently calls \emph{/api/keygen} for a user following a Round-Robin strategy. The client instances call the \emph{/api/encrypt} endpoint with a random payload and access policy and then call the \emph{/api/decrypt} endpoint with the encrypted payload and the user's key with a 50\% probability of calling each endpoint.
+        %     The locustfile used for the test defines 80\% of the users as clients and 20\% as authorities. Each authority instance calls the endpoint \emph{/api/setup\_authority} once upon instantiation, and subsequently calls \emph{/api/keygen} for a user following a Round-Robin strategy. The client instances call the \emph{/api/encrypt} endpoint with a random payload and access policy and then call the \emph{/api/decrypt} endpoint with the encrypted payload and the user's key with a 50\% probability of calling each endpoint.
             
-            The test was run for 15 minutes with a spawn rate of 100 user per second. The failure rate was calculated as the number of failed requests divided by the total number of requests.
+        %     The test was run for 15 minutes with a spawn rate of 100 user per second. The failure rate was calculated as the number of failed requests divided by the total number of requests.
 
-            \begin{figure}[h]
-                \centering
-                \includegraphics[width=\textwidth]{images/phase1/failure_rate__api_encrypt.png}
-                \caption{Failure rate for /api/encrypt for different configurations of threads and workers}
-                \label{fig:failurerateencrypt}
-            \end{figure}
+        %     \begin{figure}[h]
+        %         \centering
+        %         \includegraphics[width=\textwidth]{images/phase1/failure_rate__api_encrypt.png}
+        %         \caption{Failure rate for /api/encrypt for different configurations of threads and workers}
+        %         \label{fig:failurerateencrypt}
+        %     \end{figure}
 
-            \begin{figure}[h]
-                \centering
-                \includegraphics[width=\textwidth]{images/phase1/failure_rate__api_decrypt.png}
-                \caption{Failure rate for /api/decrypt for different configurations of threads and workers}
-                \label{fig:failureratedecrypt}
-            \end{figure}
+        %     \begin{figure}[h]
+        %         \centering
+        %         \includegraphics[width=\textwidth]{images/phase1/failure_rate__api_decrypt.png}
+        %         \caption{Failure rate for /api/decrypt for different configurations of threads and workers}
+        %         \label{fig:failureratedecrypt}
+        %     \end{figure}
 
-        \subsection{Performance analysis}
+        \section{Performance analysis}
             \label{sec:timeencryptdecrypt}
 
             We evaluated the performance of the encryption and decryption processes using the REST API. The tests were conducted with varying numbers of threads and workers to determine the optimal configuration for the system. The response time for encryption and decryption was measured for different payload sizes to assess the system's scalability and efficiency.
 
             
 
-            Figure~\ref{fig:response_time_threads} shows the response time for encryption by fixing the number of workers and varying the numbers of threads. The median response time is not affected in a considerable way by the number of threads, indicating that the system is not CPU-bound. In contrast, Figure~\ref{fig:response_time_workers} presents the response time for encryption by fixing the number of threads and varying the numbers of workers. The response time decreases exponentially as the number of workers increases, indicating that the system is I/O-bound.
+            Figure~\ref{fig:encrypt_response_time_threads} shows the response time for encryption by fixing the number of workers and varying the numbers of threads. The median response time is not affected in a considerable way by the number of threads, indicating that the system is not CPU-bound. In contrast, Figure~\ref{fig:encrypt_response_time_workers} presents the response time for encryption by fixing the number of threads and varying the numbers of workers. The response time decreases exponentially as the number of workers increases, indicating that the system is I/O-bound.
 
-            Due to the system's I/O-bound nature and the results seem in Section~\ref{sec:failurerate} indicating some race conditions with multiple threads, we decided to use a single thread and multiple workers for the subsequent tests.
+            Due to the system's I/O-bound nature, we decided to use a single thread and multiple workers for the subsequent tests.
 
             \begin{figure}
                 \centering
@@ -594,11 +621,11 @@
             \end{equation}
 
 
-        \subsection{Scalability}
+        \section{Scalability}
             \label{sec:encryptiontime}
             Scalability tests were divided into three phases. The first phase evaluated the system's performance under different payload sizes. The second phase assessed the system's scalability under different user loads. The third phase analyzed the system's performance with varying encryption policy sizes.
 
-            \subsubsection{Payload Size}
+            \subsection{Payload Size}
                 The results are presented in Figure~\ref{fig:encrypt_payload_size} and in Figure~\ref{fig:decrypt_payload_size}.
 
                 Detailed results are presented in Table~\ref{tab:response_times}.
@@ -629,7 +656,7 @@
                     \label{tab:response_times}
                 \end{table}
 
-            \subsubsection{User load}
+            \subsection{User load}
                 The results are presented in Figure~\ref{fig:encrypt_user_load} and in Figure~\ref{fig:decrypt_user_load}.
 
                 \begin{figure}
@@ -646,7 +673,7 @@
                     \label{fig:decrypt_user_load}
                 \end{figure}
 
-            \subsubsection{Size of encription policy}
+            \subsection{Size of encription policy}
                 The results are presented in Figure~\ref{fig:encrypt_policy_size} and in Figure~\ref{fig:decrypt_policy_size}.
 
                 \ToDo{Explicar em algum lugar como funcionam a policies}
@@ -665,7 +692,7 @@
                     \label{fig:decrypt_policy_size}
                 \end{figure}
 
-        \subsection{User key size}
+        \section{User key size}
             \label{sec:keysize}
             Figure~\ref{fig:user_key_size} shows the size of the user key for different number of attributes. The user key size increases linearly, reaching 25KB for 100 attributes.
 
@@ -680,7 +707,7 @@
 
         
 
-        \subsection{Security Test}
+        \section{Security Test}
             \label{sec:securitytest}
 
     \section{Results}
@@ -705,152 +732,8 @@
 
         Tempo pra buscar chaves
 
-        Alternativas para armazenamento das chaves
+        Alternativas para armazenamento das chaves, tonarnando a aplicação mais cpu bound
 
-
-
-% \section{Figuras e tabelas}
-
-% Esta seção faz referência às Figuras~\ref{fig:estrutura},~\ref{fig:ex1} e~\ref{fig:ex2}, a título de exemplo. A primeira figura apresenta a estrutura de uma figura. A \emph{descrição} deve aparecer \textbf{acima} da figura. Abaixo da figura, deve ser indicado a origem da imagem, mesmo se essa for apenas os autores do texto.
-
-% A Figura~\ref{fig:ex1} representa o caso mais comum, onde a figura propriamente dita é importada de um arquivo ( neste exemplo o formato é \texttt{eps} ou \texttt{pdf}. Veja a seção \ref{sec:fig_format}). A Figura~\ref{fig:ex2} exemplifica o uso do environment \texttt{picture}, para desenhar usando o próprio~\LaTeX.
-
-% \begin{figure}[h]
-%     \caption{Descrição da Figura deve ir no topo}
-%     \begin{center}
-%         % Aqui vai um includegraphics , um picture environment ou qualquer
-%         % outro comando necessário para incorporar o formato de imagem
-%         % utilizado.       bs 
-%         \begin{picture}(100,100)
-%             \put(0,0){\line(0,1){100}}
-%             \put(0,0){\line(1,0){100}}
-%             \put(100,100){\line(0,-1){100}}
-%             \put(100,100){\line(-1,0){100}}
-%             \put(10,50){Uma Imagem}
-%         \end{picture}    
-%     \end{center}
-%     \label{fig:estrutura}
-%     \legend{Fonte: Os Autores}
-% \end{figure}
-
-% \begin{figure}
-%     \caption{Exemplo de figura importada de um arquivo e também exemplo de caption muito grande que ocupa mais de uma linha na Lista~de~Figuras}
-%     \begin{center}
-%         \includegraphics[width=8em]{images/fig.jpg}
-%     \end{center}
-%     \legend{Fonte: Os Autores}
-%     \label{fig:ex1}
-% \end{figure}
-
-% % o `[h]' abaixo é um parâmetro opcional que sugere que o LaTeX coloque a
-% % figura exatamente neste ponto do texto. Somente preocupe-se com esse tipo
-% % de formatação quando o texto estiver completamente pronto (uma frase a mais
-% % pode fazer o LaTeX mudar completamente de idéia sobre onde colocar as
-% % figuras e tabelas)
-% % \begin{figure}[h]
-% \begin{figure}
-%     \caption{Exemplo de figura desenhada com o environment \texttt{picture}.}
-%     \begin{center}
-%         \setlength{\unitlength}{.1em}https://www.overleaf.com/project/62e9d968111a266d82bc89ed
-%         \begin{picture}(100,100)
-%             \put(20,20){\circle{20}}
-%             \put(20,20){\small\makebox(0,0){a}}
-%             \put(80,80){\circle{20}}
-%             \put(80,80){\small\makebox(0,0){b}}
-%             \put(28,28){\vector(1,1){44}}
-%         \end{picture}
-%     \end{center}
-%     \legend{Fonte: Os Autores}
-%     \label{fig:ex2}
-% \end{figure}
-
-% Tabelas são construídas com praticamente os mesmos comandos. Ver a tabela \ref{tbl:ex1}.
-
-% \begin{table}[h]
-%     \caption{Uma tabela de Exemplo}
-%     % OBS: não use \begin{center}, pois este aumenta o espaçamento entre a caption/legend e a tabela
-%     % Para figuras, a aparência é melhor com o espaçamento extra
-%     \centering
-%         \begin{tabular}{c|c|p{5cm}}
-%           \hline
-%           \textit{Col 1}  &   \textit{Col 2}  &   \textit{Col 3} \\
-%           \hline
-%           \hline
-%           Val 1           &   Val 2           & Esta coluna funciona como um parágrafo, tendo uma margem definida em 5cm. Quebras de linha funcionam como em qualquer parágrafo do tex. \\
-%           Valor Longo     & Val 2             & Val 3 \\
-%           \hline
-%         \end{tabular}
-%     \legend{Fonte: Os Autores}
-%     \label{tbl:ex1}
-% \end{table}
-
-% \subsection{Formato de Figuras}
-% \label{sec:fig_format}
-
-% O LaTeX permite utilizar vários formatos de figuras, entre eles \emph{eps}, \emph{pdf}, \emph{jpeg} e \emph{png}. Programas de diagramação como Inkscape (e mesmo LibreOffice) permitem gerar arquivos de imagens vetoriais que podem ser utilizados pelo LaTeX sem dificuldade. Pacotes externos permitem utilizar SVG e outros formatos.
-
-% Dia e xfig são programas utilizados por dinossauros para gerar figuras vetoriais. Se possível, evite-os.
-
-% \subsection{Classificação dos etc.}
-
-% O formato do instituto de informática define 5 níveis: capítulo, seção, subseção e outros 2 sem nome.
-
-% \subsubsection{Subsubseção}
-% Exemplo de uma subsubseção.
-
-% \paragraph{Parágrafo}
-% Exemplo de um parágrafo.
-
-% \section{Sobre as referências bibliográficas}
-
-% A classe \emph{iiufrgs} faz uso do pacote \emph{abnTeX2} com algumas alterações
-% feitas por Sandro Rama Fiorini. Culpe ele se algo der errado. Agradeça a ele
-% pelo que der certo. As modificações dão uma camada de tinta NATBIB-style,
-% já que o abntex2 usa uns comandos de citação feitos para alienígenas de 5 braços
-% wtf. Exemplos de citação:
-
-% \begin{itemize}
-%     \item \emph{cite}: Unicórnios são verdes \cite{Adams2009Conceptual};
-%     \item \emph{citep}:Unicórnios são verdes \citep{Adams2009Conceptual};
-%     \item \emph{citet}: Segundo \citet{Adams2009Conceptual}, unicórnios são
-%     verdes.
-%     \item \emph{citen or citenum}: Segundo \citen{Adams2009Conceptual},
-%     unicórnios são verdes.
-%     \item \emph{citeauthor e citeyearpar}: Segundo artigos de
-%     \citeauthor{Adams2009Conceptual} , unicórnios são verdes
-%     \citeyearpar{Adams2009Conceptual}.
-
-% \end{itemize}
-
-% O estilo abnt fornecido antigamente pelo UTUG não é mais recomendado, pois não
-% produz saída de acordo com as exigências da biblioteca.
-
-% Recomenda-se o uso de bibtex para gerenciar as referências (veja o arquivo
-% biblio.bib).
-
-% \section{Mais uma Seção}
-
-% Agora vamos fazer várias seções para termos valores de 2 dígitos no \contentsname.
-
-% \section{Mais uma Seção}
-% \section{Mais uma Seção}
-% \section{Mais uma Seção}
-% \section{Mais uma Seção}
-% \section{Mais uma Seção}
-% \section{Mais uma Seção}
-% \section{Mais uma Seção}
-% \section{Mais uma Seção}
-% \section{Mais uma Seção}
-
-
-% referências
-% aqui será usado o environment padrao `thebibliography'; porém, sugere-se
-% seriamente o uso de BibTeX e do estilo abnt.bst (veja na página do
-% UTUG)
-% 
-% observe também o estilo meio estranho de alguns labels; isso é
-% devido ao uso do pacote `natbib', que permite fazer citações de
-% autores, ano, e diversas combinações desses
 
 \bibliographystyle{abntex2-alf}
 \bibliography{biblio}
