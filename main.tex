@@ -275,20 +275,23 @@
         \label{sec:securedata}
 
     \section{Problem Statement}
-        \label{sec:problemstatement}
-        \Graeff{Não tenho certeza se é melhor colocar essa discussão dos gaps da literatura aqui como sessão. Aceito sugestões.}
-        \Laura{Aqui você vai colocar como subseção os tópicos que vão voltar na discussão lá no final, quando tu for falar que o teu trabalho serviu pra resolver esses problemas que vc trouxe aqui.}
+    \label{sec:problemstatement}
 
-        This section outlines research areas in blockchain technology for healthcare that require further exploration. These areas, identified based on the limitations and gaps in current literature, present significant opportunities to advance the field. This thesis aims to address these opportunities through targeted research objectives.
+    The rapidly expanding landscape of Health Internet of Things (HIoT) generates vast quantities of sensitive patient data, demanding robust solutions for confidentiality, integrity, and access control within decentralized systems. While architectural frameworks, such as the one proposed by \citet{laura2023} utilizing IPFS for decentralized storage and Hyperledger Fabric for data management, lay a strong foundation, they often leave the critical details of cryptographic implementation for fine-grained data security as open challenges or future work. This thesis directly addresses these specific gaps.
 
-        \subsection{Scalability and Real-World Applicability} 
-            A critical gap in current research on blockchain in healthcare is the need for substantial empirical evidence regarding the scalability of the proposed frameworks and real-world applicability. There is an urgent need to conduct large-scale pilot studies and real-world implementations to substantiate the theoretical advantages of blockchain in this sector. Such research is vital to validate the benefits and to pinpoint potential challenges in diverse healthcare settings. Addressing these gaps is essential for generating concrete data and insights that can guide the scalable deployment of blockchain technologies in practical environments.
+    Despite these advancements, fully realizing the potential of secure hIoT data management necessitates further exploration into several key areas, which this thesis identifies as critical challenges, as detailed in the following subsections.
 
-        \subsection{Regulatory and Ethical Considerations} 
-            Understanding its regulatory and ethical implications is crucial as blockchain technology becomes more integrated into healthcare systems. There is a pressing need to investigate how to design blockchain solutions to comply with healthcare regulations and ethical standards. This exploration should focus on critical areas such as patient privacy, data security, and consent management, encompassing theoretical and practical applications. Ensuring blockchain solutions are legally compliant and ethically sound while maintaining operational flexibility and scalability is fundamental to successful integration into healthcare systems. Addressing these considerations is vital for building trust and accepting blockchain technology in healthcare.
+    \subsection{Absence of a Concrete Cryptographic Layer in Existing HIoT Architectures}
+        Many proposed decentralized architectures for hIoT data, including the foundational framework by \citet{laura2023}, effectively address data decentralization and integrity through technologies like IPFS and blockchain. However, these frameworks typically lack a concrete, implemented cryptographic layer capable of providing end-to-end data confidentiality and fine-grained access control over the actual data payloads. Without such a layer, data stored on decentralized systems, while immutable and verifiable, remains vulnerable to unauthorized access if a user gains access to the storage location, failing to meet the stringent privacy requirements of healthcare.
 
-        \subsection{Cybersecurity Challenges} 
-            The advancement of blockchain technology in healthcare must continuously adapt to the evolving landscape of cybersecurity threats. Significant opportunities exist to develop sophisticated defence mechanisms specifically designed to address the unique security challenges of blockchain's decentralized nature. Critical areas for further exploration include advancing cryptographic techniques, enhancing consensus algorithms, and implementing robust access control frameworks. These elements protect sensitive health data against unauthorized access and cyber-attacks. Addressing these critical vulnerabilities is imperative to ensuring the security and privacy of healthcare information managed via blockchain. By fortifying these areas, we can significantly enhance the trustworthiness and reliability of blockchain applications in healthcare settings.
+    \subsection{Limited Fine-Grained Access Control in Multi-Stakeholder Environments}
+        Traditional cryptographic methods (e.g., simple symmetric or public-key encryption) offer binary access control, which is insufficient for the complex, multi-stakeholder environment of hIoT. Healthcare scenarios demand dynamic and granular access rights based on user attributes (e.g., 'doctor,' 'researcher,' 'hospital'), not just individual identities. Existing solutions often struggle to efficiently manage and enforce such attribute-based policies across multiple independent authorities, leading to either cumbersome key management or inadequate security.
+
+    \subsection{Performance and Scalability Challenges of Advanced Cryptographic Primitives}
+        Implementing advanced cryptographic schemes, particularly those offering fine-grained access control like Attribute-Based Encryption (ABE), often introduces significant computational overhead. This overhead can hinder the performance and scalability of hIoT systems, which process high volumes of data from resource-constrained devices. Balancing the strong security guarantees of these primitives with the operational efficiency required for real-time hIoT applications remains a critical hurdle.
+
+    \subsection{Verification and Robustness of Cryptographic Schemes}
+        The complexity inherent in designing and implementing sophisticated cryptographic schemes, especially Multi-Authority ABE (MA-ABE), makes rigorous security verification challenging. As highlighted by cryptanalysis efforts, such as those by \citet{broken2020}, numerous published ABE schemes have been found to contain vulnerabilities. This underscores a persistent problem in the field: the difficulty in ensuring the practical robustness of schemes beyond their theoretical proofs. Consequently, there is a pressing need for carefully selected, robustly implemented, and practically evaluated cryptographic solutions to guarantee the trustworthiness of hIoT data security.
 
 \chapter{Proposed Solution}
     \label{chap:proposedsolution}
@@ -660,10 +663,15 @@
                 \label{fig:decrypt_payload_size}
             \end{figure}
 
-            \subsection{Phase 3: User Load}
-            \label{subsec:phase3_userload}
+            \subsection{User Load Analysis}
+            \label{subsec:user_load_analysis}
 
-            In the third phase, we examined how the system scales with increasing numbers of concurrent users. The payload size was fixed at 64\,KB (chosen based on Phase 2), and the number of workers and threads remained 25 and 1, respectively. The number of users was varied in \{10, 50, 100, 250, 500, 1000\}.
+            To examine how the system scales with increasing numbers of concurrent users, we varied the number of users according to Formula~\ref{form:userload}. The payload size was fixed at 64\,KB (chosen based on the payload size analysis), and the number of workers and threads remained 25 and 1, respectively.
+
+            \begin{equation}
+            \label{form:userload}
+                \text{users} \in \{10, 50, 100, 250, 500, 1000\}
+            \end{equation}
 
             Figures~\ref{fig:encrypt_user_load} and~\ref{fig:decrypt_user_load} illustrate the effect of user load on response time. As expected, response time increases as more users are introduced. The system handles moderate user loads well, but performance degradation becomes more pronounced at the highest concurrency levels.
 
@@ -681,10 +689,10 @@
                 \label{fig:decrypt_user_load}
             \end{figure}
 
-            \subsection{Phase 4: Encryption Policy Size}
-            \label{subsec:phase4_policysize}
+            \subsection{Encryption Policy Size Analysis}
+        \label{subsec:encryption_policy_size_analysis}
 
-            The final phase tested how the size of the encryption policy affects performance. The number of attributes in the access policy was varied from 1 to 10, while the other parameters (payload size = 64\,KB, users = 100, workers = 25, threads = 1) were kept fixed.
+            To assess how the size of the encryption policy affects performance, we varied the number of attributes in the access policy from 1 to 10. The other parameters (payload size = 64\,KB, users = 100, workers = 25, threads = 1) were kept fixed.
 
             Figures~\ref{fig:encrypt_policy_size} and~\ref{fig:decrypt_policy_size} show how increasing the number of attributes in the policy affects encryption and decryption times. As expected, more complex policies result in higher response times due to the additional computational overhead involved in evaluating attribute trees and pairing operations.
 
