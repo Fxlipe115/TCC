@@ -143,6 +143,7 @@
         \item[$\square$] Colocar todas as abreviações na lista de abreviações
         \item[$\square$] Colocar abreviações por extenso somente na primeira ocorrência
         \item[$\square$] Reescrever a seção de Related Works 
+        \item[$\square$] Incrementar proposed solution
     \end{itemize}
 }
 
@@ -245,40 +246,33 @@
 
 \chapter{Related Works}
     \label{chap:relatedworks}
-    %\Laura{pela quantidade de texto acho que ficaria melhor fazer um capítulo de background primeiro com a parte de ECC, ABE etc e alguma coisa de blockchain, e aí colocar o reated depois em um capítulo separado} feito
-    %\Laura{o problem statement daí pode vir no final do capítulo de related} feito
 
-    This chapter delves into the application of blockchain technology in healthcare, exploring its impact on data security, privacy enhancement, operational efficiency, and additional technological perspectives. Each study discussed is highlighted for its contributions and relevance to advancing blockchain in healthcare.
+    This chapter reviews existing literature relevant to the secure management and sharing of data in Health Internet of Things (HIoT) environments. The pervasive nature of HIoT devices necessitates robust solutions for data confidentiality, integrity, and fine-grained access control. This review systematically categorizes and discusses prior research in cryptographic techniques and blockchain-based systems applied to healthcare. Critically, it contextualizes the foundational work by \citet{laura2023}, which proposed an architecture for storing hIoT data in IPFS and specifically identified the detailed cryptographic scheme and algorithms as a crucial direction for future research. This thesis undertakes that identified research opportunity. Furthermore, this chapter identifies current limitations and broader gaps in the literature that underscore the need for the hybrid cryptographic framework proposed herein.
 
-    \ToDo{Explicar o método utilizado par chegar nos artigos}
+    The chapter is structured as follows: Section~\ref{sec:overallcontext} provides an overall context of cryptographic and blockchain-based solutions in healthcare, highlighting key advancements. Section~\ref{sec:securedata} delves into specific approaches for secure data sharing and storage in hIoT environments, including the architectural foundation proposed by \citet{laura2023}. Finally, Section~\ref{sec:problemstatement} articulates the problem statement, identifying the gaps that this research aims to address.
 
-    \ToDo{This chapter is divided as follows...}
+
 
 
     \section{Overall Context}
-        \label{sec:overallcontext}
-        \Laura{Esse aqui seria o 3.1, com um textinho introdutório sobre o contexto geral da minha dissertaçao, e aí data security, privacy enhancement, operational efficiency etc estariam dentro dessa seção - 3.1.1, 3.1.2 etc}
-            
-        \ToDo{Descrever cada item antes de descrever os trabalhos}
-        \subsection{Data Security} 
-            \citet{Memos2021} propose a layered cloud architecture incorporating Advanced Encryption Standard (AES) and Rivest-Shamir-Adleman (RSA) encryption to enhance the security of e-health data transmission. \citet{Tian2019} use Secure Identity Federation Framework (SIFF) and Hyperledger Fabric to ensure medical data's integrity, availability, and privacy. \citet{Liu2024} develop a blockchain-based Electronic Medical Record (EMR) sharing scheme with IPFS for secure storage and proxy re-encryption for access control. Additionally, \citet{Esposito2018} investigate the use of blockchain to enhance data security in cloud-based healthcare systems, addressing vulnerabilities inherent in traditional security models.
-        
-        \subsection{Privacy Enhancement} 
-            \citet{Dwivedi2019} propose a blockchain framework for IoT devices in healthcare that minimizes computational demands while enhancing privacy. \citet{Esfahani2024} introduce a comprehensive privacy scheme using zero-knowledge proofs and ring signatures for IoT-based systems. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that improves anonymity. \citet{Li2024} create a regulated medical data trading scheme that ensures privacy and compliance using blockchain and zero-knowledge proofs.
-        
-        \subsection{Operational Efficiency} 
-            \citet{Vazirani2019} review the effectiveness of blockchain in managing healthcare records, noting improvements in interoperability. \citet{Shen2019} introduce MedChain, a framework that efficiently manages and shares healthcare data. \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in the IoMT. Furthermore, \citet{XuJie2019} develop 'Healthchain,' a scalable blockchain-based framework for privacy-preserving health data management.
-        
-        \subsection{Cross-Border Data Sharing and Scalability} 
-            \citet{Rahman2020} describe a blockchain-based platform for secure cross-border data sharing, enhancing trust and security. \citet{Saeed2022} examine the potential of blockchain in healthcare, particularly its impact on managing, distributing, and processing medical records.
-        
-        \subsection{Additional Technological Perspectives} 
-            \citet{Hema2019} assess ECC-based encryption mechanisms for securing healthcare data in cloud environments. \citet{Naz2024} explore defences against quantum computing threats in blockchain through exotic signatures. \citet{Eghmazi2024} focus on securing IoT data using Hyperledger Fabric for scalable solutions. \citet{XuChang2019} discuss secure data sharing in cloud-assisted healthcare systems using cryptographic techniques. Lastly, \citet{Karaca2019} explores mobile cloud computing applications in stroke care, indirectly underscoring the need for integrating secure and efficient technology solutions in healthcare.
+    \label{sec:overallcontext}
 
+        This section provides an overview of existing research related to securing healthcare data, with a particular focus on cryptographic techniques and blockchain-based solutions. The exponential growth of Health Internet of Things (HIoT) devices has led to an unprecedented volume of sensitive patient data, making robust security, privacy, and access control mechanisms paramount. We examine how various studies address these challenges, setting the stage for understanding the motivations and contributions of our proposed hybrid cryptographic framework.
+
+        \subsection{Cryptographic Approaches for Healthcare Data Security}
+            Securing sensitive healthcare data often relies on advanced cryptographic primitives to ensure confidentiality, integrity, and authenticity. However, designing and verifying the security of complex primitives such as Attribute-Based Encryption (ABE) is a recognized challenge in cryptography. Indeed, recent cryptanalysis efforts by \citet{broken2020} have demonstrated vulnerabilities in numerous ABE schemes, including several multi-authority variants, underscoring the critical need for rigorously analyzed and robust constructions. In this context, \citet{Memos2021} propose a layered cloud architecture that integrates Advanced Encryption Standard (AES) and Rivest-Shamir-Adleman (RSA) encryption to enhance the security of e-health data transmission. This highlights the use of hybrid encryption, similar to our approach, for efficient data protection. \citet{Hema2019} further assess ECC-based encryption mechanisms, showcasing their effectiveness in securing healthcare data within cloud environments. This directly relates to our use of ECC as a foundational element. Additionally, \citet{XuChang2019} discuss secure data sharing in cloud-assisted healthcare systems by employing various cryptographic techniques, including searchable encryption, to protect data privacy during operations. More recently, \citet{Naz2024} explore defenses against emerging quantum computing threats in blockchain through exotic signatures, emphasizing the continuous need for cryptographic innovation in this domain.
+
+
+        \subsection{Blockchain for Data Integrity and Secure Sharing}
+            Blockchain technology offers a decentralized and immutable ledger, making it highly suitable for enhancing data integrity, transparency, and secure sharing in healthcare. Several works leverage blockchain to establish robust security frameworks. For instance, \citet{Tian2019} utilize the Secure Identity Federation Framework (SIFF) alongside Hyperledger Fabric to ensure the integrity, availability, and privacy of medical data. \citet{Liu2024} present a blockchain-based Electronic Medical Record (EMR) sharing scheme that integrates IPFS for secure off-chain storage and proxy re-encryption for managed access control. This approach to decentralized storage and access control aligns closely with the foundational framework of Laura's work, which our thesis extends. Furthermore, \citet{Esposito2018} investigate how blockchain can generally enhance data security in cloud-based healthcare systems, addressing inherent vulnerabilities in traditional centralized models. \citet{Rahman2020} describe a blockchain-based platform specifically designed for secure cross-border data sharing, aiming to build trust and enhance security across different jurisdictions. The use of Hyperledger Fabric for scalable solutions in securing IoT data is also explored by \citet{Eghmazi2024}.
+
+        \subsection{Fine-Grained Access Control in Decentralized Healthcare Systems}
+            A crucial aspect of secure healthcare data management is enabling fine-grained access control, allowing specific users to access data based on their roles or attributes. Attribute-Based Encryption (ABE) stands out as a promising solution for this challenge, particularly in multi-authority scenarios. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that significantly improves anonymity, demonstrating the utility of ABE in protecting user identities. Building on this, \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in the Internet of Medical Things (IoMT), showcasing a practical application of ABE for managing access to sensitive health data. \citet{XuJie2019} develop 'Healthchain,' a scalable blockchain-based framework that incorporates dynamic key management and fine-grained access control to ensure privacy-preserving health data management. This work closely relates to our MA-ABE approach, which enables complex access policies. Additionally, \citet{Esfahani2024} introduce a comprehensive privacy scheme for IoT-based systems using zero-knowledge proofs and ring signatures, offering alternative methods for achieving granular privacy. The study by \citet{Li2024} also contributes by creating a regulated medical data trading scheme that ensures privacy and compliance through blockchain and zero-knowledge proofs.
     
 
     \section{Secure Data Sharing and Storing in hIoT}
-        \label{sec:securedata}\
+        % Contexto específico (tabelinha marota)
+        \label{sec:securedata}
 
     \section{Problem Statement}
         \label{sec:problemstatement}
@@ -360,12 +354,12 @@
 \chapter{Experimental Setup}
 \label{chap:experimentalsetup}
 
-This chapter presents the algorithmic design of the proof-of-concept implementation based on the cryptographic Here, we detail the key routines responsible for authority initialization, attribute-based key generation, and the hybrid encryption and decryption processes. Additionally, we include schematic illustrations and pseudocode to clarify the functional logic of each step.
+    This chapter presents the algorithmic design of the proof-of-concept implementation based on the cryptographic Here, we detail the key routines responsible for authority initialization, attribute-based key generation, and the hybrid encryption and decryption processes. Additionally, we include schematic illustrations and pseudocode to clarify the functional logic of each step.
 
     \section{Authority and Key Management}
     \label{sec:authority-key-management}
 
-    Introduction paragraph
+        This section details the setup and management of authorities and the generation of attribute-based keys within our implemented system. These foundational processes are critical for establishing the decentralized access control mechanism.
 
         \subsection{Authority Setup}
 
@@ -646,11 +640,11 @@ This chapter presents the algorithmic design of the proof-of-concept implementat
 
             \begin{equation}
             \label{form:payloadsizes}
-                % \text{payload_size} \in \{1, 4, 16, 32, 64, 256\}
-                \text{threads} \in \{1\text{KB}, 4\text{KB}, 16\text{KB}, 32\text{KB}, 64\text{KB}, 256\text{KB}\}
+                \text{payload\_size} \in \{1\text{KB}, 4\text{KB}, 16\text{KB}, 32\text{KB}, 64\text{KB}, 256\text{KB}\}
             \end{equation}
 
-            Figures~\ref{fig:encrypt_payload_size} and~\ref{fig:decrypt_payload_size} present the encryption and decryption response times, respectively, for different payload sizes. As expected, response time increases with larger payloads. However, the encryption process shows a more gradual increase compared to decryption, which may reflect higher complexity in the MA-ABE decryption routine. Table~\ref{tab:response_times} summarizes the mean response times and standard deviations for both encryption and decryption operations across all payload sizes.
+            Figures~\ref{fig:encrypt_payload_size} and~\ref{fig:decrypt_payload_size} present the encryption and decryption response times, respectively, for different payload sizes. As expected, response time increases with larger payloads. However, the encryption process shows a more gradual increase compared to decryption, which may reflect higher complexity in the MA-ABE decryption routine. Table~\ref{tab:response_times} summarizes the mean response times and standard deviations for both encryption and decryption operations across all payload sizes. An original payload of 32KB expands to approximately 87KB, and a 256KB payload increases to about 699KB after encryption. This substantial expansion directly affects the storage requirements and bandwidth utilization for data retrieval from IPFS, especially crucial in resource-constrained hIoT environments where storage efficiency and network overhead are critical considerations. 
+            
 
             \begin{figure}
                 \centering
@@ -712,6 +706,8 @@ This chapter presents the algorithmic design of the proof-of-concept implementat
         \section{User key size}
             \label{sec:keysize}
             Figure~\ref{fig:user_key_size} shows the size of the user key for different number of attributes. The user key size increases linearly, reaching 25KB for 100 attributes.
+
+            The evaluation of user key size reveals a linear correlation with the number of attributes assigned to a user, as illustrated in Figure~\ref{fig:user_key_size}. For instance, a user key can reach approximately 25KB for 100 attributes. This characteristic has significant implications for the overall storage footprint within the InterPlanetary File System (IPFS) architecture proposed by \citet{laura2023}. In her framework, data payloads are stored in IPFS blocks, and while our cryptographic scheme primarily encrypts the symmetric key rather than the entire payload with MA-ABE, the original payload itself also undergoes encryption with AES, and is then coupled with the encrypted symmetric key. This process introduces a measurable overhead to the size of the data being stored on IPFS. This highlights a fundamental trade-off: the enhanced security and fine-grained access control offered by our hybrid cryptographic scheme come with an increased burden on storage resources, necessitating further optimization strategies for highly constrained deployments.
 
             \ToDo{Fazer paralelo com trabalho da Laura e mostrar impacto da criptografia no armazenamento do payload nos blocos do IPFS}
 
