@@ -29,6 +29,7 @@
 \usepackage[bottom]{footmisc}
 
 \usepackage{amssymb}
+\usepackage{svg}
 
 \title{
     A Hybrid Multi-Authority Attribute-Based Encryption scheme implementation for securing hIoT data
@@ -402,36 +403,13 @@
     \label{sec:encryption-workflow}
         This section describes the procedure used to encrypt a data payload using a hybrid approach that combines symmetric encryption with attribute-based access control. Access is restricted based on boolean expressions over user attributes.
 
-        \begin{figure}[h]
-        \centering
-        \begin{tikzpicture}[node distance=7em]
-            \usetikzlibrary{positioning, fit}
-
-            \tikzset{
-                startstop/.style = {rectangle, rounded corners, minimum width=10em, minimum height=3em, text centered, draw=black, fill=gray!30},
-                process/.style = {rectangle, minimum width=10em, minimum height=3em, text centered, draw=black, fill=white!30},
-                arrow/.style = {thick,->,>=stealth}
-            }
-
-            \node (start) [startstop] {Start};
-            \node (gt) [process, below of=start, node distance=6em] {Generate element of $G_T$};
-            \node (sha) [process, below right of=gt, xshift=10em, yshift=-2em] {Derive AES key (SHA-256)};
-            \node (aes) [process, below of=sha, node distance=6em] {AES.encrypt(payload)};
-            \node (maabe) [process, below left of=gt, xshift=-10em, yshift=-5em] {MA-ABE.encrypt($G_T$)};
-            \node (return) [process, below of=gt, node distance=14em] {Return Encrypted Payload and Key};
-            \node (stop) [startstop, below of=return, node distance=6em] {End};
-
-            \draw [arrow] (start) -- (gt);
-            \draw [arrow] (gt) -- (sha);
-            \draw [arrow] (gt) -- (maabe);
-            \draw [arrow] (sha) -- (aes);
-            \draw [arrow] (maabe) -- (return);
-            \draw [arrow] (aes) -- (return);
-            \draw [arrow] (return) -- (stop);
-        \end{tikzpicture}
-        \caption{Hybrid encryption process combining symmetric and attribute-based encryption}
-        \label{fig:encrypt_process}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.8\textwidth]{images/diagrams/encryption_diagram}
+            \caption{Hybrid encryption process combining symmetric and attribute-based encryption}
+            \label{fig:encryption_diagram}
         \end{figure}
+
 
         \subsection{AES Key Derivation}
 
@@ -466,6 +444,7 @@
     \label{sec:decryption-workflow}
 
         To recover the original data, the user must possess the necessary set of attributes to satisfy the encryption policy.
+        
 
         \begin{enumerate}
             \item The MA-ABE-encrypted key element is decrypted using the user's attribute-based secret keys.
@@ -473,6 +452,13 @@
             \item The AES key is used to decrypt the payload.
             \item Padding is removed to retrieve the original data.
         \end{enumerate}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.8\textwidth]{images/diagrams/decryption_diagram}
+            \caption{Decryption process for recovering the original data payload}
+            \label{fig:decryption_diagram}
+        \end{figure}
 
         \begin{algorithm}
             \caption{Decryption Process}
