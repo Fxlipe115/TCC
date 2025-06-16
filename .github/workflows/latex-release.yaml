@@ -36,5 +36,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: main.pdf
-        asset_name: tcc-felipe-graeff${{ github.ref_name }}.pdf
+        asset_name: tcc-felipe-graeff.pdf
         asset_content_type: application/pdf
