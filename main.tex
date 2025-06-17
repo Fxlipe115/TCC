@@ -32,7 +32,7 @@
 \usepackage{svg}
 
 \title{
-    A Hybrid Multi-Authority Attribute-Based Encryption scheme implementation for securing hIoT data
+    A Hybrid Multi-Authority Attribute-Based Encryption scheme for securing hIoT data
 }
 \translatedtitle{
     Um Esquema Híbrido de Criptografia Baseada em Atributos de Múltiplas Autoridades para Transmissão Segura de Dados hIoT
@@ -242,8 +242,11 @@
         
     \section{Blockchain Technology in Healthcare}
         \label{sec:blockchain}
-        \begin{draft}{Laura vai escrever isso aqui}
-        \end{draft}
+
+        Blockchain is a distributed ledger technology initially proposed for cryptocurrency systems. It provides a decentralized environment where participants can make transactions without the need for third-party supervision~\cite{abou2019blockchain}. In traditional financial systems, this supervision is necessary to ensure both the authenticity of the participants and the transaction order. The blockchain replicates this functionality with chained registries maintained by a network of nodes (also called peers). New transactions are stored in blocks, and the participating peers must decide whether the new block is legitimate or not through a process called consensus. Once validated, each new block receives the cryptographic hash of the previous block. This hash guarantees that the data stored cannot be altered without also altering all the previous blocks in the chain. Blockchain networks can be public, where anyone can propose and validate transactions, or private, where participants must receive access permission before joining the network. 
+        
+        There is a growing interest in using distributed ledger technologies to solve traditional problems in the healthcare field, such as lack of interoperability, audit difficulties, and data leaks~\cite{santos2021towards}. In particular, healthcare systems can benefit from the decentralization, transparency, and immutability of blockchain networks~\cite{Arbabi2023}. However, there are a few drawbacks to consider before implementing it into healthcare applications. In addition to concerns about computational cost and storage, compliance and regulation must also be taken into account since transaction data written on a blockchain is permanent and cannot be erased. Therefore, solutions using blockchain systems for healthcare need to employ other techniques as well for the storage of personal data and health-related information~\cite{minicurso-sbcas}.
+
 
 \chapter{Related Works}
     \label{chap:relatedworks}
