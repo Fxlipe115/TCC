@@ -21,6 +21,7 @@
 \usepackage[boxed]{algorithm}    % For the algorithm environment
 \usepackage{algpseudocode} % For pseudocode formatting
 \usepackage{xcolor}       % Optional for colored comments
+\usepackage{caption}      % For captions in algorithms
 
 \usepackage{tikz}
 
@@ -138,16 +139,6 @@
 
 \tableofcontents
 
-\clearpage
-\ToDo{
-    \begin{itemize}
-        \item[$\boxtimes$] Terminar testes de tamanho de chave e tamanho de payload criptografado
-        \item[$\square$] Colocar todas as abreviações na lista de abreviações
-        \item[$\square$] Colocar abreviações por extenso somente na primeira ocorrência
-        \item[$\square$] Reescrever a seção de Related Works 
-        \item[$\square$] Incrementar proposed solution
-    \end{itemize}
-}
 
 \chapter{Introduction}
     \label{chap:introduction}
@@ -732,6 +723,9 @@
         Alternativas para armazenamento das chaves, tonarnando a aplicação mais cpu bound
 
         Implementaion in a true distributed environment with multiple nodes
+
+        Atualmente o sistema só opera sobre texto, sendo necessário a conversão de dados binários para strings que podem ficar muito grandes, aumentando o tamanho do payload HTTP. Isso pode ser ineficiente, especialmente para grandes arquivos binários, como imagens ou vídeos, que são comuns em aplicações de HIoT. A conversão para strings base64, por exemplo, aumenta consideravelmente o tamanho do payload devido à codificação. Uma alternativa seria implementar a criptografia de dados binários diretamente, sem a necessidade de conversão para strings. Para isso a api consumiria a request como um multipart/form-data ao invés de um application/json, e o payload seria enviado como um arquivo binário. A criptografia AES poderia ser aplicada diretamente ao arquivo, e o MA-ABE continuaria a operar sobre o hash do arquivo, mantendo a segurança e a integridade dos dados. A resposta retornaria um application/octet-stream contendo o payload criptografado. Isso reduziria a sobrecarga de tamanho e melhoraria a eficiência do sistema, especialmente para aplicações que lidam com grandes volumes de dados binários.
+
 
 
 \bibliographystyle{abntex2-alf}
