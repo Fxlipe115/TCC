@@ -553,7 +553,7 @@
         %     \end{figure}
 
 
-        \subsection{Concurrency analysis}
+        \section{Concurrency analysis}
         \label{subsec:phase1_concurrency}
 
         The first phase of our analysis aimed to determine the optimal configuration of Gunicorn workers and threads for concurrent request handling. We fixed the payload size at 1\,KB, the number of concurrent users at 100, and the number of attributes in the encryption policy at one. The number of threads and workers was varied according to Formula~\ref{form:numberthreadsworkers}.
