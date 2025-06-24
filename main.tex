@@ -22,10 +22,10 @@
 \numberwithin{algorithm}{chapter}
 
 \title{
-    A Hybrid Multi-Authority Attribute-Based Encryption Scheme For Securing hIoT Data
+    A Hybrid Multi-Authority Attribute-Based Encryption Scheme For Securing HIoT Data
 }
 \translatedtitle{
-    Um Esquema Híbrido de Criptografia Baseada em Atributos de Múltiplas Autoridades para Armazenamento Segura de Dados hIoT
+    Um Esquema Híbrido de Criptografia Baseada em Atributos de Múltiplas Autoridades para Armazenamento Segura de Dados HIoT
 }
 
 \author{Graeff}{Felipe de Almeida}
@@ -216,9 +216,9 @@
 \chapter{Related Works}
     \label{chap:relatedworks}
 
-    This chapter reviews existing literature relevant to the secure management and sharing of data in HIoT environments. The pervasive nature of HIoT devices necessitates robust solutions for data confidentiality, integrity, and fine-grained access control. This review systematically categorizes and discusses prior research in cryptographic techniques and blockchain-based systems applied to healthcare. Critically, it contextualizes the foundational work by \citet{laura2023}, which proposed an architecture for storing hIoT data in IPFS and specifically identified the detailed cryptographic scheme and algorithms as a crucial direction for future research. This thesis undertakes that identified research opportunity. Furthermore, this chapter identifies current limitations and broader gaps in the literature that underscore the need for the hybrid cryptographic framework proposed herein.
+    This chapter reviews existing literature relevant to the secure management and sharing of data in HIoT environments. The pervasive nature of HIoT devices necessitates robust solutions for data confidentiality, integrity, and fine-grained access control. This review systematically categorizes and discusses prior research in cryptographic techniques and blockchain-based systems applied to healthcare. Critically, it contextualizes the foundational work by \citet{laura2023}, which proposed an architecture for storing HIoT data in IPFS and specifically identified the detailed cryptographic scheme and algorithms as a crucial direction for future research. This thesis undertakes that identified research opportunity. Furthermore, this chapter identifies current limitations and broader gaps in the literature that underscore the need for the hybrid cryptographic framework proposed herein.
 
-    The chapter is structured as follows: Section~\ref{sec:overallcontext} provides an overall context of cryptographic and blockchain-based solutions in healthcare, highlighting key advancements. Section~\ref{sec:securedata} delves into specific approaches for secure data sharing and storage in hIoT environments, including the architectural foundation proposed by \citet{laura2023}. Finally, Section~\ref{sec:problemstatement} articulates the problem statement, identifying the gaps that this research aims to address.
+    The chapter is structured as follows: Section~\ref{sec:overallcontext} provides an overall context of cryptographic and blockchain-based solutions in healthcare, highlighting key advancements. Section~\ref{sec:securedata} delves into specific approaches for secure data sharing and storage in HIoT environments, including the architectural foundation proposed by \citet{laura2023}. Finally, Section~\ref{sec:problemstatement} articulates the problem statement, identifying the gaps that this research aims to address.
 
     \section{Overall Context}
     \label{sec:overallcontext}
@@ -233,11 +233,11 @@
             Blockchain technology offers a decentralized and immutable ledger, making it highly suitable for enhancing data integrity, transparency, and secure sharing in healthcare. Several works leverage blockchain to establish robust security frameworks. For instance, \citet{Tian2019} utilize the Secure Identity Federation Framework (SIFF) alongside Hyperledger Fabric to ensure the integrity, availability, and privacy of medical data. \citet{Esposito2018} investigate how blockchain can generally enhance data security in cloud-based healthcare systems, addressing inherent vulnerabilities in traditional centralized models. \citet{Rahman2020} describe a blockchain-based platform specifically designed for secure cross-border data sharing, aiming to build trust and enhance security across different jurisdictions. The use of Hyperledger Fabric for scalable solutions in securing IoT data is also explored by \citet{Eghmazi2024}.
     
 
-    \section{Secure Data Sharing and Storing in hIoT}
+    \section{Secure Data Sharing and Storing in HIoT}
         \label{sec:securedata}
-        This section delves into specific architectural solutions for secure data sharing and storage within hIoT environments, focusing on approaches that integrate advanced cryptographic mechanisms with decentralized technologies. These works provide the direct context for the development of our proposed hybrid cryptographic framework.
+        This section delves into specific architectural solutions for secure data sharing and storage within HIoT environments, focusing on approaches that integrate advanced cryptographic mechanisms with decentralized technologies. These works provide the direct context for the development of our proposed hybrid cryptographic framework.
 
-        \subsection{IPFS hIoT Data Storage Framework and Foundational Architecture}
+        \subsection{IPFS HIoT Data Storage Framework and Foundational Architecture}
             \begin{draft}{Discuss the framework proposed by Laura}
             \end{draft}
 
@@ -252,19 +252,19 @@
 
         The rapidly expanding landscape of HIoT generates vast quantities of sensitive patient data, demanding robust solutions for confidentiality, integrity, and access control within decentralized systems. While architectural frameworks, such as the one proposed by \citet{laura2023} utilizing IPFS for decentralized storage and Hyperledger Fabric for data management, lay a strong foundation, they often leave the critical details of cryptographic implementation for fine-grained data security as open challenges or future work. This thesis directly addresses these specific gaps.
 
-        Despite these advancements, fully realizing the potential of secure hIoT data management necessitates further exploration into several key areas, which this thesis identifies as critical challenges, as detailed in the following subsections.
+        Despite these advancements, fully realizing the potential of secure HIoT data management necessitates further exploration into several key areas, which this thesis identifies as critical challenges, as detailed in the following subsections.
 
         \subsection{Absence of a Concrete Cryptographic Layer in Existing HIoT Architectures}
-            Many proposed decentralized architectures for hIoT data, including the foundational framework by \citet{laura2023}, effectively address data decentralization and integrity through technologies like IPFS and blockchain. However, these frameworks typically lack a concrete, implemented cryptographic layer capable of providing end-to-end data confidentiality and fine-grained access control over the actual data payloads. Without such a layer, data stored on decentralized systems, while immutable and verifiable, remains vulnerable to unauthorized access if a user gains access to the storage location, failing to meet the stringent privacy requirements of healthcare.
+            Many proposed decentralized architectures for HIoT data, including the foundational framework by \citet{laura2023}, effectively address data decentralization and integrity through technologies like IPFS and blockchain. However, these frameworks typically lack a concrete, implemented cryptographic layer capable of providing end-to-end data confidentiality and fine-grained access control over the actual data payloads. Without such a layer, data stored on decentralized systems, while immutable and verifiable, remains vulnerable to unauthorized access if a user gains access to the storage location, failing to meet the stringent privacy requirements of healthcare.
 
         \subsection{Limited Fine-Grained Access Control in Multi-Stakeholder Environments}
-            Traditional cryptographic methods (e.g., simple symmetric or public-key encryption) offer binary access control, which is insufficient for the complex, multi-stakeholder environment of hIoT. Healthcare scenarios demand dynamic and granular access rights based on user attributes (e.g., 'doctor,' 'researcher,' 'hospital'), not just individual identities. Existing solutions often struggle to efficiently manage and enforce such attribute-based policies across multiple independent authorities, leading to either cumbersome key management or inadequate security.
+            Traditional cryptographic methods (e.g., simple symmetric or public-key encryption) offer binary access control, which is insufficient for the complex, multi-stakeholder environment of HIoT. Healthcare scenarios demand dynamic and granular access rights based on user attributes (e.g., 'doctor,' 'researcher,' 'hospital'), not just individual identities. Existing solutions often struggle to efficiently manage and enforce such attribute-based policies across multiple independent authorities, leading to either cumbersome key management or inadequate security.
 
         \subsection{Performance and Scalability Challenges of Advanced Cryptographic Primitives}
-            Implementing advanced cryptographic schemes, particularly those offering fine-grained access control like ABE, often introduces significant computational overhead. This overhead can hinder the performance and scalability of hIoT systems, which process high volumes of data from resource-constrained devices. Balancing the strong security guarantees of these primitives with the operational efficiency required for real-time hIoT applications remains a critical hurdle.
+            Implementing advanced cryptographic schemes, particularly those offering fine-grained access control like ABE, often introduces significant computational overhead. This overhead can hinder the performance and scalability of HIoT systems, which process high volumes of data from resource-constrained devices. Balancing the strong security guarantees of these primitives with the operational efficiency required for real-time HIoT applications remains a critical hurdle.
 
         \subsection{Verification and Robustness of Cryptographic Schemes}
-            The complexity inherent in designing and implementing sophisticated cryptographic schemes, especially MA-ABE, makes rigorous security verification challenging. As highlighted by cryptanalysis efforts, such as those by \citet{broken2020}, numerous published ABE schemes have been found to contain vulnerabilities. This underscores a persistent problem in the field: the difficulty in ensuring the practical robustness of schemes beyond their theoretical proofs. Consequently, there is a pressing need for carefully selected, robustly implemented, and practically evaluated cryptographic solutions to guarantee the trustworthiness of hIoT data security.
+            The complexity inherent in designing and implementing sophisticated cryptographic schemes, especially MA-ABE, makes rigorous security verification challenging. As highlighted by cryptanalysis efforts, such as those by \citet{broken2020}, numerous published ABE schemes have been found to contain vulnerabilities. This underscores a persistent problem in the field: the difficulty in ensuring the practical robustness of schemes beyond their theoretical proofs. Consequently, there is a pressing need for carefully selected, robustly implemented, and practically evaluated cryptographic solutions to guarantee the trustworthiness of HIoT data security.
 
 \chapter{Proposed Solution}
     \label{chap:proposedsolution}
@@ -311,7 +311,7 @@
     \section{Access policy and Hybrid Encryption Process}
         \label{sec:hybrid_encryption}
 
-        This section outlines the procedure for securing hIoT data using the hybrid cryptographic workflow, visualized in Figure~\ref{fig:encryption_diagram}. The logic for this procedure is presented in Algorithm~\ref{alg:encryption_process}. The algorithm takes a payload and an access policy as input. It first generates a random symmetric key, $K_{G_T}$, which is an element of the pairing group $G_T$. This key is then used to create a hashed AES key, $K_{\textsc{SHA}}$. The output is a two-part ciphertext, consisting of the MA-ABE-encrypted symmetric key, $E_{K_{G_T}}$, and the AES-encrypted payload, $E_{\text{payload}}$. The MA-ABE encryption procedure uses the public keys, $K_A$, of the authorities, $A$, involved, which are retrieved based on the specified access policy. 
+        This section outlines the procedure for securing HIoT data using the hybrid cryptographic workflow, visualized in Figure~\ref{fig:encryption_diagram}. The logic for this procedure is presented in Algorithm~\ref{alg:encryption_process}. The algorithm takes a payload and an access policy as input. It first generates a random symmetric key, $K_{G_T}$, which is an element of the pairing group $G_T$. This key is then used to create a hashed AES key, $K_{\textsc{SHA}}$. The output is a two-part ciphertext, consisting of the MA-ABE-encrypted symmetric key, $E_{K_{G_T}}$, and the AES-encrypted payload, $E_{\text{payload}}$. The MA-ABE encryption procedure uses the public keys, $K_A$, of the authorities, $A$, involved, which are retrieved based on the specified access policy. 
 
         The access policy is defined as a boolean expression over user attributes, allowing for complex conditions on who can access the data. For example, a policy might specify that only users with the attributes 'doctor' at 'HOSPITAL' and 'researcher' at 'UNIVERSITY' can access the data, or alternatively, users with the attribute 'regulator' at 'GOVERNMENT'. The format for such a policy is shown in Equation~\ref{eq:policy_example}.
 
@@ -509,7 +509,7 @@
                 \text{payload\_size} \in \{1\text{KB}, 4\text{KB}, 16\text{KB}, 32\text{KB}, 64\text{KB}, 256\text{KB}\}
             \end{equation}
 
-            Figures~\ref{fig:encrypt_payload_size} and~\ref{fig:decrypt_payload_size} present the encryption and decryption response times, respectively, for different payload sizes. As expected, response time increases with larger payloads. However, the encryption process shows a more gradual increase compared to decryption, which may reflect higher complexity in the MA-ABE decryption routine. Table~\ref{tab:response_times} summarizes the mean response times and standard deviations for both encryption and decryption operations across all payload sizes. An original payload of 32KB expands to approximately 87KB, and a 256KB payload increases to about 699KB after encryption. This substantial expansion directly affects the storage requirements and bandwidth utilization for data retrieval from IPFS, especially crucial in resource-constrained hIoT environments where storage efficiency and network overhead are critical considerations. 
+            Figures~\ref{fig:encrypt_payload_size} and~\ref{fig:decrypt_payload_size} present the encryption and decryption response times, respectively, for different payload sizes. As expected, response time increases with larger payloads. However, the encryption process shows a more gradual increase compared to decryption, which may reflect higher complexity in the MA-ABE decryption routine. Table~\ref{tab:response_times} summarizes the mean response times and standard deviations for both encryption and decryption operations across all payload sizes. An original payload of 32KB expands to approximately 87KB, and a 256KB payload increases to about 699KB after encryption. This substantial expansion directly affects the storage requirements and bandwidth utilization for data retrieval from IPFS, especially crucial in resource-constrained HIoT environments where storage efficiency and network overhead are critical considerations. 
             
 
             \begin{figure}
@@ -608,7 +608,7 @@
 
             \subsection{Connecting Findings to the Research Problem}
 
-                The evaluation successfully demonstrates that the proposed hybrid MA-ABE scheme provides a concrete and viable solution to the cryptographic gap identified in foundational hIoT architectures like that of \citet{laura2023}. Our implementation addresses the need for fine-grained, multi-stakeholder access control, which is a significant limitation of traditional encryption methods in healthcare environments. While the performance evaluation reveals scalability trade-offs related to policy complexity and user load, it confirms that the scheme is practical for a range of realistic HIoT use cases. The selection of the robust MaabeRW15 scheme~\citep{rouselakis2015efficient} and its successful implementation and testing also address the critical need for practically verified cryptographic solutions, as noted in the problem statement.
+                The evaluation successfully demonstrates that the proposed hybrid MA-ABE scheme provides a concrete and viable solution to the cryptographic gap identified in foundational HIoT architectures like that of \citet{laura2023}. Our implementation addresses the need for fine-grained, multi-stakeholder access control, which is a significant limitation of traditional encryption methods in healthcare environments. While the performance evaluation reveals scalability trade-offs related to policy complexity and user load, it confirms that the scheme is practical for a range of realistic HIoT use cases. The selection of the robust MaabeRW15 scheme~\citep{rouselakis2015efficient} and its successful implementation and testing also address the critical need for practically verified cryptographic solutions, as noted in the problem statement.
 
 
 \chapter{Conclusion}
