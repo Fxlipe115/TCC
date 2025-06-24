@@ -48,21 +48,21 @@
 % \date{maio}{2001}
 % \location{Itaquaquecetuba}{SP}
 
-\keyword{cryptographic algorithms}
-\keyword{IPFS}
-\keyword{decentralized technologies}
+\keyword{MA-ABE}
+\keyword{hybrid cryptography}
+\keyword{access control}
+\keyword{HIoT}
+\keyword{data security}
 \keyword{performance analysis}
-\keyword{security evaluation}
-\keyword{data storage}
-\keyword{data exchange}
+\keyword{decentralized systems}
 
-\translatedkeyword{algoritmos criptográficos}
-\translatedkeyword{IPFS}
-\translatedkeyword{tecnologias descentralizadas}
+\translatedkeyword{MA-ABE}
+\translatedkeyword{criptografia híbrida}
+\translatedkeyword{controle de acesso}
+\translatedkeyword{HIoT}
+\translatedkeyword{segurança de dados}
 \translatedkeyword{análise de desempenho}
-\translatedkeyword{avaliação de segurança}
-\translatedkeyword{armazenamento de dados}
-\translatedkeyword{intercâmbio de dados}
+\translatedkeyword{sistemas descentralizados}
 
 %\settowidth{\seclen}{1.10~}
 
@@ -74,11 +74,11 @@
 \input{dedicatory.tex}
 
 \chapter*{Acknowledgements}
-    I would like to express my gratitude to my advisor, Professor Jéferson Campos Nobre, for his guidance and expertise throughout my research journey. His patience and profound knowledge have incentivised me to pursue this area of research.
+    I would like to express my sincere gratitude to my advisor, Professor Jéferson Campos Nobre. I am thankful for his trust and for providing me with the opportunity to develop this research in a field I am passionate about. His efforts and his knowledge in the computer security area that he brought to UFRGS have created a vital and inspiring environment for students, and I am grateful for the academic freedom and encouragement he provided throughout this journey.
 
-    I am immensely thankful to Laura, whose foundational research laid the groundwork for this thesis. Her dedication and help have significantly contributed to the success of this project.
+    I also extend my deepest gratitude to my co-advisor, Laura Rodrigues Soares. Her foundational research laid the groundwork for this thesis, and her constant guidance, dedication, and hands-on support were a driving force behind this project. Her collaboration was essential to its success from start to finish.
 
-    My appreciation also extends to the faculty and staff at the Informatics Department. The education and support provided by the professors have been fundamental to my academic and professional growth. Their dedication to creating a nurturing and challenging academic environment has been critical to my development.
+    My appreciation also extends to the faculty and staff at the Informatics Institute. The education and support provided by the professors have been fundamental to my academic and professional growth. Their dedication to creating a nurturing and challenging academic environment has been critical to my development.
 
     Special thanks go to Valéria, my best friend, for her constant support and love. Her encouragement has been a pillar of strength in difficult times, reminding me of the value of perseverance.
 
@@ -91,11 +91,11 @@
 \input{epigraph.tex}
 
 \begin{abstract}
-    \lipsum[1]
+    The proliferation of Health Internet of Things (HIoT) devices has created an urgent need for secure and decentralized data sharing mechanisms that protect sensitive patient information while enabling flexible access for multiple stakeholders. Existing decentralized storage architectures for HIoT often lack a concrete cryptographic layer that provides fine-grained access control, leaving data vulnerable to unauthorized access. This thesis addresses this gap by proposing, implementing, and evaluating a hybrid cryptographic scheme that combines Multi-Authority Attribute-Based Encryption (MA-ABE) with symmetric Advanced Encryption Standard (AES) encryption to secure HIoT data. The proposed solution leverages the MaabeRW15 scheme to allow access policies to be defined over attributes distributed across multiple independent authorities, while efficient AES encryption is used for large data payloads. A comprehensive performance evaluation of a proof-of-concept implementation was conducted to measure the system's scalability and computational overhead. The results demonstrate that the hybrid approach is efficient for securing large datasets and that system performance scales effectively with process-based concurrency, though it is sensitive to the complexity of access policies and high user loads. This work confirms the viability of the proposed scheme as a practical method for enforcing robust, fine-grained access control in decentralized HIoT data management systems, offering a significant enhancement to data privacy and security.
 \end{abstract}
 
 \begin{translatedabstract}
-    \lipsum[1]
+    A proliferação de dispositivos de Internet das Coisas para Saúde (HIoT) gerou uma necessidade urgente de mecanismos seguros e descentralizados para o compartilhamento de dados, que protejam as informações sensíveis dos pacientes e, ao mesmo tempo, permitam o acesso flexível por múltiplas partes interessadas. As arquiteturas de armazenamento descentralizado existentes para HIoT frequentemente carecem de uma camada criptográfica concreta que forneça controle de acesso de granularidade fina, deixando os dados vulneráveis a acessos não autorizados. Esta tese aborda essa lacuna ao propor, implementar e avaliar um esquema criptográfico híbrido que combina Criptografia Baseada em Atributos de Múltiplas Autoridades (MA-ABE) com a criptografia simétrica Advanced Encryption Standard (AES) para proteger dados de HIoT. A solução proposta utiliza o esquema MaabeRW15 para permitir que políticas de acesso sejam definidas sobre atributos distribuídos entre múltiplas autoridades independentes, enquanto a criptografia AES é usada de forma eficiente para grandes volumes de dados. Uma avaliação de desempenho abrangente de uma prova de conceito foi conduzida para medir a escalabilidade e o custo computacional do sistema. Os resultados demonstram que a abordagem híbrida é eficiente para proteger grandes conjuntos de dados e que o desempenho do sistema escala efetivamente com a concorrência baseada em processos, embora seja sensível à complexidade das políticas de acesso e a altas cargas de usuários. Este trabalho confirma a viabilidade do esquema proposto como um método prático para impor um controle de acesso robusto e de granularidade fina em sistemas descentralizados de gerenciamento de dados de HIoT, oferecendo uma melhoria significativa na privacidade e segurança dos dados.
 \end{translatedabstract}
 
 \listoffigures
@@ -105,23 +105,22 @@
 \listofalgorithms
 
 \begin{listofabbrv}{MA-ABE} % longest abbreviation
+    \item[ABE] Attribute-Based Encryption
     \item[AES] Advanced Encryption Standard
     \item[API] Application Programming Interface
-    \item[DLP] Discrete Logarithm Problem
-    \item[CBC] Cipher Block Chaining
     \item[ECC] Elliptic Curve cryptography
     \item[ECDLP] Elliptic Curve Discrete Logarithm Problem
     \item[EHR] Electronic Health Record
-    \item[EMR] Electronic Medical Record
     \item[HIoT] Health Internet of Things
+    \item[IBE] Identity-Based Encryption
     \item[IoMT] Internet of Medical Things
     \item[IPFS] InterPlanetary File System
     \item[JSON] JavaScript Object Notation
     \item[MA-ABE] Multi-Authority Attribute-Based Encryption
     \item[NIST] National Institute of Standards and Technology
-    \item[PoS] Proof of Stake
-    \item[PoW] Proof of Work
+    \item[PBC] Pairing-Based Cryptography
     \item[REST] Representational State Transfer
+    \item[RPS] Requests Per Second
     \item[RSA] Rivest-Shamir-Adleman
     \item[SHA] Secure Hash Algorithm
     \item[SIFF] Secure Identity Federation Framework
@@ -129,67 +128,57 @@
 \end{listofabbrv}
 
 \begin{listofsymbols}{$\alpha\beta\pi\omega$}
-    \item[$E_{K_{G_T}}$] Encrypted element $K_{G_T}$
-    \item[$E_{\text{payload}}$] Encrypted payload data
-    \item[$K_A$] Authorities' public keys
-    \item[$K_{G_T}$] Element in the pairing group $G_T$
-    \item[$K_{\text{SHA}}$] Hashed symmetric key
-    \item[$K_{\text{user}}$] User attribute keys
+    \item[$a, b$] Parameters of the elliptic curve
+    \item[$e$] Bilinear pairing map
+    \item[$E$] An elliptic curve over a finite field
+    \item[$E_{K_{G_T}}$] The MA-ABE-encrypted symmetric key element
+    \item[$E_{\text{payload}}$] The AES-encrypted payload data
+    \item[$G_1, G_2$] Additive cyclic groups for pairings
+    \item[$G_T$] Multiplicative cyclic group for pairings
+    \item[$K_A$] Public keys of the authorities
+    \item[$K_{G_T}$] Symmetric key as an element in the pairing group $G_T$
+    \item[$K_{\text{SHA}}$] AES key derived from the hash of $K_{G_T}$
+    \item[$K_{\text{user}}$] A user's set of secret keys for their attributes
+    \item[$\mathbb{F}_p$] A finite field of integers modulo prime $p$
+    \item[$p$] A large prime number
+    \item[$pk$] A public key
+    \item[$sk$] A secret (or private) key
 \end{listofsymbols}
 
 \tableofcontents
 
 
 \chapter{Introduction}
-    \label{chap:introduction}
-    % contextualização 1
-    \begin{draft}{Talk about lauras paper}
-        Laura's paper ...
-        \ToDo{Perguntar pra Laura em que camada do framework dela entra a criptografia}    
-    \end{draft}
+\label{chap:introduction}
+    The rapid expansion of the Health Internet of Things (HIoT), also known as the Internet of Medical Things (IoMT), is transforming modern healthcare. Wearable sensors, remote monitoring devices, and interconnected medical equipment generate vast quantities of sensitive patient data, offering unprecedented opportunities for personalized medicine, real-time diagnostics, and improved patient outcomes. However, this proliferation of data also introduces significant security and privacy challenges. Centralized data storage models are vulnerable to single points of failure and targeted attacks, while the need to share data among diverse stakeholders, such as doctors, researchers, and hospitals, requires sophisticated and flexible access control mechanisms.
+
+    To address these challenges, decentralized architectures utilizing technologies such as the InterPlanetary File System (IPFS) for storage and blockchain for access control have emerged as a promising alternative \cite{benet2013ipfs, fabric}. A foundational framework in this area was proposed by \citet{laura2023}, who designed a secure storage architecture for HIoT data using IPFS for decentralized storage and Hyperledger Fabric for managing data access and integrity. This architecture provides a robust solution for data immutability and availability.
+
+    However, the framework proposed by \citet{laura2023} explicitly identified the design and implementation of a detailed cryptographic scheme for end-to-end data confidentiality and fine-grained access control as a critical area for future work. Without such a layer, data stored in a decentralized system, while resistant to tampering, remains exposed to any user who can access its storage location. Furthermore, traditional encryption methods are insufficient for the complex, multi-stakeholder healthcare environment, where access rights must be dynamically granted based on a user's role or attributes (e.g., 'cardiologist', 'researcher') rather than a fixed identity.
+
+    This thesis directly addresses this research gap by proposing, implementing, and evaluating a hybrid cryptographic framework designed to be integrated into decentralized HIoT architectures. The core of our solution is a Multi-Authority Attribute-Based Encryption (MA-ABE) scheme combined with efficient symmetric encryption in the form of Advanced Encryption Standard (AES). This hybrid approach ensures both fine-grained access control—where policies are defined over attributes managed by multiple, independent authorities—and high performance for the encryption of large data payloads.
+
+    The primary contribution of this work is the design and implementation of this hybrid cryptographic scheme, tailored specifically for securing HIoT data. To validate this solution, a second key contribution is the comprehensive performance evaluation of the implemented proof-of-concept, which analyzes the system's scalability and computational overhead across various dimensions, including concurrency, payload size, user load, and access policy complexity. Based on these experimental results, this thesis concludes with a detailed analysis of the inherent trade-offs between security granularity, operational performance, and storage costs, providing practical insights for the deployment of such systems in real-world HIoT environments.
 
 
-    % contextualização 2 - mais especificacao
-    \begin{draft}{Talk specifities about the technologies used in the framework and why security is relevant and not adressed by IPFS and Hyperledger}
-        IPFS \cite{benet2013ipfs} is a peer-to-peer (P2P) decentralized storage system based on a content-addressable block storage model.
-    \end{draft}
-
-    % trabalhos relacionacios
-    \begin{draft}{Talk about related works}
-        
-    \end{draft}
-
-    \begin{draft}{Gap}
-        No entanto, nenhum dos trabalhos ...
-    \end{draft}
-
-    % proposta
-
-    In the present thesis, we aim to propose a cryptography framework that best fits the solution introduced by \citet{laura2023}.
-
-    % (opcional) avaliação (implementação, experimentos, resultados)
-
-    \begin{draft}{Quick introduction of each chapter}
-        In Section \ref{chap:relatedworks},...
-
-    \end{draft}
+    % This thesis is structured as follows. Chapter~\ref{chap:background} provides an overview of the foundational cryptographic concepts. Chapter~\ref{chap:relatedworks} reviews relevant literature and formally defines the problem statement. Chapter~\a_safe_serial_id_0s_Proposed Solution details the architecture of the proposed hybrid encryption scheme. Chapter~\ref{chap:experimentalsetup} describes the experimental setup, and Chapter~\ref{chap:evaluation} presents and discusses the performance evaluation results. Finally, Chapter~\ref{chap:conclusion} concludes the thesis by summarizing the findings and suggesting directions for future work.
 
 \chapter{Background}
     \label{chap:background}
 
-    \citet{laura2023} proposed a new framework for securing Health Internet of Things (HIoT) data. The framework aims to provide a secure and decentralized storage solution for HIoT data using InterPlanetary File System (IPFS) \cite{benet2013ipfs} for decentralized storage and Hyperledger Fabric \cite{fabric} for access control and data management. However, the framework lacks a robust cryptographic solution to ensure data confidentiality, data ownership, access control, and privacy. We extend their framework by proposing a hybrid cryptographic approach to enhance the security of the system and enable fine-grained access control based on user attributes.
+    \citet{laura2023} proposed a new framework for securing HIoT data. The framework aims to provide a secure and decentralized storage solution for HIoT data using IPFS \cite{benet2013ipfs} for decentralized storage and Hyperledger Fabric \cite{fabric} for access control and data management. However, the framework lacks a robust cryptographic solution to ensure data confidentiality, data ownership, access control, and privacy. We extend their framework by proposing a hybrid cryptographic approach to enhance the security of the system and enable fine-grained access control based on user attributes.
 
-    In this work, the key generation and encryption processes adopt a hybrid cryptographic approach that combines elliptic curve cryptography (ECC), pairing-based cryptography (PBC), and symmetric encryption using the Advanced Encryption Standard (AES). The system implements a Multi-Authority Attribute-Based Encryption (MA-ABE) scheme, enabling fine-grained and flexible access control based on user attributes distributed across multiple independent authorities. ECC and PBC provide the foundation for secure key establishment and attribute-based policies, while AES ensures efficient encryption of large data volumes. This combination leverages the strengths of each technique to achieve both performance and robust access control.
+    In this work, the key generation and encryption processes adopt a hybrid cryptographic approach that combines Elliptic Curve Cryptography (ECC), Pairing-Based Cryptography (PBC), and symmetric encryption using AES. The system implements a MA-ABE scheme, enabling fine-grained and flexible access control based on user attributes distributed across multiple independent authorities. ECC and PBC provide the foundation for secure key establishment and attribute-based policies, while AES ensures efficient encryption of large data volumes. This combination leverages the strengths of each technique to achieve both performance and robust access control.
 
 
 
-    Section~\ref{sec:ecc} provides an overview of elliptic curve cryptography, including the definition of elliptic curves and their use in cryptographic systems. Section~\ref{sec:pairing} introduces pairing-based cryptography and its applications in advanced cryptographic constructions. Section~\ref{sec:maabe} describes Multi-Authority Attribute-Based Encryption (MA-ABE) and its benefits for secure data sharing in decentralized systems. Section~\ref{sec:symmetric} presents the Advanced Encryption Standard (AES) and its role in symmetric encryption. Section~\ref{sec:blockchain} discusses the application of blockchain technology in healthcare and its potential to enhance data security and privacy. Further details on how these cryptographic techniques are integrated into the proposed framework are provided in Chapter~\ref{chap:proposedsolution}.
+    Section~\ref{sec:ecc} provides an overview of elliptic curve cryptography, including the definition of elliptic curves and their use in cryptographic systems. Section~\ref{sec:pairing} introduces pairing-based cryptography and its applications in advanced cryptographic constructions. Section~\ref{sec:maabe} describes MA-ABE and its benefits for secure data sharing in decentralized systems. Section~\ref{sec:symmetric} presents AES and its role in symmetric encryption. Section~\ref{sec:blockchain} discusses the application of blockchain technology in healthcare and its potential to enhance data security and privacy. Further details on how these cryptographic techniques are integrated into the proposed framework are provided in Chapter~\ref{chap:proposedsolution}.
     
 
     \section{Elliptic Curve Cryptography}
         \label{sec:ecc}
 
-        \citet{hankerson2004guide} define Elliptic Curve Cryptography (ECC) as a public-key cryptosystem based on the algebraic structure of elliptic curves over finite fields. Its security relies on the difficulty of the Elliptic Curve Discrete Logarithm Problem (ECDLP), which is believed to be computationally infeasible to solve in general-purpose cases~\citep{hankerson2004guide, koblitz1987elliptic}.
+        \citet{hankerson2004guide} define ECC as a public-key cryptosystem based on the algebraic structure of elliptic curves over finite fields. Its security relies on the difficulty of the Elliptic Curve Discrete Logarithm Problem (ECDLP), which is believed to be computationally infeasible to solve in general-purpose cases~\citep{hankerson2004guide, koblitz1987elliptic}.
 
         Let $p$ be a prime number, and let $\mathbb{F}_p$ denote the finite field of integers modulo $p$. An elliptic curve $E$ over $\mathbb{F}_p$ is defined by the Weierstrass equation:
 
@@ -217,18 +206,18 @@
             \item \textbf{Computability}: The pairing $e(P, Q)$ can be efficiently computed using algorithms such as Miller's algorithm~\citep{miller1986use}.
         \end{itemize}
 
-        Pairings enable advanced cryptographic constructions, including identity-based encryption (IBE), attribute-based encryption (ABE) and short signatures~\citep{boneh2001identity}.
+        Pairings enable advanced cryptographic constructions, including Identity-Based Encryption (IBE), Attribute-Based Encryption (ABE) and short signatures~\citep{boneh2001identity}.
 
-    \section{Multi-Authority Attribute-Based Encryption (MA-ABE)}
+    \section{Multi-Authority Attribute-Based Encryption}
         \label{sec:maabe}
-        Attribute-Based Encryption (ABE) is a cryptographic scheme that allows encryption and decryption operations based on user attributes rather than individual identities~\citep{goyal2006attribute}. In a Multi-Authority ABE (MA-ABE) model, multiple independent authorities manage disjoint sets of attributes, improving decentralization and resistance to single points of failure~\citep{chase2007multi}. Each authority issues keys corresponding to the attributes it controls, enabling fine-grained access policies defined over attributes from multiple domains.
+        ABE is a cryptographic scheme that allows encryption and decryption operations based on user attributes rather than individual identities~\citep{goyal2006attribute}. In a MA-ABE model, multiple independent authorities manage disjoint sets of attributes, improving decentralization and resistance to single points of failure~\citep{chase2007multi}. Each authority issues keys corresponding to the attributes it controls, enabling fine-grained access policies defined over attributes from multiple domains.
         
         MA-ABE is particularly suitable for systems where sensitive data access must be controlled by multiple stakeholders, as is the case in healthcare scenarios. The combination with pairing-based cryptography enables efficient implementation of complex access policies.
 
         
     \section{Symmetric Encryption with AES}
         \label{sec:symmetric}
-        The Advanced Encryption Standard (AES) is a symmetric block cipher standardized by the National Institute of Standards and Technology (NIST)~\citep{daemen1999aes}. It operates on fixed-size blocks of data (typically 128 bits) and supports key sizes of 128, 192, or 256 bits. AES is widely used for data confidentiality due to its efficiency and strong security guarantees.
+        AES is a symmetric block cipher standardized by the National Institute of Standards and Technology (NIST)~\citep{daemen1999aes}. It operates on fixed-size blocks of data (typically 128 bits) and supports key sizes of 128, 192, or 256 bits. AES is widely used for data confidentiality due to its efficiency and strong security guarantees.
         
         In this system, AES is used to encrypt large datasets stored off-chain, while the encryption keys are protected using the MA-ABE scheme. This hybrid design ensures both performance and access control granularity.
         
@@ -243,17 +232,17 @@
 \chapter{Related Works}
     \label{chap:relatedworks}
 
-    This chapter reviews existing literature relevant to the secure management and sharing of data in Health Internet of Things (HIoT) environments. The pervasive nature of HIoT devices necessitates robust solutions for data confidentiality, integrity, and fine-grained access control. This review systematically categorizes and discusses prior research in cryptographic techniques and blockchain-based systems applied to healthcare. Critically, it contextualizes the foundational work by \citet{laura2023}, which proposed an architecture for storing hIoT data in IPFS and specifically identified the detailed cryptographic scheme and algorithms as a crucial direction for future research. This thesis undertakes that identified research opportunity. Furthermore, this chapter identifies current limitations and broader gaps in the literature that underscore the need for the hybrid cryptographic framework proposed herein.
+    This chapter reviews existing literature relevant to the secure management and sharing of data in HIoT environments. The pervasive nature of HIoT devices necessitates robust solutions for data confidentiality, integrity, and fine-grained access control. This review systematically categorizes and discusses prior research in cryptographic techniques and blockchain-based systems applied to healthcare. Critically, it contextualizes the foundational work by \citet{laura2023}, which proposed an architecture for storing hIoT data in IPFS and specifically identified the detailed cryptographic scheme and algorithms as a crucial direction for future research. This thesis undertakes that identified research opportunity. Furthermore, this chapter identifies current limitations and broader gaps in the literature that underscore the need for the hybrid cryptographic framework proposed herein.
 
     The chapter is structured as follows: Section~\ref{sec:overallcontext} provides an overall context of cryptographic and blockchain-based solutions in healthcare, highlighting key advancements. Section~\ref{sec:securedata} delves into specific approaches for secure data sharing and storage in hIoT environments, including the architectural foundation proposed by \citet{laura2023}. Finally, Section~\ref{sec:problemstatement} articulates the problem statement, identifying the gaps that this research aims to address.
 
     \section{Overall Context}
     \label{sec:overallcontext}
 
-        This section provides an overview of existing research related to securing healthcare data, with a particular focus on broader cryptographic techniques and general blockchain-based solutions. The exponential growth of Health Internet of Things (HIoT) devices has led to an unprecedented volume of sensitive patient data, making robust security, privacy, and access control mechanisms paramount. We examine how various studies address these challenges, setting the stage for understanding the motivations and contributions of our proposed hybrid cryptographic framework.
+        This section provides an overview of existing research related to securing healthcare data, with a particular focus on broader cryptographic techniques and general blockchain-based solutions. The exponential growth of HIoT devices has led to an unprecedented volume of sensitive patient data, making robust security, privacy, and access control mechanisms paramount. We examine how various studies address these challenges, setting the stage for understanding the motivations and contributions of our proposed hybrid cryptographic framework.
 
         \subsection{Cryptographic Approaches for Healthcare Data Security}
-            Securing sensitive healthcare data often relies on advanced cryptographic primitives to ensure confidentiality, integrity, and authenticity. However, designing and verifying the security of complex primitives such as Attribute-Based Encryption (ABE) is a recognized challenge in cryptography. Indeed, recent cryptanalysis efforts by \citet{broken2020} have demonstrated vulnerabilities in numerous ABE schemes, including several multi-authority variants, underscoring the critical need for rigorously analyzed and robust constructions. In this context, \citet{Memos2021} propose a layered cloud architecture that integrates Advanced Encryption Standard (AES) and Rivest-Shamir-Adleman (RSA) encryption to enhance the security of e-health data transmission. This highlights the use of hybrid encryption, similar to our approach, for efficient data protection. \citet{Hema2019} further assess ECC-based encryption mechanisms, showcasing their effectiveness in securing healthcare data within cloud environments. This directly relates to our use of ECC as a foundational element. More recently, \citet{Naz2024} explore defenses against emerging quantum computing threats in blockchain through exotic signatures, emphasizing the continuous need for cryptographic innovation in this domain.
+            Securing sensitive healthcare data often relies on advanced cryptographic primitives to ensure confidentiality, integrity, and authenticity. However, designing and verifying the security of complex primitives such as ABE is a recognized challenge in cryptography. Indeed, recent cryptanalysis efforts by \citet{broken2020} have demonstrated vulnerabilities in numerous ABE schemes, including several multi-authority variants, underscoring the critical need for rigorously analyzed and robust constructions. In this context, \citet{Memos2021} propose a layered cloud architecture that integrates AES and Rivest-Shamir-Adleman (RSA) encryption to enhance the security of e-health data transmission. This highlights the use of hybrid encryption, similar to our approach, for efficient data protection. \citet{Hema2019} further assess ECC-based encryption mechanisms, showcasing their effectiveness in securing healthcare data within cloud environments. This directly relates to our use of ECC as a foundational element. More recently, \citet{Naz2024} explore defenses against emerging quantum computing threats in blockchain through exotic signatures, emphasizing the continuous need for cryptographic innovation in this domain.
 
 
         \subsection{Blockchain for Data Integrity and Secure Sharing}
@@ -270,14 +259,14 @@
 
 
         \subsection{Attribute-Based Access Control in Decentralized Healthcare Architectures}
-            This subsection focuses on works that specifically integrate Attribute-Based Encryption (ABE) and Multi-Authority ABE (MA-ABE) into decentralized healthcare data architectures, which is central to our proposed solution. \citet{Guo2019Flexible} propose a flexible and efficient blockchain-based ABE scheme with multiple authorities tailored for medical on-demand services in telemedicine systems, focusing on independent key updates. Similarly, \citet{Ghaffaripour2019Cryptographically} investigate cryptographically enforced access control within blockchain platforms by incorporating ABE schemes to enhance privacy and broaden applicability. \citet{Jin2019Secure} introduce a comprehensive framework for secure, privacy-preserving, and interoperable medical data sharing that holistically integrates multi-authority ABE with blockchain and smart contracts to enforce sharing policies. Building on this, \citet{Yang2022Blockchain} propose a patient-controlled and cloud-chain collaborative multi-authority ABE scheme for EHR access control, supporting verifiable outsourcing decryption and hiding access policies. Further advancements include \citet{Li2023Secure}, who detail a secure blockchain-assisted MA-ABE scheme with keyword search for smart healthcare systems in fog computing, aiming for fine-grained access control and search functionality while reducing computation tasks. Moreover, \citet{Guo2023Hybrid} present a hybrid blockchain-edge architecture for EHR management, integrating MA-ABE with homomorphic encryption to protect patient anonymity and safeguard records. These works demonstrate the growing trend of embedding advanced ABE capabilities directly into distributed systems for granular and robust access control.
+            This subsection focuses on works that specifically integrate ABE and MA-ABE into decentralized healthcare data architectures, which is central to our proposed solution. \citet{Guo2019Flexible} propose a flexible and efficient blockchain-based ABE scheme with multiple authorities tailored for medical on-demand services in telemedicine systems, focusing on independent key updates. Similarly, \citet{Ghaffaripour2019Cryptographically} investigate cryptographically enforced access control within blockchain platforms by incorporating ABE schemes to enhance privacy and broaden applicability. \citet{Jin2019Secure} introduce a comprehensive framework for secure, privacy-preserving, and interoperable medical data sharing that holistically integrates multi-authority ABE with blockchain and smart contracts to enforce sharing policies. Building on this, \citet{Yang2022Blockchain} propose a patient-controlled and cloud-chain collaborative multi-authority ABE scheme for Electronic Health Record (EHR) access control, supporting verifiable outsourcing decryption and hiding access policies. Further advancements include \citet{Li2023Secure}, who detail a secure blockchain-assisted MA-ABE scheme with keyword search for smart healthcare systems in fog computing, aiming for fine-grained access control and search functionality while reducing computation tasks. Moreover, \citet{Guo2023Hybrid} present a hybrid blockchain-edge architecture for EHR management, integrating MA-ABE with homomorphic encryption to protect patient anonymity and safeguard records. These works demonstrate the growing trend of embedding advanced ABE capabilities directly into distributed systems for granular and robust access control.
 
-            Beyond these integrated approaches, other studies focus on the ABE schemes themselves within decentralized contexts. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that significantly improves anonymity, demonstrating the utility of ABE in protecting user identities. \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in the Internet of Medical Things (IoMT), showcasing a practical application of ABE for managing access to sensitive health data. Additionally, \citet{Esfahani2024} introduce a comprehensive privacy scheme for IoT-based systems using zero-knowledge proofs and ring signatures, offering alternative methods for achieving granular privacy, and \citet{Li2024} contributes by creating a regulated medical data trading scheme that ensures privacy and compliance through blockchain and zero-knowledge proofs.
+            Beyond these integrated approaches, other studies focus on the ABE schemes themselves within decentralized contexts. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that significantly improves anonymity, demonstrating the utility of ABE in protecting user identities. \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in IoMT, showcasing a practical application of ABE for managing access to sensitive health data. Additionally, \citet{Esfahani2024} introduce a comprehensive privacy scheme for IoT-based systems using zero-knowledge proofs and ring signatures, offering alternative methods for achieving granular privacy, and \citet{Li2024} contributes by creating a regulated medical data trading scheme that ensures privacy and compliance through blockchain and zero-knowledge proofs.
 
     \section{Problem Statement}
         \label{sec:problemstatement}
 
-        The rapidly expanding landscape of Health Internet of Things (HIoT) generates vast quantities of sensitive patient data, demanding robust solutions for confidentiality, integrity, and access control within decentralized systems. While architectural frameworks, such as the one proposed by \citet{laura2023} utilizing IPFS for decentralized storage and Hyperledger Fabric for data management, lay a strong foundation, they often leave the critical details of cryptographic implementation for fine-grained data security as open challenges or future work. This thesis directly addresses these specific gaps.
+        The rapidly expanding landscape of HIoT generates vast quantities of sensitive patient data, demanding robust solutions for confidentiality, integrity, and access control within decentralized systems. While architectural frameworks, such as the one proposed by \citet{laura2023} utilizing IPFS for decentralized storage and Hyperledger Fabric for data management, lay a strong foundation, they often leave the critical details of cryptographic implementation for fine-grained data security as open challenges or future work. This thesis directly addresses these specific gaps.
 
         Despite these advancements, fully realizing the potential of secure hIoT data management necessitates further exploration into several key areas, which this thesis identifies as critical challenges, as detailed in the following subsections.
 
@@ -288,15 +277,15 @@
             Traditional cryptographic methods (e.g., simple symmetric or public-key encryption) offer binary access control, which is insufficient for the complex, multi-stakeholder environment of hIoT. Healthcare scenarios demand dynamic and granular access rights based on user attributes (e.g., 'doctor,' 'researcher,' 'hospital'), not just individual identities. Existing solutions often struggle to efficiently manage and enforce such attribute-based policies across multiple independent authorities, leading to either cumbersome key management or inadequate security.
 
         \subsection{Performance and Scalability Challenges of Advanced Cryptographic Primitives}
-            Implementing advanced cryptographic schemes, particularly those offering fine-grained access control like Attribute-Based Encryption (ABE), often introduces significant computational overhead. This overhead can hinder the performance and scalability of hIoT systems, which process high volumes of data from resource-constrained devices. Balancing the strong security guarantees of these primitives with the operational efficiency required for real-time hIoT applications remains a critical hurdle.
+            Implementing advanced cryptographic schemes, particularly those offering fine-grained access control like ABE, often introduces significant computational overhead. This overhead can hinder the performance and scalability of hIoT systems, which process high volumes of data from resource-constrained devices. Balancing the strong security guarantees of these primitives with the operational efficiency required for real-time hIoT applications remains a critical hurdle.
 
         \subsection{Verification and Robustness of Cryptographic Schemes}
-            The complexity inherent in designing and implementing sophisticated cryptographic schemes, especially Multi-Authority ABE (MA-ABE), makes rigorous security verification challenging. As highlighted by cryptanalysis efforts, such as those by \citet{broken2020}, numerous published ABE schemes have been found to contain vulnerabilities. This underscores a persistent problem in the field: the difficulty in ensuring the practical robustness of schemes beyond their theoretical proofs. Consequently, there is a pressing need for carefully selected, robustly implemented, and practically evaluated cryptographic solutions to guarantee the trustworthiness of hIoT data security.
+            The complexity inherent in designing and implementing sophisticated cryptographic schemes, especially MA-ABE, makes rigorous security verification challenging. As highlighted by cryptanalysis efforts, such as those by \citet{broken2020}, numerous published ABE schemes have been found to contain vulnerabilities. This underscores a persistent problem in the field: the difficulty in ensuring the practical robustness of schemes beyond their theoretical proofs. Consequently, there is a pressing need for carefully selected, robustly implemented, and practically evaluated cryptographic solutions to guarantee the trustworthiness of hIoT data security.
 
 \chapter{Proposed Solution}
     \label{chap:proposedsolution}
 
-    This chapter presents a cryptographic solution for enhancing the security of Health Internet of Things (HIoT) data. Building upon the decentralized storage framework proposed by \citet{laura2023}, this work introduces a cryptographic layer, which was left as an area for future work in the original paper. The solution uses a hybrid model that combines Multi-Authority Attribute-Based Encryption (MA-ABE) for fine-grained access control with the Advanced Encryption Standard (AES) for payload encryption. This model is designed so that computationally intensive operations are performed on small pieces of data, while larger payloads are handled by symmetric algorithms.
+    This chapter presents a cryptographic solution for enhancing the security of HIoT data. Building upon the decentralized storage framework proposed by \citet{laura2023}, this work introduces a cryptographic layer, which was left as an area for future work in the original paper. The solution uses a hybrid model that combines MA-ABE for fine-grained access control with AES for payload encryption. This model is designed so that computationally intensive operations are performed on small pieces of data, while larger payloads are handled by symmetric algorithms.
 
     This chapter is structured as follows: Section~\ref{sec:auth_setup} details the processes for authority setup and the generation of attribute-based keys. Following this, Section~\ref{sec:hybrid_encryption} covers how access policies are specified and describes the hybrid encryption workflow. Finally, Section~\ref{sec:policy_decryption} details the decryption process.
 
@@ -313,7 +302,7 @@
         \end{figure}
 
         \begin{algorithm}[h]
-            \caption{Setup Authority}
+            \caption{Setup Authority.}
             \label{alg:setup_authority}
             \begin{algorithmic}[1]
             \Procedure{SetupAuthority}{authority}
@@ -324,7 +313,7 @@
         \end{algorithm}
 
         \begin{algorithm}[h]
-            \caption{Key Generation}
+            \caption{Key Generation.}
             \label{alg:keygen}
             \begin{algorithmic}[1]
             \Procedure{Keygen}{authority, attribute, user}
@@ -356,7 +345,7 @@
         \end{figure}
 
         \begin{algorithm}[h]
-            \caption{Encryption Process}
+            \caption{Encryption Process.}
             \label{alg:encryption_process}
             \begin{algorithmic}[1]
             \Procedure{Encrypt}{payload, policy}
@@ -387,7 +376,7 @@
         \end{figure}
 
         \begin{algorithm}[h]
-            \caption{Decryption Process}
+            \caption{Decryption Process.}
             \label{alg:decryption_process}
             \begin{algorithmic}[1]
             \Procedure{Decrypt}{$E_{K_{G_T}}$, $E_{\text{payload}}$, $K_{\text{user}}$}
@@ -457,7 +446,7 @@
 \chapter{Experimental Setup}
 \label{chap:experimentalsetup}
 
-    This chapter describes the experimental setup used to evaluate the proposed cryptographic system for Health Internet of Things (HIoT) data management. It outlines the evaluation strategy, testbed environment, and the tools employed for testing.
+    This chapter describes the experimental setup used to evaluate the proposed cryptographic system for HIoT data management. It outlines the evaluation strategy, testbed environment, and the tools employed for testing.
 
     The chapter is structured as follows: Section~\ref{sec:evaluation-strategy} presents the overall implementation and evaluation strategy and its objectives. Section~\ref{sec:testbed} details the testbed environment, including hardware and software specifications, and the various implementation tools utilized.
 
@@ -465,7 +454,7 @@
         \label{sec:evaluation-strategy}
         The primary objectives of the evaluation are to measure the system's performance in terms of response time, determine its scalability under increasing workloads, and assess the cryptographic overhead introduced by the MA-ABE scheme. In addition, we aim to understand how the number of user attributes affects key size and to verify the security of the implementation.
 
-        For this purpose, we implemented a RESTful API that provides endpoints for all the operations defined in Chapter~\ref{chap:proposedsolution}. The API was chosen for its simplicity and ease of integration with existing systems, allowing us to focus on the cryptographic aspects without the overhead of a more complex user interface or a full-fledged application. The source code for the API is available on Zenodo~\citep{maabeflask}.
+        For this purpose, we implemented an Application Programming Interface (API) based on the Representational State Transfer (REST) architectural style, which provides endpoints for all the operations defined in Chapter~\ref{chap:proposedsolution}. The API was chosen for its simplicity and ease of integration with existing systems, allowing us to focus on the cryptographic aspects without the overhead of a more complex user interface or a full-fledged application. The source code for the API is available on Zenodo~\citep{maabeflask}.
 
         On top of the API, we used Locust, a Python-based load testing tool, to simulate concurrent users and measure the system's response times under various conditions. The tests were designed to evaluate both the encryption and decryption processes, as well as the overall throughput of the system.
 
@@ -491,7 +480,7 @@
                 Python Version & 3.10.17 \\ \hline
                 Containerization & Docker 28.0.4, Docker Compose v2.34.0 \\ \hline
                 \end{tabular}
-                \caption{Machine specifications and environment configuration used in testing}
+                \caption{Machine specifications and environment configuration used in testing.}
                 \label{tab:machine_specs}
             \end{table}
 
@@ -504,7 +493,7 @@
 
             \textbf{Gunicorn} is a Web Server Gateway Interface (WSGI) server for Python applications. It enables concurrent request handling through configurable worker processes and threads. We varied the number of threads and workers to test different concurrency configurations and identify an optimal setup.
 
-            \textbf{Charm-Crypto} is a Python library for pairing-based cryptography that offers high-level abstractions for implementing complex cryptographic protocols. It supports a variety of schemes, including Multi-Authority Attribute-Based Encryption (MA-ABE). In our implementation, we used the \emph{MaabeRW15} scheme proposed by Rouselakis and Waters~\citep{rouselakis2015efficient}, which provides efficient support for multi-authority setups. Charm-Crypto handled all cryptographic operations in our system.
+            \textbf{Charm-Crypto} is a Python library for pairing-based cryptography that offers high-level abstractions for implementing complex cryptographic protocols. It supports a variety of schemes, including MA-ABE. In our implementation, we used the \emph{MaabeRW15} scheme proposed by Rouselakis and Waters~\citep{rouselakis2015efficient}, which provides efficient support for multi-authority setups. Charm-Crypto handled all cryptographic operations in our system.
 
             \textbf{Flask} is a lightweight web framework for Python used to implement the RESTful API for encryption and decryption operations. Its simplicity and extensibility made it suitable for rapid prototyping of the service layer.
 
@@ -570,21 +559,21 @@
         \begin{figure}
             \centering
             \includegraphics[width=\textwidth]{images/phase1/api_encrypt/response_time_workers_summary.png}
-            \caption{Encryption response time varying the number of threads (workers fixed)}
+            \caption{Encryption response time varying the number of threads (workers fixed).}
             \label{fig:encrypt_response_time_workers}
         \end{figure}
 
         \begin{figure}
             \centering
             \includegraphics[width=\textwidth]{images/phase1/api_decrypt/response_time_workers_summary.png}
-            \caption{Decryption response time varying the number of threads (workers fixed)}
+            \caption{Decryption response time varying the number of threads (workers fixed).}
             \label{fig:decrypt_response_time_workers}
         \end{figure}
 
         \begin{figure}
             \centering
             \includegraphics[width=\textwidth]{images/phase1/api_decrypt/response_time_threads_summary.png}
-            \caption{Encryption response time varying the number of workers (threads fixed)}
+            \caption{Encryption response time varying the number of workers (threads fixed).}
             \label{fig:encrypt_response_time_threads}
         \end{figure}
 
@@ -596,14 +585,14 @@
                     /api/decrypt & 273.51 & 71.38 & 7423 & 12.45 \\ \hline
                     /api/encrypt & 57.37 & 52.18 & 7539 & 12.59 \\ \hline
                 \end{tabular}
-                \caption{Summary of response times for encryption and decryption using 25 workers and 1 thread}
+                \caption{Summary of response times for encryption and decryption using 25 workers and 1 thread. RPS stands for Requests Per Second.}
                 \label{tab:response_times}
             \end{table}
 
         \begin{figure}
             \centering
             \includegraphics[width=\textwidth]{images/phase1/api_decrypt/response_time_threads_summary.png}
-            \caption{Decryption response time varying the number of workers (threads fixed)}
+            \caption{Decryption response time varying the number of workers (threads fixed).}
             \label{fig:decrypt_response_time_threads}
         \end{figure}
 
@@ -624,14 +613,14 @@
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth]{images/phase2/response_time_api_encrypt.png}
-                \caption{Encryption response time for different payload sizes}
+                \caption{Encryption response time for different payload sizes.}
                 \label{fig:encrypt_payload_size}
             \end{figure}
 
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth]{images/phase2/response_time_api_decrypt.png}
-                \caption{Decryption response time for different payload sizes}
+                \caption{Decryption response time for different payload sizes.}
                 \label{fig:decrypt_payload_size}
             \end{figure}
 
@@ -650,14 +639,14 @@
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth]{images/phase3/response_time_api_encrypt_64KB.png}
-                \caption{Encryption response time for different user loads}
+                \caption{Encryption response time for different user loads.}
                 \label{fig:encrypt_user_load}
             \end{figure}
 
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth]{images/phase3/response_time_api_decrypt_64KB.png}
-                \caption{Decryption response time for different user loads}
+                \caption{Decryption response time for different user loads.}
                 \label{fig:decrypt_user_load}
             \end{figure}
 
@@ -671,14 +660,14 @@
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth]{images/phase4/response_time_api_encrypt.png}
-                \caption{Encryption response time for different policy sizes}
+                \caption{Encryption response time for different policy sizes.}
                 \label{fig:encrypt_policy_size}
             \end{figure}
 
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth]{images/phase4/response_time_api_decrypt.png}
-                \caption{Decryption response time for different policy sizes}
+                \caption{Decryption response time for different policy sizes.}
                 \label{fig:decrypt_policy_size}
             \end{figure}
 
@@ -687,44 +676,50 @@
             \label{sec:keysize}
             Figure~\ref{fig:user_key_size} shows the size of the user key for different number of attributes. The user key size increases linearly, reaching 25KB for 100 attributes.
 
-            The evaluation of user key size reveals a linear correlation with the number of attributes assigned to a user, as illustrated in Figure~\ref{fig:user_key_size}. For instance, a user key can reach approximately 25KB for 100 attributes. This characteristic has significant implications for the overall storage footprint within the InterPlanetary File System (IPFS) architecture proposed by \citet{laura2023}. In her framework, data payloads are stored in IPFS blocks, and while our cryptographic scheme primarily encrypts the symmetric key rather than the entire payload with MA-ABE, the original payload itself also undergoes encryption with AES, and is then coupled with the encrypted symmetric key. This process introduces a measurable overhead to the size of the data being stored on IPFS. This highlights a fundamental trade-off: the enhanced security and fine-grained access control offered by our hybrid cryptographic scheme come with an increased burden on storage resources, necessitating further optimization strategies for highly constrained deployments.
-
-            \ToDo{Fazer paralelo com trabalho da Laura e mostrar impacto da criptografia no armazenamento do payload nos blocos do IPFS}
+            The evaluation of user key size reveals a linear correlation with the number of attributes assigned to a user, as illustrated in Figure~\ref{fig:user_key_size}. For instance, a user key can reach approximately 25KB for 100 attributes. This characteristic has significant implications for the overall storage footprint within IPFS architecture proposed by \citet{laura2023}. In her framework, data payloads are stored in IPFS blocks, and while our cryptographic scheme primarily encrypts the symmetric key rather than the entire payload with MA-ABE, the original payload itself also undergoes encryption with AES, and is then coupled with the encrypted symmetric key. This process introduces a measurable overhead to the size of the data being stored on IPFS. This highlights a fundamental trade-off, common to all cryptographic systems.
 
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth]{images/key_size_analysis/user_key_size_analysis.png}
-                \caption{Comparison of user key size for different number of attributes}
+                \caption{Comparison of user key size for different number of attributes.}
                 \label{fig:user_key_size}
             \end{figure}
 
 
         \section{Discussion}
             \label{sec:discussion}
-            Ficou tudo uma bosta e não deu certo pq...
+            The performance evaluation presented in this chapter provides critical insights into the feasibility and operational trade-offs of the proposed hybrid MA-ABE scheme. The results from the concurrency, payload size, user load, and policy complexity analyses collectively inform the practical application of this cryptographic layer within an HIoT framework, such as the one proposed by \citet{laura2023}.
 
-            Falar sobre o multi-thread e pq não funcionou. (evitar sincericídio)
+            \subsection{Interpreting Performance and Scalability}
 
-            Charm crypto compila a parte de matematica da curva e faz load em um .so. Talvez isso seja a causa das falhas com multiplas threads
+                Our analysis of Gunicorn worker configurations (Section~\ref{subsec:phase1_concurrency}) revealed that system performance scales effectively with the number of processes (workers) but does not benefit from multi-threading. As shown in Figures~\ref{fig:encrypt_response_time_threads} and~\ref{fig:decrypt_response_time_threads}, increasing the number of workers leads to a significant decrease in response times. Conversely, increasing the number of threads per worker offered no discernible performance improvement (Figures~\ref{fig:encrypt_response_time_workers} and~\ref{fig:decrypt_response_time_workers}). This behavior is characteristic of CPU-bound Python applications due to the Global Interpreter Lock (GIL), which prevents multiple native threads from executing Python bytecodes simultaneously. Since cryptographic operations are computationally intensive, the GIL becomes a bottleneck, neutralizing the benefits of threading. The Charm-Crypto library, while built on C components, is still subject to the GIL when its functions are invoked from Python, explaining this observation. This finding suggests that for deployment, scaling should be achieved by increasing the number of worker processes rather than threads.
 
-            Meu trabalho é maravilhoso pq resolve o gap da literatura
+                The payload size analysis (Section~\ref{subsec:phase2_payload}) demonstrated that while encryption and decryption times increase with payload size, the system remains efficient. For instance, encrypting a 256\,KB payload takes, on average, 165.6 ms, and decryption takes 419.4 ms. The hybrid nature of our scheme, which uses the computationally expensive MA-ABE only to protect a small symmetric key, proves effective. The bulk of the work, encrypting the payload itself, is handled by the highly efficient AES algorithm. This confirms the suitability of the hybrid approach for securing large HIoT data payloads without incurring prohibitive computational costs.
 
-\Laura{olhar related works seção 3.3}
+                The user load and policy size analyses highlight important scalability limitations. Decryption time increases substantially with both the number of concurrent users (Section~\ref{subsec:user_load_analysis}) and the number of attributes in the access policy (Section~\ref{subsec:encryption_policy_size_analysis}). The growth in response time with policy complexity (Figure~\ref{fig:decrypt_policy_size}) is expected, as MA-ABE decryption requires a number of pairing operations proportional to the number of attributes in the policy. This underscores a fundamental trade-off between the granularity of access control and system performance. For practical HIoT applications, policies should be designed to be as concise as possible to ensure acceptable latency.
+
+            \subsection{Impact on Decentralized Storage}
+
+                A key consideration for integrating this cryptographic layer into the architecture proposed by \citet{laura2023} is its impact on storage. Our analysis in Section~\ref{sec:keysize} shows that user key size grows linearly with the number of attributes, reaching approximately 25\,KB for 100 attributes. Furthermore, the AES-encrypted payload, combined with the MA-ABE encrypted symmetric key, introduces storage overhead. For example, a 256\,KB payload expands to approximately 699\,KB after encryption.
+
+                In the context of a decentralized storage system like IPFS, this expansion affects not only storage capacity but also network bandwidth, as larger objects must be transferred between peers. This highlights a trade-off: the robust, fine-grained security provided by the scheme comes at the cost of increased storage and network resource consumption, which must be considered when deploying the system in resource-constrained HIoT environments.
+
+            \subsection{Connecting Findings to the Research Problem}
+
+                The evaluation successfully demonstrates that the proposed hybrid MA-ABE scheme provides a concrete and viable solution to the cryptographic gap identified in foundational hIoT architectures like that of \citet{laura2023}. Our implementation addresses the need for fine-grained, multi-stakeholder access control, which is a significant limitation of traditional encryption methods in healthcare environments. While the performance evaluation reveals scalability trade-offs related to policy complexity and user load, it confirms that the scheme is practical for a range of realistic HIoT use cases. The selection of the robust MaabeRW15 scheme~\citep{rouselakis2015efficient} and its successful implementation and testing also address the critical need for practically verified cryptographic solutions, as noted in the problem statement.
+
 
 \chapter{Conclusion}
     \label{chap:conclusion}
 
+    This thesis addressed the critical need for robust confidentiality and fine-grained access control in decentralized HIoT data management systems. Building upon foundational architectures that leverage IPFS and blockchain, we identified a significant gap: the absence of a concrete cryptographic layer capable of securing data payloads based on dynamic, attribute-based policies in a multi-stakeholder environment. To fill this gap, we proposed, implemented, and evaluated a hybrid cryptographic scheme combining MA-ABE with AES.
+
+    The evaluation of our proof-of-concept implementation yielded key insights into its practical performance. We demonstrated that the hybrid approach is highly efficient for encrypting large data payloads, as the computationally intensive MA-ABE operations are confined to a small symmetric key. Our analysis confirmed that the system's scalability is dependent on process-based concurrency and is sensitive to the complexity of access policies and the number of concurrent users—highlighting a crucial trade-off between security granularity and performance. The findings validate that the proposed scheme is a viable and effective solution for enforcing fine-grained access control in HIoT systems, significantly enhancing data privacy and security.
+
     \section{Future Work}
-        \label{sec:futurework}
-        Latencia com a criptografia integrada ao framework da laura
+    \label{sec:futurework}
 
-        Tempo pra buscar chaves
-
-        Alternativas para armazenamento das chaves, tonarnando a aplicação mais cpu bound
-
-        Implementaion in a true distributed environment with multiple nodes
-
-        Atualmente o sistema só opera sobre texto, sendo necessário a conversão de dados binários para strings que podem ficar muito grandes, aumentando o tamanho do payload HTTP. Isso pode ser ineficiente, especialmente para grandes arquivos binários, como imagens ou vídeos, que são comuns em aplicações de HIoT. A conversão para strings base64, por exemplo, aumenta consideravelmente o tamanho do payload devido à codificação. Uma alternativa seria implementar a criptografia de dados binários diretamente, sem a necessidade de conversão para strings. Para isso a api consumiria a request como um multipart/form-data ao invés de um application/json, e o payload seria enviado como um arquivo binário. A criptografia AES poderia ser aplicada diretamente ao arquivo, e o MA-ABE continuaria a operar sobre o hash do arquivo, mantendo a segurança e a integridade dos dados. A resposta retornaria um application/octet-stream contendo o payload criptografado. Isso reduziria a sobrecarga de tamanho e melhoraria a eficiência do sistema, especialmente para aplicações que lidam com grandes volumes de dados binários.
+        While this thesis successfully demonstrates the feasibility of the proposed scheme, several avenues for future research remain. The most immediate extension of this work would be to fully integrate the cryptographic module into the complete decentralized storage framework proposed by \citet{laura2023} and conduct an end-to-end latency evaluation that captures cryptographic processing alongside IPFS data retrieval and blockchain transaction times. Furthermore, the current evaluation was conducted on a single-node testbed. Future work should deploy the system in a true distributed environment to accurately assess network latency and real-world scalability. A significant enhancement would be to optimize the handling of binary data. The current system operates on text-based JavaScript Object Notation (JSON) payloads, requiring the conversion of binary data, such as medical images, into inefficient string representations (e.g., Base64), which substantially increases HTTP payload size. Future work could implement direct binary data encryption by modifying the API to accept 'multipart/form-data' requests, allowing the AES algorithm to be applied directly to a binary file stream. The response, containing the encrypted payload, would then be delivered as an 'application/octet-stream'. This would eliminate encoding overhead, reduce network bandwidth consumption, and significantly improve system efficiency, especially for HIoT applications managing large binary files. Additionally, performance could be enhanced by exploring alternative key storage mechanisms, such as in-memory caches or secure hardware modules, to reduce the I/O bottlenecks of the current implementation. Finally, subsequent research could implement and compare the performance of other MA-ABE schemes to further optimize the trade-offs between advanced features and operational efficiency.
 
 
 
