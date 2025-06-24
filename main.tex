@@ -597,7 +597,7 @@
         \end{figure}
 
 
-        \subsection{Payload Size Impact Analysis}
+        \section{Payload Size Impact Analysis}
         \label{subsec:phase2_payload}
 
             In the second phase, we evaluated the impact of payload size on the system's performance. The number of workers and threads was fixed at 25 and 1, respectively, and the number of users was kept at 100. The payload size was varied according to Formula~\ref{form:payloadsizes}.
@@ -624,8 +624,8 @@
                 \label{fig:decrypt_payload_size}
             \end{figure}
 
-            \subsection{User Load Analysis}
-            \label{subsec:user_load_analysis}
+        \section{User Load Analysis}
+        \label{subsec:user_load_analysis}
 
             To examine how the system scales with increasing numbers of concurrent users, we varied the number of users according to Formula~\ref{form:userload}. The payload size was fixed at 64\,KB (chosen based on the payload size analysis), and the number of workers and threads remained 25 and 1, respectively.
 
@@ -650,7 +650,7 @@
                 \label{fig:decrypt_user_load}
             \end{figure}
 
-            \subsection{Encryption Policy Size Analysis}
+        \section{Encryption Policy Size Analysis}
         \label{subsec:encryption_policy_size_analysis}
 
             To assess how the size of the encryption policy affects performance, we varied the number of attributes in the access policy from 1 to 10. The other parameters (payload size = 64\,KB, users = 100, workers = 25, threads = 1) were kept fixed.
