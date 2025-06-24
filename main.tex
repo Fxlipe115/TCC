@@ -1,35 +1,23 @@
 \documentclass[cic,tc,english]{iiufrgs}
 
-\usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage{times}
-% \usepackage{palatino}
-% \usepackage{mathptmx}       % p/ usar fonte Adobe Times nas fórmulas
-
 \usepackage[alf,abnt-emphasize=bf]{abntex2cite}
-
-\usepackage{lipsum}
-
-\usepackage{revisornotes}
-\usepackage{draftenvironment}
-
-\usepackage{ragged2e}
-
-\usepackage{listings}
-
-\usepackage{amsmath}      % For math symbols
-\usepackage[boxed]{algorithm}    % For the algorithm environment
-\usepackage{algpseudocode} % For pseudocode formatting
-\usepackage{xcolor}       % Optional for colored comments
-\usepackage{caption}      % For captions in algorithms
-
-\usepackage{tikz}
-
+\usepackage[boxed]{algorithm}
+\usepackage{algpseudocode}
 \usepackage{amsfonts}
-
-\usepackage[bottom]{footmisc}
-
+\usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{caption}
+\usepackage{draftenvironment}
+\usepackage[bottom]{footmisc}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{ragged2e}
+\usepackage{revisornotes}
+\usepackage{tikz}
+\usepackage{times}
+\usepackage{xcolor}
 
 \numberwithin{algorithm}{chapter}
 
@@ -64,13 +52,10 @@
 \translatedkeyword{análise de desempenho}
 \translatedkeyword{sistemas descentralizados}
 
-%\settowidth{\seclen}{1.10~}
-
 \begin{document}
 
 \maketitle
 
-% dedicatory
 \input{dedicatory.tex}
 
 \chapter*{Acknowledgements}
@@ -161,8 +146,6 @@
 
     The primary contribution of this work is the design and implementation of this hybrid cryptographic scheme, tailored specifically for securing HIoT data. To validate this solution, a second key contribution is the comprehensive performance evaluation of the implemented proof-of-concept, which analyzes the system's scalability and computational overhead across various dimensions, including concurrency, payload size, user load, and access policy complexity. Based on these experimental results, this thesis concludes with a detailed analysis of the inherent trade-offs between security granularity, operational performance, and storage costs, providing practical insights for the deployment of such systems in real-world HIoT environments.
 
-
-    % This thesis is structured as follows. Chapter~\ref{chap:background} provides an overview of the foundational cryptographic concepts. Chapter~\ref{chap:relatedworks} reviews relevant literature and formally defines the problem statement. Chapter~\a_safe_serial_id_0s_Proposed Solution details the architecture of the proposed hybrid encryption scheme. Chapter~\ref{chap:experimentalsetup} describes the experimental setup, and Chapter~\ref{chap:evaluation} presents and discusses the performance evaluation results. Finally, Chapter~\ref{chap:conclusion} concludes the thesis by summarizing the findings and suggesting directions for future work.
 
 \chapter{Background}
     \label{chap:background}
@@ -297,7 +280,7 @@
 
         \begin{figure}[h]
             \centering
-            \includegraphics[width=0.5\textwidth]{images/diagrams/keygen_diagram.pdf} % Make sure this path is correct
+            \includegraphics[width=0.5\textwidth]{images/diagrams/keygen_diagram.pdf}
             \caption{Authority-based key generation process.}
             \label{fig:keygen_diagram}
         \end{figure}
@@ -340,7 +323,7 @@
 
         \begin{figure}[h]
             \centering
-            \includegraphics[width=\textwidth]{images/diagrams/encryption_diagram.pdf} % Make sure this path is correct
+            \includegraphics[width=\textwidth]{images/diagrams/encryption_diagram.pdf}
             \caption{The hybrid encryption process combining MA-ABE and AES.}
             \label{fig:encryption_diagram}
         \end{figure}
@@ -371,7 +354,7 @@
 
         \begin{figure}[h]
             \centering
-            \includegraphics[width=\textwidth]{images/diagrams/decryption_diagram.pdf} % Make sure this path is correct
+            \includegraphics[width=\textwidth]{images/diagrams/decryption_diagram.pdf}
             \caption{The decryption process for recovering the original data payload.}
             \label{fig:decryption_diagram}
         \end{figure}
@@ -389,61 +372,7 @@
             \end{algorithmic}
         \end{algorithm}
 
-    % \section{Hybrid Multi-Authority Attribute-Based Encryption Scheme for Securing HIoT Data}
-    %     \label{sec:encryption}
-
-    %     This section presents the cryptographic core of the proposed solution, which uses a hybrid encryption scheme combining MA-ABE and symmetric encryption using AES. The goal is to achieve efficient, fine-grained access control for large hIoT payloads.
-
-    %     \subsection{Overview of the Encryption and Decryption Workflows}
-    %         The encryption process consists of the following stages:
-    %         \begin{enumerate}
-    %             \item Authorities are initialized and generate public/private key pairs.
-    %             \item Users are assigned attributes and corresponding secret keys by the authorities.
-    %             \item A symmetric key is randomly generated as an element of the pairing group $G_T$.
-    %             \item The symmetric key is hashed with SHA-256 to derive an AES key.
-    %             \item The payload is encrypted with AES.
-    %             \item The original symmetric key is encrypted using MA-ABE under a specified attribute policy.
-    %         \end{enumerate}
-
-    %         The decryption process involves the following steps:
-    %         \begin{enumerate}
-    %             \item Users possess secret keys associated with their attributes, issued by different authorities.
-    %             \item The encrypted symmetric key (an element of $G_T$) is decrypted using MA-ABE, if the user's attributes satisfy the access policy.
-    %             \item The recovered element from $G_T$ is hashed with SHA-256 to derive the AES key.
-    %             \item The payload is decrypted using AES with the derived key.
-    %             \item The plaintext is unpadded to retrieve the original data.
-    %         \end{enumerate}
-
-    %         This ensures that only users who possess the required attributes can decrypt the MA-ABE-encrypted symmetric key and subsequently access the payload.
-
-
-    %     \subsection{Key Management and Distribution}
-    %         The key management system is designed to handle the generation, storage, and distribution of keys securely. Each authority generates its public/private key pair and distributes the public keys to users. The private keys are securely stored and used for generating user-specific keys based on their attributes.
-
-    %     \subsection{Key Generation and Authority Setup}
-    %         Authorities generate keys using the MaabeRW15 scheme from the Charm-Crypto library. Each authority is responsible for a disjoint subset of attributes and securely stores its private key. Public keys are distributed system-wide.
-
-    %     \subsection{Access Policy Specification}
-    %         Encryption policies are defined using boolean expressions over attributes, such as in the example policy~\ref{eq:policy_example}, where the attributes are specified in the format "<attribute>@<authority>". The policy can include AND, OR, and NOT operations to define complex access conditions. This allows for flexible and fine-grained access control based on user attributes.
-    %         This policy structure allows flexible definitions of access, combining multiple authorities and domains.
-
-    %         \begin{equation}
-    %             \label{eq:policy_example}
-    %             \texttt{(\allowbreak doctor@HOSPITAL \allowbreak AND \allowbreak researcher@UNIVERSITY) \allowbreak OR \allowbreak regulator@GOVERNMENT}
-    %         \end{equation}
-
-
-    %     \subsection{Security and Performance Considerations}
-    %         This scheme ensures:
-    %         \begin{itemize}
-    %         \item \textbf{Fine-grained access control}: via MA-ABE policies.
-    %         \item \textbf{Efficiency}: AES handles bulk data, reducing computational cost.
-    %         \item \textbf{Scalability}: Multiple authorities reduce centralization and key distribution bottlenecks.
-    %         \end{itemize}
-
-    %         Further evaluation of performance and scalability is provided in Chapter~\ref{chap:evaluation}.
-
-
+    
 \chapter{Experimental Setup}
 \label{chap:experimentalsetup}
 
@@ -507,34 +436,6 @@
 \chapter{Evaluation}
     \label{chap:evaluation}
     This chapter presents the implementation details and performance evaluation of the cryptographic system proposed in the previous chapters. We describe the technologies used, the deployment environment, the testing methodology, and the results obtained under different configurations. To ensure reproducibility of results, all source code developed for this project has been archived and made publicly available through Zenodo~\citep{maabeflask}.
-
-    
-
-    
-
-        % Deprecated section. The results are not relevant anymore.
-        % \subsection{Failure Rate}
-        %     \label{sec:failurerate}
-        %     This test was done with the Locust framework to determine the failure rate of the system. The test was conducted with a payload size of 1KB and 1000 users. The failure rate was calculated by the number of failed requests divided by the total number of requests.
-
-        %     The locustfile used for the test defines 80\% of the users as clients and 20\% as authorities. Each authority instance calls the endpoint \emph{/api/setup\_authority} once upon instantiation, and subsequently calls \emph{/api/keygen} for a user following a Round-Robin strategy. The client instances call the \emph{/api/encrypt} endpoint with a random payload and access policy and then call the \emph{/api/decrypt} endpoint with the encrypted payload and the user's key with a 50\% probability of calling each endpoint.
-            
-        %     The test was run for 15 minutes with a spawn rate of 100 user per second. The failure rate was calculated as the number of failed requests divided by the total number of requests.
-
-        %     \begin{figure}[h]
-        %         \centering
-        %         \includegraphics[width=\textwidth]{images/phase1/failure_rate__api_encrypt.png}
-        %         \caption{Failure rate for /api/encrypt for different configurations of threads and workers}
-        %         \label{fig:failurerateencrypt}
-        %     \end{figure}
-
-        %     \begin{figure}[h]
-        %         \centering
-        %         \includegraphics[width=\textwidth]{images/phase1/failure_rate__api_decrypt.png}
-        %         \caption{Failure rate for /api/decrypt for different configurations of threads and workers}
-        %         \label{fig:failureratedecrypt}
-        %     \end{figure}
-
 
         \section{Concurrency analysis}
         \label{subsec:phase1_concurrency}
