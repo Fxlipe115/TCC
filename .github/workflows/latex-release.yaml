@@ -2,8 +2,8 @@ name: LaTeX PDF Release
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
 
 jobs:
   build_latex:
@@ -18,14 +18,33 @@ jobs:
       with:
         root_file: main.tex
 
+    - name: "Get Previous tag"
+      id: previoustag
+      uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
+    - name: "Get next version"
+      id: semvers
+      uses: "WyriHaximus/github-action-next-semvers@v1"
+      with:
+        version: ${{ steps.previoustag.outputs.tag }}
+
+    - name: Create Tag
+      uses: rickstaa/action-create-tag@v1
+      with:
+        tag: ${{ steps.semvers.outputs.v_patch }}
+        tag_exists_error: true
+        message: "Release version ${{ steps.semvers.outputs.v_patch }}"
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: ${{ steps.semvers.outputs.v_patch }}
+        release_name: Release ${{ steps.semvers.outputs.v_patch }}
+        body: |
+          Automated release for commit ${{ github.sha }}
         draft: false
         prerelease: false
 
