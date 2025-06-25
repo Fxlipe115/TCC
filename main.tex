@@ -237,9 +237,19 @@
         \label{sec:securedata}
         This section delves into specific architectural solutions for secure data sharing and storage within HIoT environments, focusing on approaches that integrate advanced cryptographic mechanisms with decentralized technologies. These works provide the direct context for the development of our proposed hybrid cryptographic framework.
 
-        \subsection{IPFS HIoT Data Storage Framework and Foundational Architecture}
-            \begin{draft}{Discuss the framework proposed by Laura}
-            \end{draft}
+        \subsection{Blockchain-based distributed HIoT Data Storage Framework and Foundational Architecture}
+            The work in~\cite{laura2023} proposes an architectural model of hybrid on-chain off-chain storage with the blockchain network acting as index, used in combination with distributed storage systems.  The proof-of-concept system uses a consortium blockchain scheme--a type of private blockchain network operated by a group of organizations instead of a single entity, all of them in charge of granting access permission to users. In the context of this work, the participating organizations are health facilities willing to share patient data among each other. Once enrolled in one organization, a patient can seek treatment at any participating entity within the federation. The system avoids to store healthcare data directly into the blockchain to comply with most data protection regulations, which states that any personal data must be capable of deletion upon request.  Therefore, the medical data is encrypted and distributed among the participating organizations for storage. To prevent the file addresses from being saved directly on the blockchain, the system uses a vault file that is also encrypted and stored off-chain. The vault file prevents the storage of immutable personal data and adds another layer of security and privacy to the system.
+
+            Figure~\ref{fig:laura_arch} shows a schematic of the model proposed in~\cite{laura2023}. The devices participating in the system must communicate either with the gateways, in case of HIoT sensors, or with the Application Provider (AP), in case of patient and doctor devices. In order to access medical files, the AP must fetch the address of the patient's vault file stored on the blockchain. Once the address is retrieved, the vault itself must be retrieved from the off-chain storage. The vault then must be decrypted in order to access the address of the medical files of that patient. Finally, the encrypted medical files can be obtained, decrypted, and handed to the user making the request. Other applications, such as medical research or applications providing medical services, can also use the system to access files if they have the corresponding decryption key.
+
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=1\textwidth]{images/diagrams/fig2-grefo.drawio.pdf}
+                \caption{Architecture using blockchain and distributed storage proposed in \cite{laura2023}.}
+                \label{fig:laura_arch}
+            \end{figure}
+
+            The original proposal does not handle the issue of providing data access to authorized third parties without necessarily providing them with the patient's personal key. With Multi-Authority ABE,  more than one organization can issue the keys with the authorized access credentials. 
 
 
         \subsection{Attribute-Based Access Control in Decentralized Healthcare Architectures}
