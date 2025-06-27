@@ -253,9 +253,9 @@
 
 
         \subsection{Attribute-Based Access Control in Decentralized Healthcare Architectures}
-            This subsection focuses on works that specifically integrate ABE and MA-ABE into decentralized healthcare data architectures, which is central to our proposed solution. \citet{Guo2019Flexible} propose a flexible and efficient blockchain-based ABE scheme with multiple authorities tailored for medical on-demand services in telemedicine systems, focusing on independent key updates. Similarly, \citet{Ghaffaripour2019Cryptographically} investigate cryptographically enforced access control within blockchain platforms by incorporating ABE schemes to enhance privacy and broaden applicability. \citet{Jin2019Secure} introduce a comprehensive framework for secure, privacy-preserving, and interoperable medical data sharing that holistically integrates multi-authority ABE with blockchain and smart contracts to enforce sharing policies. Building on this, \citet{Yang2022Blockchain} propose a patient-controlled and cloud-chain collaborative multi-authority ABE scheme for Electronic Health Record (EHR) access control, supporting verifiable outsourcing decryption and hiding access policies. Further advancements include \citet{Li2023Secure}, who detail a secure blockchain-assisted MA-ABE scheme with keyword search for smart healthcare systems in fog computing, aiming for fine-grained access control and search functionality while reducing computation tasks. Moreover, \citet{Guo2023Hybrid} present a hybrid blockchain-edge architecture for EHR management, integrating MA-ABE with homomorphic encryption to protect patient anonymity and safeguard records. These works demonstrate the growing trend of embedding advanced ABE capabilities directly into distributed systems for granular and robust access control.
+            This subsection focuses on works that specifically integrate ABE and MA-ABE into decentralized healthcare data storage, which is central to our proposed solution. \citet{Guo2019Flexible} propose a flexible and efficient blockchain-based ABE scheme with multiple authorities tailored for medical on-demand services in telemedicine systems, focusing on independent key updates. Similarly, \citet{Ghaffaripour2019Cryptographically} investigate cryptographically enforced access control within blockchain platforms by incorporating ABE schemes to enhance privacy and broaden applicability. \citet{Jin2019Secure} introduce a comprehensive framework for secure, privacy-preserving, and interoperable medical data sharing that holistically integrates multi-authority ABE with blockchain and smart contracts to enforce sharing policies. \citet{Yang2022Blockchain} propose a patient-controlled and cloud-chain collaborative multi-authority ABE scheme for Electronic Health Record (EHR) access control, supporting verifiable outsourcing decryption and hiding access policies. Further advancements include \citet{Li2023Secure}, who detail a secure blockchain-assisted MA-ABE scheme with keyword search for smart healthcare systems in fog computing, aiming for fine-grained access control and search functionality while reducing computation tasks. Moreover, \citet{Guo2023Hybrid} present a hybrid blockchain-edge architecture for EHR management, integrating MA-ABE with homomorphic encryption to protect patient anonymity and safeguard records. These works demonstrate the growing trend of embedding advanced ABE capabilities directly into distributed systems for granular and robust access control. However, while these papers establish strong architectural foundations, their performance evaluations do not provide a complete picture of the practical viability for a real-world HIoT system.
 
-            Beyond these integrated approaches, other studies focus on the ABE schemes themselves within decentralized contexts. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that significantly improves anonymity, demonstrating the utility of ABE in protecting user identities. \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in IoMT, showcasing a practical application of ABE for managing access to sensitive health data. Additionally, \citet{Esfahani2024} introduce a comprehensive privacy scheme for IoT-based systems using zero-knowledge proofs and ring signatures, offering alternative methods for achieving granular privacy, and \citet{Li2024} contributes by creating a regulated medical data trading scheme that ensures privacy and compliance through blockchain and zero-knowledge proofs.
+            Beyond these integrated approaches, other studies focus on the ABE schemes themselves within decentralized contexts. \citet{Zala2024} enhance e-health data privacy through an attribute-based encryption scheme that significantly improves anonymity, demonstrating the utility of ABE in protecting user identities. \citet{Bhansali2022} integrate ciphertext-policy attribute-based encryption with federated learning for data management in IoMT, showcasing a practical application of ABE for managing access to sensitive health data. Additionally, \citet{Esfahani2024} introduce a comprehensive privacy scheme for IoT-based systems using zero-knowledge proofs and ring signatures, offering alternative methods for achieving granular privacy, and \citet{Li2024} contributes by creating a regulated medical data trading scheme that ensures privacy and compliance through blockchain and zero-knowledge proofs. However, while these studies present valuable cryptographic solutions, their performance evaluations do not address the specific challenges of implementing a complete, end-to-end hybrid MA-ABE scheme within a decentralized HIoT architecture.
 
     \section{Problem Statement}
         \label{sec:problemstatement}
@@ -265,7 +265,7 @@
         Despite these advancements, fully realizing the potential of secure HIoT data management necessitates further exploration into several key areas, which this thesis identifies as critical challenges, as detailed in the following subsections.
 
         \subsection{Absence of a Concrete Cryptographic Layer in Existing HIoT Architectures}
-            Many proposed decentralized architectures for HIoT data, including the foundational framework by \citet{laura2023}, effectively address data decentralization and integrity through technologies like IPFS and blockchain. However, these frameworks typically lack a concrete, implemented cryptographic layer capable of providing end-to-end data confidentiality and fine-grained access control over the actual data payloads. Without such a layer, data stored on decentralized systems, while immutable and verifiable, remains vulnerable to unauthorized access if a user gains access to the storage location, failing to meet the stringent privacy requirements of healthcare.
+            Many proposed decentralized architectures for HIoT data, including the foundational framework by \citet{laura2023}, effectively address data decentralization and integrity through decentralized storage technologies. However, these frameworks typically lack a concrete, implemented cryptographic layer capable of providing end-to-end data confidentiality and fine-grained access control over the actual data payloads. Without such a layer, data stored on decentralized systems, while immutable and verifiable, remains vulnerable to unauthorized access if a user gains access to the storage location, failing to meet the stringent privacy requirements of healthcare.
 
         \subsection{Limited Fine-Grained Access Control in Multi-Stakeholder Environments}
             Traditional cryptographic methods (e.g., simple symmetric or public-key encryption) offer binary access control, which is insufficient for the complex, multi-stakeholder environment of HIoT. Healthcare scenarios demand dynamic and granular access rights based on user attributes (e.g., 'doctor,' 'researcher,' 'hospital'), not just individual identities. Existing solutions often struggle to efficiently manage and enforce such attribute-based policies across multiple independent authorities, leading to either cumbersome key management or inadequate security.
@@ -274,7 +274,7 @@
             Implementing advanced cryptographic schemes, particularly those offering fine-grained access control like ABE, often introduces significant computational overhead. This overhead can hinder the performance and scalability of HIoT systems, which process high volumes of data from resource-constrained devices. Balancing the strong security guarantees of these primitives with the operational efficiency required for real-time HIoT applications remains a critical hurdle.
 
         \subsection{Verification and Robustness of Cryptographic Schemes}
-            The complexity inherent in designing and implementing sophisticated cryptographic schemes, especially MA-ABE, makes rigorous security verification challenging. As highlighted by cryptanalysis efforts, such as those by \citet{broken2020}, numerous published ABE schemes have been found to contain vulnerabilities. This underscores a persistent problem in the field: the difficulty in ensuring the practical robustness of schemes beyond their theoretical proofs. Consequently, there is a pressing need for carefully selected, robustly implemented, and practically evaluated cryptographic solutions to guarantee the trustworthiness of HIoT data security.
+            The complexity inherent in designing and implementing sophisticated cryptographic schemes, especially MA-ABE, makes rigorous security verification challenging. As highlighted by cryptanalysis efforts, such as those by \citet{broken2020}, numerous published ABE schemes have been found to contain vulnerabilities. This underscores a persistent problem in the field: the difficulty in ensuring the practical robustness of schemes beyond their theoretical proofs. Consequently, there is a pressing need for carefully selected, robustly implemented, and practically evaluated cryptographic solutions to guarantee the trustworthiness of HIoT data security. Our work aims to deal with these necessities, as shown in Chapter~\ref{chap:proposedsolution}.
 
 \chapter{Proposed Solution}
     \label{chap:proposedsolution}
@@ -285,15 +285,9 @@
 
     \section{Authority Setup and Key Generation}
         \label{sec:auth_setup}
+        This section details the processes for establishing the decentralized trust model of the system: authority initialization and user key generation. The MA-ABE scheme relies on multiple independent authorities, each responsible for managing a distinct set of attributes. An authority's primary roles are to generate its own public and secret parameters and to issue secret keys to users based on the attributes they are entitled to. 
 
-        This section details the processes for establishing the system's decentralized trust model: authority initialization and user key generation. The MA-ABE scheme uses multiple authorities, each managing a distinct set of attributes. As illustrated in Figure~\ref{fig:keygen_diagram}, an authority provides users with secret keys based on their attributes. The setup process, where each authority generates its public and private key pairs using the \texttt{MaabeRW15} scheme, is detailed in Algorithm~\ref{alg:setup_authority}. Once an authority is initialized, it issues keys to users according to the procedure in Algorithm~\ref{alg:keygen}.
-
-        \begin{figure}[h]
-            \centering
-            \includegraphics[width=0.5\textwidth]{images/diagrams/keygen_diagram.pdf}
-            \caption{Authority-based key generation process.}
-            \label{fig:keygen_diagram}
-        \end{figure}
+        The first step is the authority setup, detailed in Algorithm~\ref{alg:setup_authority}. This procedure is executed by each organization (e.g., a hospital, university, or government body) that participates in the system. It uses the underlying cryptographic library to generate a pair of public keys ($pk$) and a secret key ($sk$). The public key is published and made available to all participants for encryption, while the secret key is kept private by the authority and used to issue user keys.
 
         \begin{algorithm}[h]
             \caption{Setup Authority.}
@@ -306,14 +300,23 @@
             \end{algorithmic}
         \end{algorithm}
 
+        Once an authority is initialized, it can issue attribute-specific keys to users. The key generation process is detailed in Algorithm~\ref{alg:keygen}. This algorithm is invoked when a user needs to obtain a key for a specific attribute that is managed by a particular authority. The inputs are the name of the authority, the attributes to which the user is granted, and the global identifier of that user. The authority retrieves its own private secret key ($sk$) and uses it to generate a new secret key component ($K_{\text{user}}$) corresponding to the attribute requested for that specific user. The user then receives and stores this new key. The complete key of a user, $K_{\text{user}}$, is an aggregation of all such key components that they have collected from various authorities for all their attributes.        Figure~\ref{fig:keygen_diagram} shows how an authority provides his own private key, together with a set of user attributes, to generate a key for a user.
+
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.5\textwidth]{images/diagrams/keygen_diagram.pdf}
+            \caption{Authority-based key generation process.}
+            \label{fig:keygen_diagram}
+        \end{figure}
+
         \begin{algorithm}[h]
             \caption{Key Generation.}
             \label{alg:keygen}
             \begin{algorithmic}[1]
             \Procedure{Keygen}{authority, attribute, user}
                 \State $sk \gets \textsc{retrieveAuthorityPrivateKey}(authority)$
-                \State $K \gets \textsc{generateKey}(sk, attribute)$
-                \State $\textsc{storeKey}(user, K)$
+                \State $K_{\text{user}} \gets \textsc{generateKey}(sk, attribute)$
+                \State \Return $K_{\text{user}}$
             \EndProcedure
             \end{algorithmic}
         \end{algorithm}
@@ -321,15 +324,7 @@
     \section{Access policy and Hybrid Encryption Process}
         \label{sec:hybrid_encryption}
 
-        This section outlines the procedure for securing HIoT data using the hybrid cryptographic workflow, visualized in Figure~\ref{fig:encryption_diagram}. The logic for this procedure is presented in Algorithm~\ref{alg:encryption_process}. The algorithm takes a payload and an access policy as input. It first generates a random symmetric key, $K_{G_T}$, which is an element of the pairing group $G_T$. This key is then used to create a hashed AES key, $K_{\textsc{SHA}}$. The output is a two-part ciphertext, consisting of the MA-ABE-encrypted symmetric key, $E_{K_{G_T}}$, and the AES-encrypted payload, $E_{\text{payload}}$. The MA-ABE encryption procedure uses the public keys, $K_A$, of the authorities, $A$, involved, which are retrieved based on the specified access policy. 
-
-        The access policy is defined as a boolean expression over user attributes, allowing for complex conditions on who can access the data. For example, a policy might specify that only users with the attributes 'doctor' at 'HOSPITAL' and 'researcher' at 'UNIVERSITY' can access the data, or alternatively, users with the attribute 'regulator' at 'GOVERNMENT'. The format for such a policy is shown in Equation~\ref{eq:policy_example}.
-
-        \begin{multline}
-            \label{eq:policy_example}
-            \texttt{doctor@HOSPITAL AND researcher@UNIVERSITY}\\
-            \texttt{OR regulator@GOVERNMENT}
-        \end{multline}
+        This section outlines the procedure for securing HIoT data using the hybrid cryptographic workflow, visualized in Figure~\ref{fig:encryption_diagram}. First, a plaintext and an access policy are provided. The access policy is what will guarantee that only user with appropriate attributes will be able to access the file. A randomly generated symmetric key is encrypted using MA-ABE with public keys for the authorities fetched according to the access policy, while the same symmetric key is used to encrypt the plaintext payload with AES. The final output is a two-part payload, composed of the encrypted symmetric key and the encrypted text.
 
         \begin{figure}[h]
             \centering
@@ -337,6 +332,8 @@
             \caption{The hybrid encryption process combining MA-ABE and AES.}
             \label{fig:encryption_diagram}
         \end{figure}
+
+        A pseudo-code representation of this procedure is presented in Algorithm~\ref{alg:encryption_process}. The algorithm takes a payload and an access policy as input. First, it generates a random symmetric key, $K_{G_T}$, which is an element of the pairing group $G_T$. This key is then used to create a hashed AES key, $K_{\textsc{SHA}}$. The output, as in Figure~\ref{fig:encryption_diagram}, is a two-part payload, consisting of the MA-ABE-encrypted symmetric key $E_{K_{G_T}}$ and the AES-encrypted payload $E_{\text{payload}}$. The MA-ABE encryption procedure uses the public keys, $K_A$, of the authorities, $A$, involved, which are retrieved based on the specified access policy. 
 
         \begin{algorithm}[h]
             \caption{Encryption Process.}
@@ -354,20 +351,28 @@
             \end{algorithmic}
         \end{algorithm}
 
+        The access policy is defined as a boolean expression over user attributes, allowing for complex conditions on who can access the data. For example, a policy might specify that only users with the attributes 'doctor' at 'HOSPITAL' and 'researcher' at 'UNIVERSITY' can access the data, or alternatively, users with the attribute 'regulator' at 'GOVERNMENT'. The format for such a policy is shown in Equation~\ref{eq:policy_example}.
+
+        \begin{multline}
+            \label{eq:policy_example}
+            \texttt{doctor@HOSPITAL AND researcher@UNIVERSITY}\\
+            \texttt{OR regulator@GOVERNMENT}
+        \end{multline}
+
+
     \section{Decryption Process}
         \label{sec:policy_decryption}
 
-        This section details how authorized users recover plaintext data. Access is governed by policies, as defined in Section~\ref{sec:hybrid_encryption}. To recover the data, a user must possess a set of attribute keys that satisfies the encryption policy. The decryption workflow, illustrated in Figure~\ref{fig:decryption_diagram}, shows that the user first decrypts the MA-ABE-encrypted symmetric key and then uses that key to decrypt the data payload. This enforces the access policy. 
-
-        Algorithm~\ref{alg:decryption_process} details the decryption process. It takes three inputs: the MA-ABE-encrypted symmetric key, $E_{K_{G_T}}$; the AES-encrypted payload, $E_{\text{payload}}$; and the user's set of attribute keys, $K_{\text{user}}$. It begins by using the user's attribute keys to recover the original symmetric key, $K_{G_T}$ via the function \textsc{maabe.Decrypt}. This recovered symmetric key is then processed to derive the hashed AES key, $K_{\textsc{SHA}}$. Finally, the \textsc{AES.decrypt} function uses $K_{\textsc{SHA}}$ to decrypt $E_{\text{payload}}$, yielding the original plaintext $payload$. The algorithm then returns this recovered $payload$.
-
-
+        This section details the procedure for an authorized user to recover the original plaintext data from the two-part ciphertext. Access is governed by the access policies embedded during encryption, as defined in Section~\ref{sec:hybrid_encryption}. The decryption workflow, illustrated in Figure~\ref{fig:decryption_diagram}, is the reverse of the encryption process. The user provides their set of secret attribute keys, which are used to first decrypt the MA-ABE-encrypted symmetric key. If the user's attributes satisfy the access policy, the symmetric key is successfully recovered. This key is then used to decrypt the main data payload with AES, yielding the original plaintext. If the attributes do not satisfy the policy, the process fails, and access is denied.
+        
         \begin{figure}[h]
             \centering
             \includegraphics[width=\textwidth]{images/diagrams/decryption_diagram.pdf}
             \caption{The decryption process for recovering the original data payload.}
             \label{fig:decryption_diagram}
         \end{figure}
+
+        Algorithm~\ref{alg:decryption_process} provides a detailed representation of this process. It takes three inputs: the MA-ABE-encrypted symmetric key ($E_{K_{G_T}}$), the AES-encrypted payload ($E_{\text{payload}}$), and the user's full set of attribute keys ($K_{\text{user}}$). The procedure begins by invoking the \textsc{maabe.Decrypt} function, which uses the user's attribute keys ($K_{\text{user}}$) to decrypt $E_{K_{G_T}}$. If the user's attributes match the policy, this step successfully recovers the original symmetric key, $K_{G_T}$. This key is then hashed to derive the corresponding AES key, $K_{\textsc{SHA}}$. Finally, the \textsc{AES.decrypt} function uses $K_{\textsc{SHA}}$ to decrypt the large encrypted payload ($E_{\text{payload}}$), yielding the original plaintext. The algorithm then returns this recovered data to the user.
 
         \begin{algorithm}[h]
             \caption{Decryption Process.}
@@ -388,11 +393,11 @@
 
     This chapter describes the experimental setup used to evaluate the proposed cryptographic system for HIoT data management. It outlines the evaluation strategy, testbed environment, and the tools employed for testing.
 
-    The chapter is structured as follows: Section~\ref{sec:evaluation-strategy} presents the overall implementation and evaluation strategy and its objectives. Section~\ref{sec:testbed} details the testbed environment, including hardware and software specifications, and the various implementation tools utilized.
+    The chapter is structured as follows: Section~\ref{sec:evaluation-strategy} presents the overall implementation, evaluation strategy, and its objectives. Section~\ref{sec:testbed} details the testbed environment, including hardware and software specifications, and the various implementation tools utilized.
 
     \section{Evaluation Strategy}
         \label{sec:evaluation-strategy}
-        The primary objectives of the evaluation are to measure the system's performance in terms of response time, determine its scalability under increasing workloads, and assess the cryptographic overhead introduced by the MA-ABE scheme. In addition, we aim to understand how the number of user attributes affects key size and to verify the security of the implementation.
+        The primary objectives of the evaluation are to measure the performance of the system in terms of response time, determine its scalability under increasing workloads, and assess the cryptographic overhead introduced by the MA-ABE scheme. In addition, we aim to understand how the number of user attributes affects key size and to verify the security of the implementation.
 
         For this purpose, we implemented an Application Programming Interface (API) based on the Representational State Transfer (REST) architectural style, which provides endpoints for all the operations defined in Chapter~\ref{chap:proposedsolution}. The API was chosen for its simplicity and ease of integration with existing systems, allowing us to focus on the cryptographic aspects without the overhead of a more complex user interface or a full-fledged application. The source code for the API is available on Zenodo~\citep{maabeflask}.
 
@@ -400,7 +405,7 @@
 
     \section{Testbed Environment}
         \label{sec:testbed}
-        This section describes the testbed environment, including the hardware and software configurations, and the specific tools used for implementation and testing.
+        This section describes the testbed environment, including the hardware and software configurations, and the specific tools used for implementation and testing. Subsection~\ref{subsec:hardware-software} shows the testbed specifications, such as hardware used and software versioning information. Subsection~\ref{subsec:tools} goes into detail on every piece of software used and the role it plays in the proposed implementation. This includes programming languages, libraries, databases, containerization and testing frameworks.
 
         \subsection{Hardware and Software Specifications}
         \label{subsec:hardware-software}
@@ -429,23 +434,23 @@
 
             To evaluate the implementation of the proposed scheme, we utilized several tools and frameworks that support API development, cryptographic computation, concurrency management, and load testing.
 
-            \textbf{Locust} is a Python-based API load testing tool that allows the definition of user behavior scenarios to simulate concurrent usage. It generates load on the system to evaluate responsiveness and performance under various conditions. We configured it with varying numbers of users and spawn rates to assess scalability.
+            \textbf{Locust}\footnote{\url{https://docs.locust.io/}} is a Python-based API load testing tool that allows the definition of user behavior scenarios to simulate concurrent usage. It generates load on the system to evaluate responsiveness and performance under various conditions. We configured it with varying numbers of users and spawn rates to assess scalability.
 
-            \textbf{Gunicorn} is a Web Server Gateway Interface (WSGI) server for Python applications. It enables concurrent request handling through configurable worker processes and threads. We varied the number of threads and workers to test different concurrency configurations and identify an optimal setup.
+            \textbf{Gunicorn}\footnote{\url{https://docs.gunicorn.org/}} is a Web Server Gateway Interface (WSGI) server for Python applications. It enables concurrent request handling through configurable worker processes and threads. We varied the number of threads and workers to test different concurrency configurations and identify an optimal setup.
 
-            \textbf{Charm-Crypto} is a Python library for pairing-based cryptography that offers high-level abstractions for implementing complex cryptographic protocols. It supports a variety of schemes, including MA-ABE. In our implementation, we used the \emph{MaabeRW15} scheme proposed by Rouselakis and Waters~\citep{rouselakis2015efficient}, which provides efficient support for multi-authority setups. Charm-Crypto handled all cryptographic operations in our system.
+            \textbf{Charm-Crypto}\footnote{\url{https://jhuisi.github.io/charm/}} is a Python library for pairing-based cryptography that offers high-level abstractions for implementing complex cryptographic protocols. It supports a variety of schemes, including MA-ABE. In our implementation, we used the \emph{MaabeRW15} scheme proposed by Rouselakis and Waters~\citep{rouselakis2015efficient}, which provides efficient support for multi-authority setups. Charm-Crypto handled all cryptographic operations in our system.
 
-            \textbf{Flask} is a lightweight web framework for Python used to implement the RESTful API for encryption and decryption operations. Its simplicity and extensibility made it suitable for rapid prototyping of the service layer.
+            \textbf{Flask}\footnote{\url{https://flask.palletsprojects.com/}} is a lightweight web framework for Python used to implement the RESTful API for encryption and decryption operations. Its simplicity and extensibility made it suitable for rapid prototyping of the service layer.
 
-            \textbf{Flask-RESTX} is an extension to Flask that provides tooling for building REST APIs, including automatic request parsing and Swagger documentation support. It was used to define and document the API endpoints in a structured and maintainable way.
+            \textbf{Flask-RESTX}\footnote{\url{https://flask-restx.readthedocs.io/}} is an extension to Flask that provides tooling for building REST APIs, including automatic request parsing and Swagger documentation support. It was used to define and document the API endpoints in a structured and maintainable way.
 
-            \textbf{Redis} is an in-memory key-value store used for managing and persisting cryptographic keys across authorities and users. In our implementation, Redis served as a lightweight and fast-access backend for storing public/private key pairs and attribute-based user keys during testing. It was deployed as a service within a Docker Compose network, alongside the API, ensuring isolated environments and consistent behavior across test executions.
+            \textbf{Redis}\footnote{\url{https://redis.io/docs/}} is an in-memory key-value store used for managing and persisting cryptographic keys across authorities and users. In our implementation, Redis served as a lightweight and fast-access backend for storing public/private key pairs and attribute-based user keys during testing. It was deployed as a service within a Docker Compose network, alongside the API, ensuring isolated environments and consistent behavior across test executions.
 
-            All services, including the API, Redis, and test agents, were containerized using Docker and orchestrated with Docker Compose to enable reproducible testing conditions and simplify deployment.
+            All services, including the API, Redis, and test agents, were containerized using Docker\footnote{\url{https://docs.docker.com/}} and orchestrated with Docker Compose\footnote{\url{https://docs.docker.com/compose/}} to enable reproducible testing conditions and simplify deployment.
 
 \chapter{Evaluation}
     \label{chap:evaluation}
-    This chapter presents the implementation details and performance evaluation of the cryptographic system proposed in the previous chapters. We describe the technologies used, the deployment environment, the testing methodology, and the results obtained under different configurations. To ensure reproducibility of results, all source code developed for this project has been archived and made publicly available through Zenodo~\citep{maabeflask}.
+    This chapter presents the implementation details and performance evaluation of the cryptographic system proposed in the previous chapters. We describe the testing methodology, and the results obtained under different configurations. To ensure reproducibility of results, all source code developed for this project has been archived and made publicly available through Zenodo~\citep{maabeflask}.
 
         \section{Concurrency analysis}
         \label{subsec:phase1_concurrency}
