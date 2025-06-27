@@ -146,13 +146,15 @@ The proliferation of Health Internet of Things (HIoT) devices has created an urg
 
     The primary contribution of this work is the design and implementation of this hybrid cryptographic scheme, tailored specifically for securing HIoT data in decentralized blockchain storage. To validate this solution, a second key contribution is the comprehensive performance evaluation of the implemented proof-of-concept, which analyzes the system's scalability and computational overhead across various dimensions, including concurrency, payload size, user load, and access policy complexity. Based on these experimental results, this thesis concludes with a detailed analysis of the inherent trade-offs between security granularity, operational performance, and storage costs, providing practical insights for the deployment of such systems in real-world HIoT environments.
 
+    This thesis is organized as follows. Chapter~\ref{chap:background} provides the necessary technical background on the core cryptographic concepts, including Elliptic Curve Cryptography (ECC), Pairing-Based Cryptography (PBC), and MA-ABE. Chapter~\ref{chap:relatedworks} reviews the relevant literature, contextualizing our work within existing research and identifying the specific gaps that this thesis addresses. Chapter~\ref{chap:proposedsolution} details the design and implementation of the proposed hybrid cryptographic scheme. Chapter~\ref{chap:experimentalsetup} describes the experimental setup, methodology, and the tools used for the performance evaluation. Chapter~\ref{chap:evaluation} presents and discusses the results of the performance analysis, evaluating the system's scalability and overhead. Finally, Chapter~\ref{chap:conclusion} summarizes the contributions of this work and suggests directions for future research.
+
 
 \chapter{Background}
     \label{chap:background}
 
     \citet{laura2023} proposed a new framework for securing HIoT data. The framework aims to provide a secure and decentralized storage solution for HIoT data using decentralized storage and blockchain for access control and data management. However, the framework lacks a robust cryptographic solution to ensure data confidentiality, data ownership, access control, and privacy. We extend their framework by proposing a hybrid cryptographic approach to enhance the security of the system and enable fine-grained access control based on user attributes.
 
-    In this work, the key generation and encryption processes adopt a hybrid cryptographic approach that combines Elliptic Curve Cryptography (ECC), Pairing-Based Cryptography (PBC), and symmetric encryption using AES. The system implements a MA-ABE scheme, enabling fine-grained and flexible access control based on user attributes distributed across multiple independent authorities. ECC and PBC provide the foundation for secure key establishment and attribute-based policies, while AES ensures efficient encryption of large data volumes. This combination leverages the strengths of each technique to achieve both performance and robust access control.
+    In this work, the key generation and encryption processes adopt a hybrid cryptographic approach that combines ECC, PBC, and symmetric encryption using AES. The system implements a MA-ABE scheme, enabling fine-grained and flexible access control based on user attributes distributed across multiple independent authorities. ECC and PBC provide the foundation for secure key establishment and attribute-based policies, while AES ensures efficient encryption of large data volumes. This combination leverages the strengths of each technique to achieve both performance and robust access control.
 
 
 
@@ -260,7 +262,7 @@ The proliferation of Health Internet of Things (HIoT) devices has created an urg
     \section{Problem Statement}
         \label{sec:problemstatement}
 
-        The rapidly expanding landscape of HIoT generates vast quantities of sensitive patient data, demanding robust solutions for confidentiality, integrity, and access control within decentralized systems. While architectural frameworks, such as the one proposed by \citet{laura2023} utilizing IPFS for decentralized storage and Hyperledger Fabric for data management, lay a strong foundation, they often leave the critical details of cryptographic implementation for fine-grained data security as open challenges or future work. This thesis directly addresses these specific gaps.
+        The rapidly expanding landscape of HIoT generates vast quantities of sensitive patient data, demanding robust solutions for confidentiality, integrity, and access control within decentralized systems. While architectural frameworks, such as the one proposed by \citet{laura2023} lay a strong foundation, they often leave the critical details of cryptographic implementation for fine-grained data security as open challenges or future work. This thesis directly addresses these specific gaps.
 
         Despite these advancements, fully realizing the potential of secure HIoT data management necessitates further exploration into several key areas, which this thesis identifies as critical challenges, as detailed in the following subsections.
 
@@ -462,11 +464,11 @@ The proliferation of Health Internet of Things (HIoT) devices has created an urg
             (\text{threads}, \text{workers}) \mid \text{threads} \in \{1, 8, 12, 16, 24, 32\}, \text{workers} \in \{1, 5, 10, 15, 20, 25\} 
         \end{equation}
 
-        Figure~\ref{fig:encrypt_response_time_workers} and Figure~\ref{fig:decrypt_response_time_workers} shows the response time for encryption and decryption with a fixed number of workers while varying the number of threads. The results indicate a relatively stable median response time across thread counts. This suggests that the system does not benefit significantly from thread-level concurrency.
+        Figure~\ref{fig:encrypt_response_time_workers} and Figure~\ref{fig:decrypt_response_time_workers} show the response time for encryption and decryption with a fixed number of workers while varying the number of threads. The results indicate a relatively stable median response time across thread counts. For instance, in the plots for 25 workers, the median response time for encryption averages around 273 ms across all thread counts. A similar pattern is observed for decryption, where the median response time is approximately 57 ms This suggests that, due to Python's Global Interpreter Lock (GIL)\footnote{\url{https://wiki.python.org/moin/GlobalInterpreterLock}}, the system does not benefit significantly from thread-level concurrency.
 
-        Figure~\ref{fig:encrypt_response_time_threads} and Figure~\ref{fig:decrypt_response_time_threads}, in contrast, presents the effect of increasing the number of workers with a fixed thread count. The response time decreases exponentially as more workers are added, showing that the system benefits from process-based concurrency.
+        Figure~\ref{fig:encrypt_response_time_threads} and Figure~\ref{fig:decrypt_response_time_threads}, in contrast, presents the effect of increasing the number of workers with a fixed thread count. The response time decreases exponentially as more workers are added, showing that the system benefits from process-based concurrency. For example, with threads fixed at 1, the median encryption response time for a single worker is around 8000 ms, which drops to 57 ms when 25 workers are used. This trend confirms that scaling the number of worker processes is the effective strategy for improving the system's throughput.
 
-        Based on these results, we adopted a configuration of 25 workers and 1 thread for the remaining test phases. This choice aligns with Gunicorn's recommendation\footnote{\url{https://docs.gunicorn.org/en/latest/design.html\#how-many-workers}} for the optimal number of workers, given by Equation~\ref{form:numberworkers}, where \texttt{cores} is the number of logical cores available. The request times for this configuration can be seen in Table~\ref{tab:response_times}.
+        Based on these results, we adopted a configuration of 25 workers and 1 thread for the remaining test phases. This choice aligns with Gunicorn's recommendation\footnote{\url{https://docs.gunicorn.org/en/latest/design.html\#how-many-workers}} for the optimal number of workers, given by Equation~\ref{form:numberworkers}, where \texttt{cores} is the number of logical cores available.
 
         \begin{equation}
             \label{form:numberworkers}
@@ -494,18 +496,6 @@ The proliferation of Health Internet of Things (HIoT) devices has created an urg
             \label{fig:encrypt_response_time_threads}
         \end{figure}
 
-        \begin{table}
-                \centering
-                \begin{tabular}{|l|l|l|l|l|}
-                \hline
-                    Endpoint & Mean Response Time (ms) & Std Dev (ms) & Total Requests & RPS \\ \hline
-                    /api/decrypt & 273.51 & 71.38 & 7423 & 12.45 \\ \hline
-                    /api/encrypt & 57.37 & 52.18 & 7539 & 12.59 \\ \hline
-                \end{tabular}
-                \caption{Summary of response times for encryption and decryption using 25 workers and 1 thread. RPS stands for Requests Per Second.}
-                \label{tab:response_times}
-            \end{table}
-
         \begin{figure}
             \centering
             \includegraphics[width=\textwidth]{images/phase1/api_decrypt/response_time_threads_summary.png}
@@ -524,7 +514,20 @@ The proliferation of Health Internet of Things (HIoT) devices has created an urg
                 \text{payload\_size} \in \{1\text{KB}, 4\text{KB}, 16\text{KB}, 32\text{KB}, 64\text{KB}, 256\text{KB}\}
             \end{equation}
 
-            Figures~\ref{fig:encrypt_payload_size} and~\ref{fig:decrypt_payload_size} present the encryption and decryption response times, respectively, for different payload sizes. As expected, response time increases with larger payloads. However, the encryption process shows a more gradual increase compared to decryption, which may reflect higher complexity in the MA-ABE decryption routine. Table~\ref{tab:response_times} summarizes the mean response times and standard deviations for both encryption and decryption operations across all payload sizes. An original payload of 32KB expands to approximately 87KB, and a 256KB payload increases to about 699KB after encryption. This substantial expansion directly affects the storage requirements and bandwidth utilization for data retrieval from IPFS, especially crucial in resource-constrained HIoT environments where storage efficiency and network overhead are critical considerations. 
+            Figures~\ref{fig:encrypt_payload_size} and~\ref{fig:decrypt_payload_size} present the encryption and decryption response times, respectively, for different payload sizes. As expected, response time increases with larger payloads, going from going from a median of 54.39 ms for the encryption of a 1024 KB payload to 136.34 ms for encrypting a 256 MB payload. However, the decryption process shows a more gradual increase compared to decryption, going from a median of 274.93 ms for the decryption of a 1024 KB payload to 393.37 ms for decrypting a 256 MB payload. The higher overall times for decryption, compared to encryption with the same payload size, might reflect higher complexity in the MA-ABE decryption routine. Table~\ref{tab:response_times} summarizes the mean response times and standard deviations for both encryption and decryption operations across all payload sizes. An original payload of 32KB expands to approximately 87KB, and a 256KB payload increases to about 699KB after encryption. This substantial expansion directly affects the storage requirements and bandwidth utilization for data retrieval from IPFS, especially crucial in resource-constrained HIoT environments where storage efficiency and network overhead are critical considerations. 
+
+            \begin{table}
+                \centering
+                \begin{tabular}{|l|l|l|l|l|}
+                \hline
+                    Endpoint & Mean Response Time (ms) & Std Dev (ms) & Total Requests & RPS \\ \hline
+                    /api/decrypt & 273.51 & 71.38 & 7423 & 12.45 \\ \hline
+                    /api/encrypt & 57.37 & 52.18 & 7539 & 12.59 \\ \hline
+                \end{tabular}
+                \caption{Summary of response times for encryption and decryption using 25 workers and 1 thread. RPS stands for Requests Per Second.}
+                \label{tab:response_times}
+            \end{table}
+
             
 
             \begin{figure}
@@ -551,7 +554,7 @@ The proliferation of Health Internet of Things (HIoT) devices has created an urg
                 \text{users} \in \{10, 50, 100, 250, 500, 1000\}
             \end{equation}
 
-            Figures~\ref{fig:encrypt_user_load} and~\ref{fig:decrypt_user_load} illustrate the effect of user load on response time. As expected, response time increases as more users are introduced. The system handles moderate user loads well, but performance degradation becomes more pronounced at the highest concurrency levels.
+            Figures~\ref{fig:encrypt_user_load} and~\ref{fig:decrypt_user_load} illustrate the effect of user load on response time. As expected, response time increases as more users are introduced, going from 46.54 ms with 10 simultaneous user using the system, to 7302.09 ms for 500 users in encryption, and from 232.50 ms with 10 user to 8159.21 ms for 500 users in decryption. The system handles moderate user loads well, but performance degradation becomes more pronounced at the highest concurrency levels.
 
             \begin{figure}
                 \centering
@@ -572,7 +575,7 @@ The proliferation of Health Internet of Things (HIoT) devices has created an urg
 
             To assess how the size of the encryption policy affects performance, we varied the number of attributes in the access policy from 1 to 10. The other parameters (payload size = 64\,KB, users = 100, workers = 25, threads = 1) were kept fixed.
 
-            Figures~\ref{fig:encrypt_policy_size} and~\ref{fig:decrypt_policy_size} show how increasing the number of attributes in the policy affects encryption and decryption times. As expected, more complex policies result in higher response times due to the additional computational overhead involved in evaluating attribute trees and pairing operations.
+            Figures~\ref{fig:encrypt_policy_size} and~\ref{fig:decrypt_policy_size} show how increasing the number of attributes in the policy affects encryption and decryption times. As expected, more complex policies result in higher response times due to the additional computational overhead involved in evaluating attribute trees and pairing operations. A payload being processed with a single policy takes around 66.204 ms to encrypt and 313.861 ms to decrypt, while a payload with 10 access policies takes 1241.626 ms to encrypt and 2543.611 ms to decrypt.
 
             \begin{figure}
                 \centering
@@ -609,7 +612,7 @@ The proliferation of Health Internet of Things (HIoT) devices has created an urg
 
             \subsection{Interpreting Performance and Scalability}
 
-                Our analysis of Gunicorn worker configurations (Section~\ref{subsec:phase1_concurrency}) revealed that system performance scales effectively with the number of processes (workers) but does not benefit from multi-threading. As shown in Figures~\ref{fig:encrypt_response_time_threads} and~\ref{fig:decrypt_response_time_threads}, increasing the number of workers leads to a significant decrease in response times. Conversely, increasing the number of threads per worker offered no discernible performance improvement (Figures~\ref{fig:encrypt_response_time_workers} and~\ref{fig:decrypt_response_time_workers}). This behavior is characteristic of CPU-bound Python applications due to the Global Interpreter Lock (GIL), which prevents multiple native threads from executing Python bytecodes simultaneously. Since cryptographic operations are computationally intensive, the GIL becomes a bottleneck, neutralizing the benefits of threading. The Charm-Crypto library, while built on C components, is still subject to the GIL when its functions are invoked from Python, explaining this observation. This finding suggests that for deployment, scaling should be achieved by increasing the number of worker processes rather than threads.
+                Our analysis of Gunicorn worker configurations (Section~\ref{subsec:phase1_concurrency}) revealed that system performance scales effectively with the number of processes (workers) but does not benefit from multi-threading. As shown in Figures~\ref{fig:encrypt_response_time_threads} and~\ref{fig:decrypt_response_time_threads}, increasing the number of workers leads to a significant decrease in response times. Conversely, increasing the number of threads per worker offered no discernible performance improvement (Figures~\ref{fig:encrypt_response_time_workers} and~\ref{fig:decrypt_response_time_workers}). This behavior is characteristic of CPU-bound Python applications due to the GIL, which prevents multiple native threads from executing Python bytecodes simultaneously. Since cryptographic operations are computationally intensive, the GIL becomes a bottleneck, neutralizing the benefits of threading. The Charm-Crypto library, while built on C components, is still subject to the GIL when its functions are invoked from Python, explaining this observation. This finding suggests that for deployment, scaling should be achieved by increasing the number of worker processes rather than threads.
 
                 The payload size analysis (Section~\ref{subsec:phase2_payload}) demonstrated that while encryption and decryption times increase with payload size, the system remains efficient. For instance, encrypting a 256\,KB payload takes, on average, 165.6 ms, and decryption takes 419.4 ms. The hybrid nature of our scheme, which uses the computationally expensive MA-ABE only to protect a small symmetric key, proves effective. The bulk of the work, encrypting the payload itself, is handled by the highly efficient AES algorithm. This confirms the suitability of the hybrid approach for securing large HIoT data payloads without incurring prohibitive computational costs.
 
