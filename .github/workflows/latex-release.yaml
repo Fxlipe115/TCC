@@ -4,6 +4,21 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '**.tex'
+      - '**.sty'
+      - '**.bib'
+      - '**.cls'
+      - '**.def'
+      - '**.bst'
+      - '**.eps'
+      - '**.pdf'
+      - '**.png'
+      - '**.jpg'
+      - '**.jpeg'
+      - 'latexmkrc'
+      - 'images/**'
+      - 'inputs/**'
 
 jobs:
   build_latex:
